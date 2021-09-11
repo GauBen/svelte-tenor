@@ -80,3 +80,26 @@ export const trending = async (): Promise<{
     results: GifObject[]
   }>
 }
+
+export const search = async (
+  q: string
+): Promise<{
+  next: string
+  results: GifObject[]
+}> => {
+  const url = new URL('https://g.tenor.com/v1/search')
+  url.searchParams.set('key', 'LIVDSRZULELA')
+  url.searchParams.set('locale', 'fr_FR')
+  url.searchParams.set('q', q)
+  const response = await fetch(url.toString())
+
+  if (response.status >= 400) {
+    const error = (await response.json()) as ApiError
+    throw new Error(`${error.code}: ${error.error}`)
+  }
+
+  return response.json() as Promise<{
+    next: string
+    results: GifObject[]
+  }>
+}
