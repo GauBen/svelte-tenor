@@ -27,5 +27,8 @@
 		"lint": "prettier --ignore-path .gitignore --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
 		"preview": "svelte-kit preview --host"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"sass": "^1.39.2"
+	}
 }
