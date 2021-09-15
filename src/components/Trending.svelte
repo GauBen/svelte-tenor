@@ -1,20 +1,29 @@
 <script lang="ts">
   import type { GifObject } from '../api'
-  import { onMount } from 'svelte'
   import { trending } from '../api'
   import Grid from './Grid.svelte'
+
+  /** Number of pages to load. */
+  export let n = 1
 
   let pages: Array<{
     next: string
     results: GifObject[]
   }> = []
 
-  $: gifs = pages.flatMap(({ results }) => results)
+  const loadPage = async (n: number) => {
+    while (n > pages.length) {
+      const page = await trending({
+        key: 'LIVDSRZULELA',
+        limit: 4,
+        ...(pages.length > 0 ? { pos: pages.at(-1).next } : {}),
+      })
+      pages = [...pages, page]
+    }
+  }
 
-  onMount(async () => {
-    const gifs = await trending()
-    pages = [...pages, gifs]
-  })
+  $: loadPage(n)
+  $: gifs = pages.slice(0, n).flatMap(({ results }) => results)
 </script>
 
 <Grid {gifs} />

@@ -7,16 +7,12 @@
 
 <input type="text" bind:value />
 {#if value === ''}
-  {#await trending()}
+  {#await trending({ key: 'LIVDSRZULELA' })}
     Chargement...
   {:then { results }}
     <div class="gifs">
       {#each results as result (result.id)}
-        <Gif
-          medium={result.media[0]}
-          formats={['webm', 'mp4']}
-          columnWidth={260}
-        />
+        <Gif medium={result.media[0]} formats={['webm', 'mp4']} />
       {/each}
     </div>
   {/await}
@@ -26,11 +22,7 @@
   {:then { results }}
     <div class="gifs">
       {#each results as result (result.id)}
-        <Gif
-          medium={result.media[0]}
-          formats={['webm', 'mp4']}
-          columnWidth={260}
-        />
+        <Gif medium={result.media[0]} formats={['webm', 'mp4']} />
       {/each}
     </div>
   {/await}

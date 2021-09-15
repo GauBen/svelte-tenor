@@ -61,13 +61,24 @@ export interface ApiError {
   error: string
 }
 
-export const trending = async (): Promise<{
+export const trending = async (options: {
+  /** Client key. You may use `LIVDSRZULELA` for testing. */
+  key: string
+  /** Default language to interpret search string. */
+  locale?: string
+  media_filter?: 'minimal' | 'basic'
+  contentfilter?: 'off' | 'low' | 'medium' | 'high'
+  limit?: number
+  pos?: string
+  anon_id?: string
+}): Promise<{
   next: string
   results: GifObject[]
 }> => {
   const url = new URL('https://g.tenor.com/v1/trending')
-  url.searchParams.set('key', 'LIVDSRZULELA')
-  url.searchParams.set('locale', 'fr_FR')
+  for (const [name, value] of Object.entries(options))
+    url.searchParams.set(name, value.toString())
+
   const response = await fetch(url.toString())
 
   if (response.status >= 400) {
@@ -81,6 +92,7 @@ export const trending = async (): Promise<{
   }>
 }
 
+/** Todo. */
 export const search = async (
   q: string
 ): Promise<{
