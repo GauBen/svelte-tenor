@@ -1,5 +1,6 @@
 <script lang="ts">
   import { trending, search } from './api'
+  import Gif from './Gif.svelte'
 
   let value = ''
 </script>
@@ -10,24 +11,12 @@
     Chargement...
   {:then { results }}
     <div class="gifs">
-      {#each results as result}
-        <video
-          autoplay
-          loop
-          muted
-          playsinline
-          width={result.media[0].webm.dims[0]}
-          height={result.media[0].webm.dims[1]}
-          poster={result.media[0].webm.preview}
-          style={`grid-row-end: span ${Math.ceil(
-            (260 * result.media[0].webm.dims[1]) /
-              result.media[0].webm.dims[0] /
-              16
-          )}`}
-        >
-          <source src={result.media[0].webm.url} type="video/webm" />
-          <source src={result.media[0].mp4.url} type="video/mp4" />
-        </video>
+      {#each results as result (result.id)}
+        <Gif
+          medium={result.media[0]}
+          formats={['webm', 'mp4']}
+          columnWidth={260}
+        />
       {/each}
     </div>
   {/await}
@@ -36,41 +25,21 @@
     Chargement...
   {:then { results }}
     <div class="gifs">
-      {#each results as result}
-        <video
-          autoplay
-          loop
-          muted
-          playsinline
-          width={result.media[0].webm.dims[0]}
-          height={result.media[0].webm.dims[1]}
-          poster={result.media[0].webm.preview}
-          style={`grid-row-end: span ${Math.ceil(
-            (260 * result.media[0].webm.dims[1]) /
-              result.media[0].webm.dims[0] /
-              16
-          )}`}
-        >
-          <source src={result.media[0].webm.url} type="video/webm" />
-          <source src={result.media[0].mp4.url} type="video/mp4" />
-        </video>
+      {#each results as result (result.id)}
+        <Gif
+          medium={result.media[0]}
+          formats={['webm', 'mp4']}
+          columnWidth={260}
+        />
       {/each}
     </div>
   {/await}
 {/if}
 
 <style lang="scss">
-  video {
-    background: linear-gradient(to right, purple, tomato);
-    max-width: 100%;
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-  }
-
   .gifs {
     display: grid;
-    grid-template-columns: repeat(auto-fill, 260px);
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     grid-auto-rows: 8px;
     align-items: stretch;
     gap: 8px;
