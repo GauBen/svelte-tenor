@@ -73,7 +73,7 @@ const endpoint = <Input, Output>(name: string) => async (options: Input) => {
     throw new Error(`${error.code}: ${error.error}`)
   }
 
-  return (response.json() as unknown) as Output
+  return response.json() as Promise<Output>
 }
 
 export const trending = endpoint<
@@ -88,10 +88,10 @@ export const trending = endpoint<
     pos?: string
     anon_id?: string
   },
-  Promise<{
+  {
     next: string
     results: GifObject[]
-  }>
+  }
 >('trending')
 
 export const search = endpoint<
@@ -108,8 +108,13 @@ export const search = endpoint<
     pos?: string
     anon_id?: string
   },
-  Promise<{
+  {
     next: string
     results: GifObject[]
-  }>
+  }
 >('search')
+
+export const autocomplete = endpoint<
+  { key: string; q: string; locale?: string; limit?: number; anon_id?: string },
+  { results: string[] }
+>('autocomplete')
