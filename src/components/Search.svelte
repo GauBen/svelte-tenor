@@ -1,10 +1,11 @@
 <script lang="ts">
   import type { GifObject } from '../api'
-  import { trending } from '../api'
+  import { search } from '../api'
   import Grid from './Grid.svelte'
 
   export let key: string
   export let limit = 20
+  export let q: string
 
   /** Number of pages to load. */
   export let n = 1
@@ -17,7 +18,8 @@
   // eslint-disable-next-line no-empty-pattern
   const loadPage = async ({}) => {
     while (n > pages.length) {
-      const page = await trending({
+      const page = await search({
+        q,
         key,
         limit,
         ...(pages.length > 0 ? { pos: pages.at(-1).next } : {}),
@@ -26,7 +28,12 @@
     }
   }
 
-  $: loadPage({ n })
+  $: {
+    q
+    n = 1
+    pages = []
+  }
+  $: loadPage({ n, q })
   $: gifs = pages.slice(0, n).flatMap(({ results }) => results)
 </script>
 

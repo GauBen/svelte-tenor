@@ -61,21 +61,8 @@ export interface ApiError {
   error: string
 }
 
-export const trending = async (options: {
-  /** Client key. You may use `LIVDSRZULELA` for testing. */
-  key: string
-  /** Default language to interpret search string. */
-  locale?: string
-  media_filter?: 'minimal' | 'basic'
-  contentfilter?: 'off' | 'low' | 'medium' | 'high'
-  limit?: number
-  pos?: string
-  anon_id?: string
-}): Promise<{
-  next: string
-  results: GifObject[]
-}> => {
-  const url = new URL('https://g.tenor.com/v1/trending')
+const endpoint = <Input, Output>(name: string) => async (options: Input) => {
+  const url = new URL(`https://g.tenor.com/v1/${name}`)
   for (const [name, value] of Object.entries(options))
     url.searchParams.set(name, value.toString())
 
@@ -86,32 +73,43 @@ export const trending = async (options: {
     throw new Error(`${error.code}: ${error.error}`)
   }
 
-  return response.json() as Promise<{
+  return (response.json() as unknown) as Output
+}
+
+export const trending = endpoint<
+  {
+    /** Client key. You may use `LIVDSRZULELA` for testing. */
+    key: string
+    /** Default language to interpret search string. */
+    locale?: string
+    media_filter?: 'minimal' | 'basic'
+    contentfilter?: 'off' | 'low' | 'medium' | 'high'
+    limit?: number
+    pos?: string
+    anon_id?: string
+  },
+  Promise<{
     next: string
     results: GifObject[]
   }>
-}
+>('trending')
 
-/** Todo. */
-export const search = async (
-  q: string
-): Promise<{
-  next: string
-  results: GifObject[]
-}> => {
-  const url = new URL('https://g.tenor.com/v1/search')
-  url.searchParams.set('key', 'LIVDSRZULELA')
-  url.searchParams.set('locale', 'fr_FR')
-  url.searchParams.set('q', q)
-  const response = await fetch(url.toString())
-
-  if (response.status >= 400) {
-    const error = (await response.json()) as ApiError
-    throw new Error(`${error.code}: ${error.error}`)
-  }
-
-  return response.json() as Promise<{
+export const search = endpoint<
+  {
+    /** Client key. You may use `LIVDSRZULELA` for testing. */
+    key: string
+    /** A search string. */
+    q: string
+    /** Default language to interpret search string. */
+    locale?: string
+    media_filter?: 'minimal' | 'basic'
+    contentfilter?: 'off' | 'low' | 'medium' | 'high'
+    limit?: number
+    pos?: string
+    anon_id?: string
+  },
+  Promise<{
     next: string
     results: GifObject[]
   }>
-}
+>('search')
