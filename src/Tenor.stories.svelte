@@ -5,7 +5,7 @@
 
 <Meta title="Components/Tenor" component={Tenor} argTypes={{}} />
 
-<Template let:args>
+<Template>
   <Tenor />
 </Template>
 
