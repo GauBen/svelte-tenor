@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { GifFormat, MediaObject } from './api'
+  import type { GifFormat, MediaObject } from '../api'
 
   export let medium: Record<GifFormat, MediaObject>
   export let formats: GifFormat[]

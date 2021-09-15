@@ -1,6 +1,6 @@
 <script lang="ts">
   import { trending, search } from './api'
-  import Gif from './Gif.svelte'
+  import Gif from './components/Gif.svelte'
 
   let value = ''
 </script>
