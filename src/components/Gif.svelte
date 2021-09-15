@@ -2,8 +2,17 @@
   import type { GifFormat, MediaObject } from '../api'
 
   export let medium: Record<GifFormat, MediaObject>
-  export let formats: GifFormat[]
-  export let columnWidth = 260
+  export let formats: GifFormat[] = ['webm', 'mp4']
+
+  const mime = {
+    mp4: 'mp4',
+    loopedmp4: 'mp4',
+    tinymp4: 'mp4',
+    nanomp4: 'mp4',
+    webm: 'webm',
+    tinywebm: 'webm',
+    nanowebm: 'webm',
+  }
 
   $: width = medium[formats[0]].dims[0]
   $: height = medium[formats[0]].dims[1]
@@ -18,10 +27,11 @@
   {width}
   {height}
   poster={preview}
-  style={`grid-row-end: span ${Math.ceil((columnWidth * height) / width / 16)}`}
+  tabindex="-1"
 >
-  <source src={medium.webm.url} type="video/webm" />
-  <source src={medium.mp4.url} type="video/mp4" />
+  {#each formats as format}
+    <source src={medium[format].url} type="video/{mime[format]}" />
+  {/each}
 </video>
 
 <style lang="scss">
