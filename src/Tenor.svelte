@@ -1,39 +1,21 @@
 <script lang="ts">
-  import { trending, search } from './api'
-  import Gif from './components/Gif.svelte'
-
+  import Autocomplete from './components/Autocomplete.svelte'
+  import Search from './components/Search.svelte'
+  import Trending from './components/Trending.svelte'
+  export let key
   let value = ''
 </script>
 
-<input type="text" bind:value />
+<input type="search" bind:value />
+<Autocomplete {key} q={value} on:click={(event) => (value = event.detail)} />
 {#if value === ''}
-  {#await trending({ key: 'LIVDSRZULELA' })}
-    Chargement...
-  {:then { results }}
-    <div class="gifs">
-      {#each results as result (result.id)}
-        <Gif medium={result.media[0]} formats={['webm', 'mp4']} />
-      {/each}
-    </div>
-  {/await}
+  <Trending {key} />
 {:else}
-  {#await search(value)}
-    Chargement...
-  {:then { results }}
-    <div class="gifs">
-      {#each results as result (result.id)}
-        <Gif medium={result.media[0]} formats={['webm', 'mp4']} />
-      {/each}
-    </div>
-  {/await}
+  <Search {key} q={value} />
 {/if}
 
-<style lang="scss">
-  .gifs {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    grid-auto-rows: 8px;
-    align-items: stretch;
-    gap: 8px;
+<style>
+  input {
+    width: 100%;
   }
 </style>
