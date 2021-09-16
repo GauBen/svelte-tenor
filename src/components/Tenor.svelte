@@ -2,7 +2,7 @@
   import Autocomplete from './Autocomplete.svelte'
   import Search from './Search.svelte'
   import Trending from './Trending.svelte'
-  export let key
+  export let key: string
   let value = ''
 </script>
 

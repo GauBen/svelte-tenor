@@ -2,7 +2,15 @@
   import type { GifFormat, MediaObject } from '../api'
 
   export let medium: Record<GifFormat, MediaObject>
-  export let formats: GifFormat[] = ['webm', 'mp4']
+  export let formats: (
+    | 'mp4'
+    | 'loopedmp4'
+    | 'tinymp4'
+    | 'nanomp4'
+    | 'webm'
+    | 'tinywebm'
+    | 'nanowebm'
+  )[] = ['webm', 'mp4']
 
   const mime = {
     mp4: 'mp4',

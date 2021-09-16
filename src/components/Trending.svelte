@@ -20,7 +20,7 @@
       const page = await trending({
         key,
         limit,
-        ...(pages.length > 0 ? { pos: pages.at(-1).next } : {}),
+        ...(pages.length > 0 ? { pos: pages[pages.length - 1].next } : {}),
       })
       pages = [...pages, page]
     }
