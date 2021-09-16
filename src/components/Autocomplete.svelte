@@ -7,6 +7,8 @@
   export let limit = 10
   export let q: string
 
+  export let scroll = false
+
   const color = (str: string) => {
     let hash = 0xc0ffee
     for (const char of str)
@@ -26,7 +28,7 @@
 </script>
 
 {#await autocomplete({ key, q, limit }) then { results }}
-  <div class="results">
+  <div class="results" class:scroll>
     {#each results as result}
       <button
         style="background-color: {color(result)}"
@@ -45,6 +47,11 @@
     flex-wrap: wrap;
   }
 
+  .results.scroll {
+    flex-wrap: nowrap;
+    overflow: auto;
+  }
+
   button {
     border: 0;
     border-radius: 0.25em;
@@ -53,5 +60,6 @@
     font-weight: bold;
     text-shadow: 0 0 0.25em #0008;
     box-shadow: 0 0 0.25em #0004;
+    flex-shrink: 0;
   }
 </style>
