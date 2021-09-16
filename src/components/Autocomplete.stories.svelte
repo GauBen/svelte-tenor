@@ -1,6 +1,8 @@
 <script>
   import { Meta, Story } from '@storybook/addon-svelte-csf'
   import Autocomplete from './Autocomplete.svelte'
+
+  let q = ''
 </script>
 
 <Meta
@@ -19,4 +21,13 @@
   let:args
 >
   <Autocomplete {...args} />
+</Story>
+
+<Story
+  name="Reactivity"
+  args={{ key: 'LIVDSRZULELA', limit: 20, q: 'hello', scroll: false }}
+  let:args
+>
+  <p><input type="text" bind:value={q} /></p>
+  <Autocomplete {...args} {q} />
 </Story>
