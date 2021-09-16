@@ -49,5 +49,6 @@
     height: 100%;
     width: 100%;
     object-fit: cover;
+    vertical-align: bottom;
   }
 </style>

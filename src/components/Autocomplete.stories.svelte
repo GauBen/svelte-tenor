@@ -12,6 +12,7 @@
     key: { control: { type: 'text' } },
     limit: { control: { type: 'range', min: 1, max: 50, step: 1 } },
     scroll: { control: { type: 'boolean' } },
+    onClick: { action: {} },
   }}
 />
 
@@ -20,7 +21,7 @@
   args={{ key: 'LIVDSRZULELA', limit: 20, q: 'hello', scroll: false }}
   let:args
 >
-  <Autocomplete {...args} />
+  <Autocomplete {...args} on:click={({ detail }) => args.onClick(detail)} />
 </Story>
 
 <Story
@@ -29,5 +30,12 @@
   let:args
 >
   <p><input type="text" bind:value={q} /></p>
-  <Autocomplete {...args} {q} />
+  <Autocomplete
+    {...args}
+    {q}
+    on:click={({ detail }) => {
+      q = detail
+      args.onClick(detail)
+    }}
+  />
 </Story>

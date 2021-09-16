@@ -12,6 +12,7 @@
   argTypes={{
     key: { control: { type: 'text' } },
     limit: { control: { type: 'range', min: 1, max: 50, step: 1 } },
+    onClick: { action: {} },
   }}
 />
 
@@ -20,7 +21,7 @@
   args={{ key: 'LIVDSRZULELA', limit: 20, q: 'david goodenough' }}
   let:args
 >
-  <Search {...args} />
+  <Search {...args} on:click={({ detail }) => args.onClick(detail)} />
 </Story>
 
 <Story
@@ -28,13 +29,18 @@
   args={{ key: 'LIVDSRZULELA', limit: 4, q: 'david goodenough' }}
   let:args
 >
-  <Search {...args} {n} />
+  <Search {...args} {n} on:click={({ detail }) => args.onClick(detail)} />
   <div class="more"><button on:click={() => n++}>Load more</button></div>
 </Story>
 
 <Story name="Reactivity" args={{ key: 'LIVDSRZULELA', limit: 4 }} let:args>
   <input type="search" bind:value={q} />
-  <Search {...args} {q} bind:n />
+  <Search
+    {...args}
+    {q}
+    bind:n
+    on:click={({ detail }) => args.onClick(detail)}
+  />
   <div class="more"><button on:click={() => n++}>Load more</button></div>
 </Story>
 

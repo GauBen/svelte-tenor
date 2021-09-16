@@ -37,4 +37,4 @@
   $: gifs = pages.slice(0, n).flatMap(({ results }) => results)
 </script>
 
-<Grid {gifs} />
+<Grid {gifs} on:click />
