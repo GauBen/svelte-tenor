@@ -4,7 +4,6 @@
   import Gif from './Gif.svelte'
 
   export let gifs: GifObject[] = []
-  $: gif = gifs[0]?.id
 
   const dispatch = createEventDispatcher<{ click: GifObject }>()
 </script>

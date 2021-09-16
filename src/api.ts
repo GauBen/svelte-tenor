@@ -33,20 +33,6 @@ export interface GifObject<Formats extends string = GifFormat> {
   url: string
 }
 
-export interface CategoryObject {
-  /** The English search term that corresponds to the category. */
-  searchterm: string
-  /** The search url to request if the user selects the category. */
-  path: string
-  /** A url to the media source for the category's example GIF. */
-  image: string
-  /**
-   * Category name to overlay over the image. The name will be translated to
-   * match the locale of the corresponding request.
-   */
-  name: string
-}
-
 export interface MediaObject {
   /** A url to a preview image of the media source. */
   preview: string
@@ -176,6 +162,8 @@ export const endpoint = <Input, Output>(name: string) => async (
 export const endpoints = {
   search: endpoint('search'),
   trending: endpoint('trending'),
+  autocomplete: endpoint('autocomplete'),
+  categories: endpoint('categories'),
 }
 
 /** Searches for GIFs. */
@@ -222,18 +210,59 @@ export async function trending(options: unknown): Promise<unknown> {
   return endpoints.trending(options)
 }
 
-export const autocomplete = endpoint<
-  { key: string; q: string; locale?: string; limit?: number; anon_id?: string },
-  { results: string[] }
->('autocomplete')
+export async function autocomplete(options: {
+  key: string
+  q: string
+  locale?: string
+  limit?: number
+  anon_id?: string
+}): Promise<{ results: string[] }>
+export async function autocomplete(options: unknown): Promise<unknown> {
+  return endpoints.autocomplete(options)
+}
 
-export const categories = endpoint<
-  {
-    key: string
-    locale?: string
-    type?: 'featured' | 'emoji' | 'trending'
-    contentfilter?: 'off' | 'low' | 'medium' | 'high'
-    anon_id?: string
-  },
-  { tags: CategoryObject[] }
->('categories')
+export async function categories(options: {
+  key: string
+  locale?: string
+  type?: 'featured' | 'trending'
+  contentfilter?: 'off' | 'low' | 'medium' | 'high'
+  anon_id?: string
+}): Promise<{
+  tags: Array<{
+    /** The search term that corresponds to the category. */
+    searchterm: string
+    /** The search url to request if the user selects the category. */
+    path: string
+    /** A url to the media source for the category's example GIF. */
+    image: string
+    /**
+     * Category name to overlay over the image. The name will be translated to
+     * match the locale of the corresponding request.
+     */
+    name: string
+  }>
+}>
+export async function categories(options: {
+  key: string
+  locale?: string
+  type: 'emoji'
+  contentfilter?: 'off' | 'low' | 'medium' | 'high'
+  anon_id?: string
+}): Promise<{
+  tags: Array<{
+    /** The search term that corresponds to the category. */
+    searchterm: string
+    /** The search url to request if the user selects the category. */
+    path: string
+    /**
+     * Category name to overlay over the image. The name will be translated to
+     * match the locale of the corresponding request.
+     */
+    name: string
+    /** Emoji. */
+    character: string
+  }>
+}>
+export async function categories(options: unknown): Promise<unknown> {
+  return endpoints.categories(options)
+}
