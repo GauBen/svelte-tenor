@@ -1,3 +1,11 @@
+/*
+ █████  ██████  ██     ████████ ██    ██ ██████  ███████ ███████
+██   ██ ██   ██ ██        ██     ██  ██  ██   ██ ██      ██
+███████ ██████  ██        ██      ████   ██████  █████   ███████
+██   ██ ██      ██        ██       ██    ██      ██           ██
+██   ██ ██      ██        ██       ██    ██      ███████ ███████
+*/
+
 export interface GifObject<Formats extends string = GifFormat> {
   /** Tenor result identifier. */
   id: string
@@ -70,19 +78,63 @@ export interface ApiError {
   error: string
 }
 
+/*
+███████ ███    ██ ██████  ██████   ██████  ██ ███    ██ ████████     ████████ ██    ██ ██████  ███████ ███████
+██      ████   ██ ██   ██ ██   ██ ██    ██ ██ ████   ██    ██           ██     ██  ██  ██   ██ ██      ██
+█████   ██ ██  ██ ██   ██ ██████  ██    ██ ██ ██ ██  ██    ██           ██      ████   ██████  █████   ███████
+██      ██  ██ ██ ██   ██ ██      ██    ██ ██ ██  ██ ██    ██           ██       ██    ██      ██           ██
+███████ ██   ████ ██████  ██       ██████  ██ ██   ████    ██           ██       ██    ██      ███████ ███████
+*/
+
 export interface CommonOptions {
   /** Client key. You may use `LIVDSRZULELA` for testing. */
   key: string
-  /** Default language to interpret search string. */
+  /**
+   * Default language to interpret search string.
+   *
+   * @default `en_US`
+   */
   locale?: string
+  /**
+   * Specify the content safety filter level. Possible values:
+   *
+   * - **High** - G
+   * - **Medium** - G and PG
+   * - **Low** - G, PG, and PG-13
+   * - **Off** - G, PG, PG-13, and R (no nudity)
+   *
+   * @default `off`
+   * @see https://tenor.com/gifapi/documentation#contentfilter
+   */
   contentfilter?: 'off' | 'low' | 'medium' | 'high'
+  /**
+   * Filter the response GIF_OBJECT list to only include GIFs with aspect ratios
+   * that fit with in the selected range.
+   *
+   * - **All** - no constraints
+   * - **Wide** - 0.42 <= aspect ratio <= 2.36
+   * - **Standard** - .56 <= aspect ratio <= 1.78
+   *
+   * @default `all`
+   */
   ar_range?: 'all' | 'wide' | 'standard'
+  /**
+   * Fetch up to a specified number of results (max: 50).
+   *
+   * @default 20
+   */
   limit?: number
+  /**
+   * GGt results starting at position "value". Use a non-zero "next" value
+   * returned by API results to get the next set of results.
+   */
   pos?: string
+  /** Specify the anonymous_id tied to the given user. */
   anon_id?: string
 }
+
 export interface CommonSearchOptions extends CommonOptions {
-  /** A search string. */
+  /** Search string. */
   q: string
 }
 export interface CommonResults<Formats extends string = GifFormat> {
@@ -94,6 +146,15 @@ export type BasicResults = CommonResults<
   'gif' | 'tinygif' | 'nanogif' | 'mp4' | 'tinymp4' | 'nanomp4'
 >
 
+/*
+███████ ███    ██ ██████  ██████   ██████  ██ ███    ██ ████████ ███████
+██      ████   ██ ██   ██ ██   ██ ██    ██ ██ ████   ██    ██    ██
+█████   ██ ██  ██ ██   ██ ██████  ██    ██ ██ ██ ██  ██    ██    ███████
+██      ██  ██ ██ ██   ██ ██      ██    ██ ██ ██  ██ ██    ██         ██
+███████ ██   ████ ██████  ██       ██████  ██ ██   ████    ██    ███████
+*/
+
+/** Creates an endpoint. */
 export const endpoint = <Input, Output>(name: string) => async (
   options: Input
 ): Promise<Output> => {
@@ -111,21 +172,28 @@ export const endpoint = <Input, Output>(name: string) => async (
   return response.json() as Promise<Output>
 }
 
+/** All endpoints, untyped. */
 export const endpoints = {
   search: endpoint('search'),
   trending: endpoint('trending'),
 }
 
+/** Searches for GIFs. */
 export async function search(
   options: CommonSearchOptions
 ): Promise<CommonResults>
 export async function search(
   options: CommonSearchOptions & {
+    /** Reduces the list of GIFs returned to tinygif, gif, and mp4. */
     media_filter: 'minimal'
   }
 ): Promise<MinimalResults>
 export async function search(
   options: CommonSearchOptions & {
+    /**
+     * Reduces the list of GIFs returned to nanomp4, tinygif, tinymp4, gif, mp4,
+     * and nanogif.
+     */
     media_filter: 'basic'
   }
 ): Promise<BasicResults>
@@ -133,14 +201,20 @@ export async function search(options: unknown): Promise<unknown> {
   return endpoints.search(options)
 }
 
+/** Gets the current global trending GIFs. */
 export async function trending(options: CommonOptions): Promise<CommonResults>
 export async function trending(
   options: CommonOptions & {
+    /** Reduces the list of GIFs returned to tinygif, gif, and mp4. */
     media_filter: 'minimal'
   }
 ): Promise<MinimalResults>
 export async function trending(
   options: CommonOptions & {
+    /**
+     * Reduces the list of GIFs returned to nanomp4, tinygif, tinymp4, gif, mp4,
+     * and nanogif.
+     */
     media_filter: 'basic'
   }
 ): Promise<BasicResults>
