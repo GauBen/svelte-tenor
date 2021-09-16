@@ -4254,6 +4254,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"binary-search-bounds@npm:^2.0.5":
+  version: 2.0.5
+  resolution: "binary-search-bounds@npm:2.0.5"
+  checksum: e073e265570ad09fe7520835c620f1e95036c7e9696c4f2135c9b20f4b4a44e0306b38977e057b049dab60fea4ab53ed4ad2ee19d9bf44cb6b652aa081788b89
+  languageName: node
+  linkType: hard
+
 "bindings@npm:^1.5.0":
   version: 1.5.0
   resolution: "bindings@npm:1.5.0"
@@ -4983,6 +4990,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"comment-parser@npm:^1.1.4":
+  version: 1.2.4
+  resolution: "comment-parser@npm:1.2.4"
+  checksum: 36ac280bce4c472fac22b3ec4d8aebb4d3d7c22c6808c70174f4deabee3b82144db66f8bd61eca9c514a6d0f12f6087ddab99e7d531e660d0da793b4730fd445
+  languageName: node
+  linkType: hard
+
 "commondir@npm:^1.0.1":
   version: 1.0.1
   resolution: "commondir@npm:1.0.1"
@@ -5398,7 +5412,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"debug@npm:4, debug@npm:^4.0.1, debug@npm:^4.1.0, debug@npm:^4.1.1, debug@npm:^4.3.1":
+"debug@npm:4, debug@npm:^4.0.0, debug@npm:^4.0.1, debug@npm:^4.1.0, debug@npm:^4.1.1, debug@npm:^4.3.1":
   version: 4.3.2
   resolution: "debug@npm:4.3.2"
   dependencies:
@@ -8654,6 +8668,13 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"linguist-languages@npm:^7.13.0":
+  version: 7.15.0
+  resolution: "linguist-languages@npm:7.15.0"
+  checksum: 2f930295a291997ecf30219246f1bdb915ea53820f37410aacd0effb5a94ab6b1076ab35fa792899ac86b196ab0a9b2c40f2cc021817ccbecd4bd2efc45a1df1
+  languageName: node
+  linkType: hard
+
 "loader-runner@npm:^2.4.0":
   version: 2.4.0
   resolution: "loader-runner@npm:2.4.0"
@@ -8941,6 +8962,19 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"mdast-util-from-markdown@npm:^0.8.5":
+  version: 0.8.5
+  resolution: "mdast-util-from-markdown@npm:0.8.5"
+  dependencies:
+    "@types/mdast": ^3.0.0
+    mdast-util-to-string: ^2.0.0
+    micromark: ~2.11.0
+    parse-entities: ^2.0.0
+    unist-util-stringify-position: ^2.0.0
+  checksum: 5a9d0d753a42db763761e874c22365d0c7c9934a5a18b5ff76a0643610108a208a041ffdb2f3d3dd1863d3d915225a4020a0aade282af0facfd0df110601eee6
+  languageName: node
+  linkType: hard
+
 "mdast-util-to-hast@npm:10.0.1":
   version: 10.0.1
   resolution: "mdast-util-to-hast@npm:10.0.1"
@@ -8961,6 +8995,13 @@ fsevents@^1.2.7:
   version: 1.1.0
   resolution: "mdast-util-to-string@npm:1.1.0"
   checksum: eec1eb283f3341376c8398b67ce512a11ab3e3191e3dbd5644d32a26784eac8d5f6d0b0fb81193af00d75a2c545cde765c8b03e966bd890076efb5d357fb4fe2
+  languageName: node
+  linkType: hard
+
+"mdast-util-to-string@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "mdast-util-to-string@npm:2.0.0"
+  checksum: 0b2113ada10e002fbccb014170506dabe2f2ddacaacbe4bc1045c33f986652c5a162732a2c057c5335cdb58419e2ad23e368e5be226855d4d4e280b81c4e9ec2
   languageName: node
   linkType: hard
 
@@ -9048,6 +9089,16 @@ fsevents@^1.2.7:
   version: 0.1.1
   resolution: "microevent.ts@npm:0.1.1"
   checksum: 7874fcdb3f0dfa4e996d3ea63b3b9882874ae7d22be28d51ae20da24c712e9e28e5011d988095c27dd2b32e37c0ad7425342a71b89adb8e808ec7194fadf4a7a
+  languageName: node
+  linkType: hard
+
+"micromark@npm:~2.11.0":
+  version: 2.11.4
+  resolution: "micromark@npm:2.11.4"
+  dependencies:
+    debug: ^4.0.0
+    parse-entities: ^2.0.0
+  checksum: f8a5477d394908a5d770227aea71657a76423d420227c67ea0699e659a5f62eb39d504c1f7d69ec525a6af5aaeb6a7bffcdba95614968c03d41d3851edecb0d6
   languageName: node
   linkType: hard
 
@@ -10282,6 +10333,20 @@ fsevents@^1.2.7:
   version: 1.1.2
   resolution: "prelude-ls@npm:1.1.2"
   checksum: c4867c87488e4a0c233e158e4d0d5565b609b105d75e4c05dc760840475f06b731332eb93cc8c9cecb840aa8ec323ca3c9a56ad7820ad2e63f0261dadcb154e4
+  languageName: node
+  linkType: hard
+
+"prettier-plugin-jsdoc@npm:^0.3.24":
+  version: 0.3.24
+  resolution: "prettier-plugin-jsdoc@npm:0.3.24"
+  dependencies:
+    binary-search-bounds: ^2.0.5
+    comment-parser: ^1.1.4
+    linguist-languages: ^7.13.0
+    mdast-util-from-markdown: ^0.8.5
+  peerDependencies:
+    prettier: ">=2.1.2"
+  checksum: ad6dd9191a81667eec60ca075b2a385e9c53b99d0f551656595c39ab79c952c62a97351ee2f60fd4bff67e4c23087d46654883bb60d74d7af158a7a715dfae1e
   languageName: node
   linkType: hard
 
@@ -12338,6 +12403,7 @@ fsevents@^1.2.7:
     eslint-config-prettier: ^8.1.0
     eslint-plugin-svelte3: ^3.2.0
     prettier: ~2.2.1
+    prettier-plugin-jsdoc: ^0.3.24
     prettier-plugin-svelte: ^2.2.0
     sass: ^1.39.2
     svelte: ^3.42.5

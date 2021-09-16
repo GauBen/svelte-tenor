@@ -3,9 +3,15 @@ export interface GifObject<Formats extends string = GifFormat> {
   id: string
   /** A unix timestamp representing when this post was created. */
   created: number
-  /** True if this post contains audio (only video formats support audio, the gif image file format can not contain audio information). */
+  /**
+   * True if this post contains audio (only video formats support audio, the gif
+   * image file format can not contain audio information).
+   */
   hasaudio: boolean
-  /** An array of dictionaries with {@link GifFormat} as the key and {@link MediaObject} as the value. */
+  /**
+   * An array of dictionaries with {@link GifFormat} as the key and
+   * {@link MediaObject} as the value.
+   */
   media: Array<Record<Formats, MediaObject>>
   /** An array of tags for the post. */
   tags: string[]
@@ -26,7 +32,10 @@ export interface CategoryObject {
   path: string
   /** A url to the media source for the category's example GIF. */
   image: string
-  /** Category name to overlay over the image. The name will be translated to match the locale of the corresponding request. */
+  /**
+   * Category name to overlay over the image. The name will be translated to
+   * match the locale of the corresponding request.
+   */
   name: string
 }
 
