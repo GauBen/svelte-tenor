@@ -80,6 +80,10 @@ export interface CommonResults<Formats extends string = GifFormat> {
   next: string
   results: GifObject<Formats>[]
 }
+export type MinimalResults = CommonResults<'gif' | 'tinygif' | 'mp4'>
+export type BasicResults = CommonResults<
+  'gif' | 'tinygif' | 'nanogif' | 'mp4' | 'tinymp4' | 'nanomp4'
+>
 
 export const endpoint = <Input, Output>(name: string) => async (
   options: Input
@@ -110,14 +114,12 @@ export async function search(
   options: CommonSearchOptions & {
     media_filter: 'minimal'
   }
-): Promise<CommonResults<'gif' | 'tinygif' | 'mp4'>>
+): Promise<MinimalResults>
 export async function search(
   options: CommonSearchOptions & {
     media_filter: 'basic'
   }
-): Promise<
-  CommonResults<'gif' | 'tinygif' | 'nanogif' | 'mp4' | 'tinymp4' | 'nanomp4'>
->
+): Promise<BasicResults>
 export async function search(options: unknown): Promise<unknown> {
   return endpoints.search(options)
 }
@@ -127,14 +129,12 @@ export async function trending(
   options: CommonOptions & {
     media_filter: 'minimal'
   }
-): Promise<CommonResults<'gif' | 'tinygif' | 'mp4'>>
+): Promise<MinimalResults>
 export async function trending(
   options: CommonOptions & {
     media_filter: 'basic'
   }
-): Promise<
-  CommonResults<'gif' | 'tinygif' | 'nanogif' | 'mp4' | 'tinymp4' | 'nanomp4'>
->
+): Promise<BasicResults>
 export async function trending(options: unknown): Promise<unknown> {
   return endpoints.trending(options)
 }
