@@ -1,7 +1,7 @@
 <script lang="ts">
-  import Autocomplete from './components/Autocomplete.svelte'
-  import Search from './components/Search.svelte'
-  import Trending from './components/Trending.svelte'
+  import Autocomplete from './Autocomplete.svelte'
+  import Search from './Search.svelte'
+  import Trending from './Trending.svelte'
   export let key
   let value = ''
 </script>
