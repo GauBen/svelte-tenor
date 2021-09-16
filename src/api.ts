@@ -226,3 +226,14 @@ export const autocomplete = endpoint<
   { key: string; q: string; locale?: string; limit?: number; anon_id?: string },
   { results: string[] }
 >('autocomplete')
+
+export const categories = endpoint<
+  {
+    key: string
+    locale?: string
+    type?: 'featured' | 'emoji' | 'trending'
+    contentfilter?: 'off' | 'low' | 'medium' | 'high'
+    anon_id?: string
+  },
+  { tags: CategoryObject[] }
+>('categories')

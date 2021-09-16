@@ -1,6 +1,5 @@
 <script lang="ts">
   import { createEventDispatcher } from 'svelte'
-
   import { autocomplete } from '../api'
 
   export let key: string
