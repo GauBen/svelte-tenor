@@ -146,7 +146,7 @@ export const endpoint = <Input, Output>(name: string) => async (
 ): Promise<Output> => {
   const url = new URL(`https://g.tenor.com/v1/${name}`)
   for (const [name, value] of Object.entries(options))
-    url.searchParams.set(name, value.toString())
+    if (value !== undefined) url.searchParams.set(name, value.toString())
 
   const response = await fetch(url.toString())
 
@@ -165,6 +165,7 @@ export const endpoints = {
   categories: endpoint('categories'),
   searchSuggestions: endpoint('search_suggestions'),
   autocomplete: endpoint('autocomplete'),
+  trendingTerms: endpoint('trending_terms'),
 }
 
 /** Searches for GIFs. */
@@ -210,6 +211,8 @@ export async function trending(
 export async function trending(options: unknown): Promise<unknown> {
   return endpoints.trending(options)
 }
+
+/** Gets a list of GIF categories. */
 export async function categories(options: {
   key: string
   locale?: string
@@ -231,8 +234,6 @@ export async function categories(options: {
     name: string
   }>
 }>
-
-/** Gets a list of GIF categories. */
 export async function categories(options: {
   key: string
   locale?: string
@@ -258,6 +259,7 @@ export async function categories(options: unknown): Promise<unknown> {
   return endpoints.categories(options)
 }
 
+/** Gets related search terms to find a more precise GIF. */
 export async function searchSuggestions(options: {
   key: string
   q: string
@@ -269,6 +271,7 @@ export async function searchSuggestions(options: unknown): Promise<unknown> {
   return endpoints.searchSuggestions(options)
 }
 
+/** Gets a list of completed search terms given a partial search term. */
 export async function autocomplete(options: {
   key: string
   q: string
@@ -278,4 +281,15 @@ export async function autocomplete(options: {
 }): Promise<{ results: string[] }>
 export async function autocomplete(options: unknown): Promise<unknown> {
   return endpoints.autocomplete(options)
+}
+
+/** Gets current trending search terms. */
+export async function trendingTerms(options: {
+  key: string
+  locale?: string
+  limit?: number
+  anon_id?: string
+}): Promise<{ results: string[] }>
+export async function trendingTerms(options: unknown): Promise<unknown> {
+  return endpoints.trendingTerms(options)
 }
