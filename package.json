@@ -1,6 +1,14 @@
 {
   "name": "svelte-tenor",
+  "description": "Tenor GIF components, implemented in Svelte.",
   "version": "0.0.1",
+  "author": {
+    "name": "Gautier Ben Aïm",
+    "url": "https://github.com/GauBen/"
+  },
+  "bugs": {
+    "url": "https://github.com/GauBen/svelte-tenor/issues"
+  },
   "devDependencies": {
     "@babel/core": "^7.15.5",
     "@mdx-js/react": "^1.6.22",
@@ -27,8 +35,22 @@
     "tslib": "^2.0.0",
     "typescript": "^4.0.0"
   },
+  "homepage": "https://github.com/GauBen/svelte-tenor/#readme",
+  "keywords": [
+    "gif",
+    "gifs",
+    "keyboard",
+    "svelte",
+    "tenor"
+  ],
   "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
   "packageManager": "yarn@3.0.2",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GauBen/svelte-tenor.git"
+  },
   "scripts": {
     "build-storybook": "build-storybook",
     "check": "svelte-check --tsconfig ./tsconfig.json",
@@ -38,5 +60,10 @@
     "preview": "svelte-kit preview --host",
     "storybook": "start-storybook -p 6006"
   },
-  "type": "module"
+  "svelte": "src/index.js",
+  "type": "module",
+  "volta": {
+    "node": "16.9.1",
+    "yarn": "1.22.11"
+  }
 }
