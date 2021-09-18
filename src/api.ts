@@ -162,8 +162,9 @@ export const endpoint = <Input, Output>(name: string) => async (
 export const endpoints = {
   search: endpoint('search'),
   trending: endpoint('trending'),
-  autocomplete: endpoint('autocomplete'),
   categories: endpoint('categories'),
+  searchSuggestions: endpoint('search_suggestions'),
+  autocomplete: endpoint('autocomplete'),
 }
 
 /** Searches for GIFs. */
@@ -209,18 +210,6 @@ export async function trending(
 export async function trending(options: unknown): Promise<unknown> {
   return endpoints.trending(options)
 }
-
-export async function autocomplete(options: {
-  key: string
-  q: string
-  locale?: string
-  limit?: number
-  anon_id?: string
-}): Promise<{ results: string[] }>
-export async function autocomplete(options: unknown): Promise<unknown> {
-  return endpoints.autocomplete(options)
-}
-
 export async function categories(options: {
   key: string
   locale?: string
@@ -242,6 +231,8 @@ export async function categories(options: {
     name: string
   }>
 }>
+
+/** Gets a list of GIF categories. */
 export async function categories(options: {
   key: string
   locale?: string
@@ -265,4 +256,26 @@ export async function categories(options: {
 }>
 export async function categories(options: unknown): Promise<unknown> {
   return endpoints.categories(options)
+}
+
+export async function searchSuggestions(options: {
+  key: string
+  q: string
+  locale?: string
+  limit?: number
+  anon_id?: string
+}): Promise<{ results: string[] }>
+export async function searchSuggestions(options: unknown): Promise<unknown> {
+  return endpoints.searchSuggestions(options)
+}
+
+export async function autocomplete(options: {
+  key: string
+  q: string
+  locale?: string
+  limit?: number
+  anon_id?: string
+}): Promise<{ results: string[] }>
+export async function autocomplete(options: unknown): Promise<unknown> {
+  return endpoints.autocomplete(options)
 }
