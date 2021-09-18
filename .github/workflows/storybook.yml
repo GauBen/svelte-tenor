@@ -1,0 +1,38 @@
+name: Publish the Storybook
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: ~
+
+jobs:
+  build:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node.js environment
+        uses: volta-cli/action@v1
+      - name: Cache
+        id: cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            .yarn
+            !/.yarn/releases
+            !/.yarn/plugins
+            !/.yarn/sdks
+            !/.yarn/cache
+          key: ${{ runner.os }}-yarn2-${{ hashFiles('yarn.lock') }}
+      - name: Install
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: yarn install --immutable
+      - name: Build
+        run: yarn build-storybook
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./storybook-static
+          publish_branch: storybook

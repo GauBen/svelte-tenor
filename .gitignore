@@ -3,6 +3,7 @@ node_modules
 /build
 /.svelte-kit
 /package
+/storybook-static
 .yarn/*
 !.yarn/patches
 !.yarn/releases
