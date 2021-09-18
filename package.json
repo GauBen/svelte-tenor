@@ -40,6 +40,9 @@
     "tslib": "^2.0.0",
     "typescript": "^4.0.0"
   },
+  "files": [
+    "src"
+  ],
   "homepage": "https://github.com/GauBen/svelte-tenor/#readme",
   "keywords": [
     "gif",
@@ -57,7 +60,7 @@
     "url": "https://github.com/GauBen/svelte-tenor.git"
   },
   "scripts": {
-    "build": "rollup -c",
+    "build": "tsc --emitDeclarationOnly & rollup -c &",
     "build-storybook": "build-storybook",
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
@@ -66,8 +69,9 @@
     "preview": "svelte-kit preview --host",
     "storybook": "start-storybook -p 6006"
   },
-  "svelte": "src/index.js",
+  "svelte": "src/index.ts",
   "type": "module",
+  "types": "types/index.d.ts",
   "volta": {
     "node": "16.9.1",
     "yarn": "1.22.11"
