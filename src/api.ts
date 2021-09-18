@@ -166,6 +166,7 @@ export const endpoints = {
   searchSuggestions: endpoint('search_suggestions'),
   autocomplete: endpoint('autocomplete'),
   trendingTerms: endpoint('trending_terms'),
+  registerShare: endpoint('registershare'),
 }
 
 /** Searches for GIFs. */
@@ -292,4 +293,16 @@ export async function trendingTerms(options: {
 }): Promise<{ results: string[] }>
 export async function trendingTerms(options: unknown): Promise<unknown> {
   return endpoints.trendingTerms(options)
+}
+
+/** Registers a user’s sharing of a GIF. */
+export async function registerShare(options: {
+  key: string
+  id: string
+  locale?: string
+  q?: string
+  anon_id?: string
+}): Promise<{ status: 'ok' }>
+export async function registerShare(options: unknown): Promise<unknown> {
+  return endpoints.registerShare(options)
 }
