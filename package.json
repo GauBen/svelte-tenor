@@ -1,7 +1,7 @@
 {
   "name": "svelte-tenor",
   "description": "Tenor GIF components, implemented in Svelte.",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": {
     "name": "Gautier Ben Aïm",
     "url": "https://github.com/GauBen/"
