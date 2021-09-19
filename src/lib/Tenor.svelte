@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { registerShare } from '../api'
+  import { registerShare } from './api'
   import Autocomplete from './Autocomplete.svelte'
   import Search from './Search.svelte'
   import Trending from './Trending.svelte'

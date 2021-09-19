@@ -1,6 +1,6 @@
 <script>
   import { Meta, Story } from '@storybook/addon-svelte-csf'
-  import Search from './Search.svelte'
+  import Search from '../lib/Search.svelte'
 
   let n = 1
   let q = 'david goodenough'

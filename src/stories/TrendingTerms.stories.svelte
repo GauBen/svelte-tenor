@@ -1,6 +1,6 @@
 <script>
   import { Meta, Story } from '@storybook/addon-svelte-csf'
-  import TrendingTerms from './TrendingTerms.svelte'
+  import TrendingTerms from '../lib/TrendingTerms.svelte'
 </script>
 
 <Meta

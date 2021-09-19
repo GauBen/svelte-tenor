@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { GifObject } from 'src/api'
+  import type { GifObject } from './api'
   import { createEventDispatcher } from 'svelte'
   import Gif from './Gif.svelte'
 

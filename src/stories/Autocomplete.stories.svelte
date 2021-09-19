@@ -1,6 +1,6 @@
 <script>
   import { Meta, Story } from '@storybook/addon-svelte-csf'
-  import Autocomplete from './Autocomplete.svelte'
+  import Autocomplete from '../lib/Autocomplete.svelte'
 
   let q = ''
 </script>

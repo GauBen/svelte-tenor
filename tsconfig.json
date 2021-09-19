@@ -17,13 +17,12 @@
 		*/
     "sourceMap": true,
     "esModuleInterop": true,
-    "declaration": true,
-    "declarationDir": "types",
     "skipLibCheck": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "allowJs": true,
+    "noEmit": true,
     "checkJs": true,
     "paths": {
       "$lib": ["src/lib"],

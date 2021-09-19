@@ -1,6 +1,6 @@
 import preprocess from 'svelte-preprocess'
 
-/** @type {import('rollup-plugin-svelte').Options} */
-const config = { preprocess: preprocess(), emitCss: false }
+/** @type {import('@sveltejs/kit').Config} */
+const config = { preprocess: preprocess() }
 
 export default config

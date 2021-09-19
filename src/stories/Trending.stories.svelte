@@ -1,6 +1,6 @@
 <script>
   import { Meta, Story } from '@storybook/addon-svelte-csf'
-  import Trending from './Trending.svelte'
+  import Trending from '../lib/Trending.svelte'
 
   let n = 1
 </script>

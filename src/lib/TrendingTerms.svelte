@@ -1,10 +1,9 @@
 <script lang="ts">
   import { createEventDispatcher } from 'svelte'
-  import { autocomplete } from '../api'
+  import { trendingTerms } from './api'
 
   export let key: string
   export let limit = 10
-  export let q: string
 
   export let scroll = false
 
@@ -27,7 +26,7 @@
 
   let results: string[] | undefined
 
-  $: autocomplete({ key, q, limit }).then((response) => {
+  $: trendingTerms({ key, limit }).then((response) => {
     results = response.results
   })
 </script>

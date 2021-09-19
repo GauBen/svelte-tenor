@@ -1,6 +1,6 @@
 <script>
   import { Meta, Story } from '@storybook/addon-svelte-csf'
-  import Categories from './Categories.svelte'
+  import Categories from '../lib/Categories.svelte'
 </script>
 
 <Meta

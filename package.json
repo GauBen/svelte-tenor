@@ -12,8 +12,6 @@
   "devDependencies": {
     "@babel/core": "^7.15.5",
     "@mdx-js/react": "^1.6.22",
-    "@rollup/plugin-node-resolve": "^13.0.4",
-    "@rollup/plugin-typescript": "^8.2.5",
     "@storybook/addon-actions": "^6.3.8",
     "@storybook/addon-docs": "^6.3.8",
     "@storybook/addon-essentials": "^6.3.8",
@@ -29,14 +27,12 @@
     "prettier": "~2.2.1",
     "prettier-plugin-jsdoc": "^0.3.24",
     "prettier-plugin-svelte": "^2.2.0",
-    "rollup": "^2.56.3",
-    "rollup-plugin-svelte": "^7.1.0",
-    "rollup-plugin-terser": "^7.0.2",
     "sass": "^1.39.2",
     "svelte": "^3.42.5",
     "svelte-check": "^2.0.0",
     "svelte-loader": "^3.1.2",
     "svelte-preprocess": "^4.0.0",
+    "svelte2tsx": "^0.4.6",
     "tslib": "^2.0.0",
     "typescript": "^4.0.0"
   },
@@ -52,15 +48,13 @@
     "tenor"
   ],
   "license": "MIT",
-  "main": "build/index.js",
-  "module": "build/index.mjs",
   "packageManager": "yarn@3.0.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/GauBen/svelte-tenor.git"
   },
   "scripts": {
-    "build": "tsc --emitDeclarationOnly & rollup -c &",
+    "build": "svelte-kit package",
     "build-storybook": "build-storybook",
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
@@ -69,11 +63,12 @@
     "preview": "svelte-kit preview --host",
     "storybook": "start-storybook -p 6006"
   },
-  "svelte": "src/index.ts",
   "type": "module",
-  "types": "types/index.d.ts",
   "volta": {
     "node": "16.9.1",
     "yarn": "1.22.11"
+  },
+  "dependencies": {
+    "@sveltejs/kit": "^1.0.0-next.1"
   }
 }
