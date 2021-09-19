@@ -1,6 +1,6 @@
 <script lang="ts">
   import { createEventDispatcher } from 'svelte'
-  import { categories } from '../api'
+  import { categories } from './api'
 
   export let key: string
 
