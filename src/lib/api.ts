@@ -167,6 +167,9 @@ export const endpoints = {
   autocomplete: endpoint('autocomplete'),
   trendingTerms: endpoint('trending_terms'),
   registerShare: endpoint('registershare'),
+  gifs: endpoint('gifs'),
+  random: endpoint('random'),
+  anonid: endpoint('anonid'),
 }
 
 /** Searches for GIFs. */
@@ -305,4 +308,61 @@ export async function registerShare(options: {
 }): Promise<{ status: 'ok' }>
 export async function registerShare(options: unknown): Promise<unknown> {
   return endpoints.registerShare(options)
+}
+
+export type options = {
+  /** Comma separated list of GIF identifiers. */
+  ids: string
+  key: string
+  limit?: number
+  pos?: string
+  anon_id?: string
+}
+
+/** Gets details about the GIFs given. */
+export async function gifs(options: options): Promise<CommonResults>
+export async function gifs(
+  options: options & { media_filter: 'basic' }
+): Promise<BasicResults>
+export async function gifs(
+  options: options & { media_filter: 'minimal' }
+): Promise<MinimalResults>
+export async function gifs(options: unknown): Promise<unknown> {
+  return endpoints.gifs(options)
+}
+
+/** Searches for GIFs, but does not rank them by popularity. */
+export async function random(
+  options: CommonSearchOptions
+): Promise<CommonResults>
+export async function random(
+  options: CommonSearchOptions & {
+    /** Reduces the list of GIFs returned to tinygif, gif, and mp4. */
+    media_filter: 'minimal'
+  }
+): Promise<MinimalResults>
+export async function random(
+  options: CommonSearchOptions & {
+    /**
+     * Reduces the list of GIFs returned to nanomp4, tinygif, tinymp4, gif, mp4,
+     * and nanogif.
+     */
+    media_filter: 'basic'
+  }
+): Promise<BasicResults>
+export async function random(options: unknown): Promise<unknown> {
+  return endpoints.random(options)
+}
+
+/**
+ * Creates an anonymous id.
+ *
+ * @remarks
+ *   This API requires custom development from Tenor.
+ */
+export async function anonId(options: {
+  key: string
+}): Promise<{ anon_id: string }>
+export async function anonId(options: unknown): Promise<unknown> {
+  return endpoints.random(options)
 }
