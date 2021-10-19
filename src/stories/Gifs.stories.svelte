@@ -1,9 +1,6 @@
 <script>
   import { Meta, Story } from '@storybook/addon-svelte-csf'
   import Gifs from '../lib/Gifs.svelte'
-
-  let n = 1
-  let q = 'david goodenough'
 </script>
 
 <Meta
