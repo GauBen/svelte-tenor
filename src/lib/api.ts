@@ -141,22 +141,22 @@ export type BasicResults = CommonResults<
 */
 
 /** Creates an endpoint. */
-export const endpoint = <Input, Output>(name: string) => async (
-  options: Input
-): Promise<Output> => {
-  const url = new URL(`https://g.tenor.com/v1/${name}`)
-  for (const [name, value] of Object.entries(options))
-    if (value !== undefined) url.searchParams.set(name, value.toString())
+export const endpoint =
+  <Input, Output>(name: string) =>
+  async (options: Input): Promise<Output> => {
+    const url = new URL(`https://g.tenor.com/v1/${name}`)
+    for (const [name, value] of Object.entries(options))
+      if (value !== undefined) url.searchParams.set(name, value.toString())
 
-  const response = await fetch(url.toString())
+    const response = await fetch(url.toString())
 
-  if (response.status >= 400) {
-    const error = (await response.json()) as ApiError
-    throw new Error(`${error.code}: ${error.error}`)
+    if (response.status >= 400) {
+      const error = (await response.json()) as ApiError
+      throw new Error(`${error.code}: ${error.error}`)
+    }
+
+    return response.json() as Promise<Output>
   }
-
-  return response.json() as Promise<Output>
-}
 
 /** All endpoints, untyped. */
 export const endpoints = {
