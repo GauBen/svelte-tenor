@@ -1,40 +1,52 @@
 <script lang="ts">
-  import type { GifObject } from './api'
+  import type { CommonResults } from './api'
   import { search } from './api'
   import Grid from './Grid.svelte'
 
   export let key: string
-  export let limit = 20
   export let q: string
-
+  export let limit = 20
   /** Number of pages to load. */
   export let n = 1
 
-  let pages: Array<{
-    next: string
-    results: GifObject[]
-  }> = []
+  let abort: undefined | ((value: void) => Promise<void>)
+  let done: Promise<void>
 
-  // eslint-disable-next-line no-empty-pattern
-  const loadPage = async ({}) => {
-    while (n > pages.length) {
-      const page = await search({
-        q,
-        key,
-        limit,
-        ...(pages.length > 0 ? { pos: pages[pages.length - 1].next } : {}),
-      })
-      pages = [...pages, page]
-    }
-  }
+  let pages: Array<CommonResults>
 
-  $: {
-    q
-    n = 1
+  const changeTerm = async (q: string) => {
     pages = []
+    n = 1
+    if (abort) await abort()
   }
-  $: loadPage({ n, q })
-  $: gifs = pages.slice(0, n).flatMap(({ results }) => results)
+
+  const loadPages = async (q: string, n: number) => {
+    let markAsDone!: (value: void) => void
+    done = new Promise((resolve) => {
+      markAsDone = resolve
+    })
+
+    while (pages.length < n) {
+      const pos = pages.length > 0 ? { pos: pages[pages.length - 1].next } : {}
+      const page = await Promise.race([
+        search({ q, key, limit, ...pos }),
+        new Promise<void>((resolve) => {
+          abort = () => {
+            resolve()
+            return done
+          }
+        }),
+      ])
+      if (page) pages = [...pages, page]
+      else break
+    }
+
+    markAsDone()
+  }
+
+  $: changeTerm(q)
+  $: loadPages(q, n)
+  $: gifs = pages.flatMap((page) => page.results)
 </script>
 
 <Grid {gifs} on:click />
