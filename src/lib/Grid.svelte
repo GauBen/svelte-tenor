@@ -66,6 +66,8 @@
     padding: 0;
     margin: 0;
     transition: 0.2s box-shadow;
+    border-radius: 4px;
+    overflow: hidden;
 
     &:focus,
     &:active {
