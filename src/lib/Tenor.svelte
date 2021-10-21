@@ -1,4 +1,6 @@
 <script lang="ts">
+  import type { GifObject } from './api'
+  import { createEventDispatcher } from 'svelte'
   import { registerShare } from './api'
   import Autocomplete from './Autocomplete.svelte'
   import Search from './Search.svelte'
@@ -6,6 +8,9 @@
 
   export let key: string
   let value = ''
+  let n = 1
+
+  const dispatch = createEventDispatcher<{ click: GifObject }>()
 </script>
 
 <input type="search" bind:value />
@@ -13,19 +18,24 @@
 {#if value === ''}
   <Trending
     {key}
+    bind:n
     on:click={async ({ detail }) => {
-      console.log(await registerShare({ key, id: detail.id }))
+      dispatch('click', detail)
+      void registerShare({ key, id: detail.id })
     }}
   />
 {:else}
   <Search
     {key}
     q={value}
+    bind:n
     on:click={async ({ detail }) => {
-      console.log(await registerShare({ key, id: detail.id, q: value }))
+      dispatch('click', detail)
+      void registerShare({ key, id: detail.id, q: value })
     }}
   />
 {/if}
+<button on:click={() => n++}>Load more</button>
 
 <style>
   input {
