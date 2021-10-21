@@ -24,15 +24,9 @@
   }
 
   const dispatch = createEventDispatcher<{ click: string }>()
-
-  let results: string[] | undefined
-
-  $: autocomplete({ key, q, limit }).then((response) => {
-    results = response.results
-  })
 </script>
 
-{#if results !== undefined}
+{#await autocomplete({ key, q, limit }) then { results }}
   <div class="results" class:scroll>
     {#each results as result}
       <button
@@ -43,18 +37,17 @@
       </button>
     {/each}
   </div>
-{/if}
+{/await}
 
 <style lang="scss">
   .results {
     display: flex;
     gap: 0.5em;
     flex-wrap: wrap;
-  }
-
-  .results.scroll {
-    flex-wrap: nowrap;
-    overflow: auto;
+    &.scroll {
+      flex-wrap: nowrap;
+      overflow: auto;
+    }
   }
 
   button {
