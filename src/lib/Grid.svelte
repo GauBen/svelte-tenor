@@ -4,7 +4,7 @@
   import Gif from './Gif.svelte'
 
   /** Minimum size of each column, in pixels. */
-  export let columnSize = 260
+  export let columnSize = 160
 
   /** Gap between gifs, pixels. */
   export let gap = 8
