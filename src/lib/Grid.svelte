@@ -44,6 +44,7 @@
           (2 * gap) +
           0.5
       )}`}
+      type="button"
       on:click={() => dispatch('click', result)}
     >
       <Gif medium={result.media[0]} />
