@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { autocomplete, GifObject } from './api'
+  import type { GifObject } from './api'
   import { createEventDispatcher } from 'svelte'
   import { registerShare } from './api'
   import Autocomplete from './Autocomplete.svelte'
@@ -8,7 +8,7 @@
 
   export let key: string
   export let showAutocomplete = false
-  let value = ''
+  export let value = ''
   let n = 1
 
   const dispatch = createEventDispatcher<{ click: GifObject }>()
