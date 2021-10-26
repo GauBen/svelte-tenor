@@ -14,7 +14,7 @@
 
   let pages: Array<CommonResults>
 
-  const changeTerm = async (q: string) => {
+  const changeTerm = async (_q: string) => {
     pages = []
     n = 1
     if (abort) await abort()
