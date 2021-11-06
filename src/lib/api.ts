@@ -16,6 +16,8 @@ export interface GifObject<Formats extends string = GifFormat> {
    * image file format can not contain audio information).
    */
   hasaudio: boolean
+  /** True if this post contains captions. */
+  hascaption: boolean
   /**
    * An array of dictionaries with {@link GifFormat} as the key and
    * {@link MediaObject} as the value.
@@ -27,8 +29,6 @@ export interface GifObject<Formats extends string = GifFormat> {
   title: string
   /** The full URL to view the post on tenor.com. */
   itemurl: string
-  /** True if this post contains captions. */
-  hascaption: boolean
   /** A short URL to view the post on tenor.com. */
   url: string
 }
@@ -194,6 +194,10 @@ export async function search(
 export async function search(options: unknown): Promise<unknown> {
   return endpoints.search(options)
 }
+console.log(
+  (await search({ key: 'LIVDSRZULELA', q: 'cat', limit: 1 })).results[0]
+    .media[0]
+)
 
 /** Gets the current global trending GIFs. */
 export async function trending(options: CommonOptions): Promise<CommonResults>
