@@ -9,6 +9,16 @@
 export interface GifObject<Formats extends string = GifFormat> {
   /** Tenor result identifier. */
   id: string
+  /** The title of the post. */
+  title: string
+  /** **Not documented**. Description of the GIF content. */
+  content_description: string
+  /** An array of tags for the post. */
+  tags: string[]
+  /** The full URL to view the post on tenor.com. */
+  itemurl: string
+  /** A short URL to view the post on tenor.com. */
+  url: string
   /** A unix timestamp representing when this post was created. */
   created: number
   /**
@@ -21,16 +31,11 @@ export interface GifObject<Formats extends string = GifFormat> {
   /**
    * An array of dictionaries with {@link GifFormat} as the key and
    * {@link MediaObject} as the value.
+   *
+   * @remarks
+   *   It looks like the array only contains one element.
    */
-  media: Array<Record<Formats, MediaObject>>
-  /** An array of tags for the post. */
-  tags: string[]
-  /** The title of the post. */
-  title: string
-  /** The full URL to view the post on tenor.com. */
-  itemurl: string
-  /** A short URL to view the post on tenor.com. */
-  url: string
+  media: { 0: Record<Formats, MediaObject> }
 }
 
 export interface MediaObject {
@@ -99,7 +104,7 @@ export interface CommonOptions {
    *
    * - **All** - no constraints
    * - **Wide** - 0.42 <= aspect ratio <= 2.36
-   * - **Standard** - .56 <= aspect ratio <= 1.78
+   * - **Standard** - 0.56 <= aspect ratio <= 1.78
    *
    * @default `all`
    */
@@ -310,7 +315,7 @@ export async function registerShare(options: unknown): Promise<unknown> {
   return endpoints.registerShare(options)
 }
 
-export type options = {
+export type GifDetailsOptions = {
   /** Comma separated list of GIF identifiers. */
   ids: string
   key: string
@@ -320,12 +325,12 @@ export type options = {
 }
 
 /** Gets details about the GIFs given. */
-export async function gifs(options: options): Promise<CommonResults>
+export async function gifs(options: GifDetailsOptions): Promise<CommonResults>
 export async function gifs(
-  options: options & { media_filter: 'basic' }
+  options: GifDetailsOptions & { media_filter: 'basic' }
 ): Promise<BasicResults>
 export async function gifs(
-  options: options & { media_filter: 'minimal' }
+  options: GifDetailsOptions & { media_filter: 'minimal' }
 ): Promise<MinimalResults>
 export async function gifs(options: unknown): Promise<unknown> {
   return endpoints.gifs(options)
@@ -364,5 +369,5 @@ export async function anonId(options: {
   key: string
 }): Promise<{ anon_id: string }>
 export async function anonId(options: unknown): Promise<unknown> {
-  return endpoints.random(options)
+  return endpoints.anonid(options)
 }
