@@ -29,6 +29,7 @@
     "prettier-plugin-jsdoc": "^0.3.29",
     "prettier-plugin-svelte": "^2.4.0",
     "sass": "^1.43.4",
+    "standard-version": "^9.3.2",
     "svelte": "^3.44.1",
     "svelte-check": "^2.2.8",
     "svelte-loader": "^3.1.2",
@@ -59,6 +60,7 @@
     "clean": "rm -rf package/ storybook-static/",
     "format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. .",
     "lint": "prettier --ignore-path .gitignore --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
+    "publish": "yarn clean && standard-version && yarn build && npm publish ./package",
     "storybook": "start-storybook -p 6006"
   },
   "type": "module",
