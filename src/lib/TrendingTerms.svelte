@@ -1,6 +1,6 @@
 <script lang="ts">
   import { createEventDispatcher } from 'svelte'
-  import { trendingTerms } from './api'
+  import { trendingTerms } from './raw-api'
 
   export let key: string
   export let limit = 10

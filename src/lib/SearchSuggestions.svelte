@@ -1,6 +1,6 @@
 <script lang="ts">
   import { createEventDispatcher } from 'svelte'
-  import { searchSuggestions } from './api'
+  import { searchSuggestions } from './raw-api'
 
   export let key: string
   export let limit = 10

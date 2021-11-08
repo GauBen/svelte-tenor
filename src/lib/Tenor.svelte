@@ -1,7 +1,7 @@
 <script lang="ts">
-  import type { GifObject } from './api'
+  import type { GifObject } from './raw-api'
   import { createEventDispatcher } from 'svelte'
-  import { registerShare } from './api'
+  import { registerShare } from './raw-api'
   import Autocomplete from './Autocomplete.svelte'
   import Search from './Search.svelte'
   import Trending from './Trending.svelte'

@@ -1,6 +1,6 @@
 <script lang="ts">
-  import type { GifObject } from './api'
-  import { gifs } from './api'
+  import type { GifObject } from './raw-api'
+  import { gifs } from './raw-api'
   import Grid from './Grid.svelte'
 
   export let key: string

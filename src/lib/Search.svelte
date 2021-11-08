@@ -1,6 +1,6 @@
 <script lang="ts">
-  import type { CommonResults } from './api'
-  import { search } from './api'
+  import type { CommonResults } from './raw-api'
+  import { search } from './raw-api'
   import Grid from './Grid.svelte'
 
   export let key: string

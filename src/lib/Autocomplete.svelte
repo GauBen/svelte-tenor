@@ -1,6 +1,6 @@
 <script lang="ts">
   import { createEventDispatcher } from 'svelte'
-  import { autocomplete } from './api'
+  import { autocomplete } from './raw-api'
 
   export let key: string
   export let limit = 10
