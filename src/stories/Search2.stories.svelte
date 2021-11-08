@@ -2,8 +2,8 @@
   import { Meta, Story } from '@storybook/addon-svelte-csf'
   import Search from '../lib/Search2.svelte'
 
-  // let n = 1
-  // let q = 'david goodenough'
+  let n = 1
+  let q = 'david goodenough'
 </script>
 
 <Meta
@@ -24,7 +24,6 @@
   <Search {...args} on:click={({ detail }) => args.onClick(detail)} />
 </Story>
 
-<!--
 <Story
   name="Load more"
   args={{ key: 'LIVDSRZULELA', limit: 4, q: 'david goodenough' }}
@@ -43,8 +42,9 @@
     on:click={({ detail }) => args.onClick(detail)}
   />
   <div class="more"><button on:click={() => n++}>Load more</button></div>
-</Story> -->
-<!-- <style>
+</Story>
+
+<style>
   .more {
     margin: 1em 0;
     text-align: center;
@@ -57,4 +57,4 @@
     width: 100%;
     max-width: 100%;
   }
-</style> -->
+</style>

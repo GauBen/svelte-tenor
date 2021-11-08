@@ -27,6 +27,7 @@ export interface SearchOptions {
   key: string
   q: string
   locale?: string
+  pos?: string
 }
 
 export interface SearchResult {
@@ -38,8 +39,9 @@ export interface SearchResult {
 export const search = async ({
   key,
   q,
+  pos,
 }: SearchOptions): Promise<SearchResult> => {
-  const { results, next } = await rawSearch({ key, q })
+  const { results, next } = await rawSearch(filterUndefined({ key, q, pos }))
   return {
     results: results.map(({ id, title, content_description, media }) => ({
       id,
@@ -53,3 +55,9 @@ export const search = async ({
     next,
   }
 }
+
+/** Remove undefined values in a shallow object. */
+const filterUndefined = <T>(obj: T) =>
+  Object.fromEntries(
+    Object.entries(obj).filter(([, value]) => value !== undefined)
+  ) as unknown as T
