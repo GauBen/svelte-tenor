@@ -2,7 +2,7 @@
   import { Meta, Story } from '@storybook/addon-svelte-csf'
   import Search from '../lib/Search2.svelte'
 
-  let n = 1
+  let page = 1
   let q = 'david goodenough'
 </script>
 
@@ -29,8 +29,8 @@
   args={{ key: 'LIVDSRZULELA', limit: 4, q: 'david goodenough' }}
   let:args
 >
-  <Search {...args} {n} on:click={({ detail }) => args.onClick(detail)} />
-  <div class="more"><button on:click={() => n++}>Load more</button></div>
+  <Search {...args} {page} on:click={({ detail }) => args.onClick(detail)} />
+  <div class="more"><button on:click={() => page++}>Load more</button></div>
 </Story>
 
 <Story name="Reactivity" args={{ key: 'LIVDSRZULELA', limit: 4 }} let:args>
@@ -38,10 +38,10 @@
   <Search
     {...args}
     {q}
-    bind:n
+    bind:page
     on:click={({ detail }) => args.onClick(detail)}
   />
-  <div class="more"><button on:click={() => n++}>Load more</button></div>
+  <div class="more"><button on:click={() => page++}>Load more</button></div>
 </Story>
 
 <style>

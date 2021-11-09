@@ -24,14 +24,52 @@ export interface Gif {
 }
 
 export interface SearchOptions {
+  /** Tenor API key. You may use `LIVDSRZULELA` for testing. */
   key: string
+  /** Search term. */
   q: string
+  /**
+   * Search term locale, formatted as `language_COUNTRY`.
+   *
+   * @default `en_US`
+   */
   locale?: string
-  pos?: string
+  /**
+   * Safety filter:
+   *
+   * - `off` - G, PG, PG-13, and R (no nudity)
+   * - `low` - G, PG, and PG-13
+   * - `medium` - G and PG
+   * - `high` - G
+   *
+   * @default `off`
+   * @see https://tenor.com/gifapi/documentation#contentfilter
+   */
+  safe?: 'off' | 'low' | 'medium' | 'high'
+  /**
+   * Aspect ratio filter:
+   *
+   * - `all` - no constraints
+   * - `wide` - 0.42 <= aspect ratio <= 2.36
+   * - `standard` - 0.56 <= aspect ratio <= 1.78
+   *
+   * @default `all`
+   */
+  ratio?: 'all' | 'wide' | 'standard'
+  /**
+   * Number of results per page. (max: 50)
+   *
+   * @default 20
+   */
+  limit?: number
+  /** Page id, given by the `next` field of the result. */
+  page?: string
 }
 
 export interface SearchResult {
+  /** GIFs. Yep. */
   results: Gif[]
+  /** Next page id. */
   next: string
 }
 
@@ -39,9 +77,21 @@ export interface SearchResult {
 export const search = async ({
   key,
   q,
-  pos,
+  locale,
+  safe,
+  ratio,
+  limit,
+  page,
 }: SearchOptions): Promise<SearchResult> => {
-  const { results, next } = await rawSearch(filterUndefined({ key, q, pos }))
+  const { results, next } = await rawSearch({
+    key,
+    q,
+    locale,
+    contentfilter: safe,
+    ar_range: ratio,
+    limit,
+    pos: page,
+  })
   return {
     results: results.map(({ id, title, content_description, media }) => ({
       id,
@@ -55,9 +105,3 @@ export const search = async ({
     next,
   }
 }
-
-/** Remove undefined values in a shallow object. */
-const filterUndefined = <T>(obj: T) =>
-  Object.fromEntries(
-    Object.entries(obj).filter(([, value]) => value !== undefined)
-  ) as unknown as T
