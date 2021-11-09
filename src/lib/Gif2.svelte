@@ -24,9 +24,7 @@
   video {
     background: linear-gradient(to right, purple, tomato);
     max-width: 100%;
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
+    max-height: 100%;
     vertical-align: bottom;
   }
 </style>
