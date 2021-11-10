@@ -1,12 +1,10 @@
 <script lang="ts">
   import type { Gif, SearchOptions, SearchResult } from './api'
-  import { search } from './api'
+  import { trending } from './api'
   import Grid from './Grid2.svelte'
 
   /** Tenor API key. */
   export let key: SearchOptions['key']
-  /** Search term. */
-  export let q: SearchOptions['q']
   /** Search locale. */
   export let locale: SearchOptions['locale'] = undefined
   /** Safety filter. */
@@ -42,9 +40,8 @@
   let update = async () => {
     while (pages.length < page) {
       loading = true
-      let localRequest = search({
+      let localRequest = trending({
         key,
-        q,
         locale,
         safety,
         ratio,
@@ -65,16 +62,8 @@
     loading = false
   }
 
-  // Reset the number of pages and the cache when the search term changes
-  $: {
-    q
-    page = 1
-    pages = []
-  }
-
   // Perform a search when the search term or the number of pages changes
   $: {
-    q
     page
     update()
   }

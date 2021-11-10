@@ -3,7 +3,7 @@
  *
  * @module
  */
-import { search as rawSearch } from './raw-api'
+import { search as rawSearch, trending as rawTrending } from './raw-api'
 
 /** Represents a GIF object, but since gif files are heavy, we use video files. */
 export interface Gif {
@@ -23,11 +23,9 @@ export interface Gif {
   webm: string
 }
 
-export interface SearchOptions {
+export interface CommonOptions {
   /** Tenor API key. You may use `LIVDSRZULELA` for testing. */
   key: string
-  /** Search term. */
-  q: string
   /**
    * Search term locale, formatted as `language_COUNTRY`.
    *
@@ -45,7 +43,7 @@ export interface SearchOptions {
    * @default `off`
    * @see https://tenor.com/gifapi/documentation#contentfilter
    */
-  safe?: 'off' | 'low' | 'medium' | 'high'
+  safety?: 'off' | 'low' | 'medium' | 'high'
   /**
    * Aspect ratio filter:
    *
@@ -66,6 +64,11 @@ export interface SearchOptions {
   page?: string
 }
 
+export interface SearchOptions extends CommonOptions {
+  /** Search term. */
+  q: string
+}
+
 export interface SearchResult {
   /** GIFs. Yep. */
   results: Gif[]
@@ -78,7 +81,7 @@ export const search = async ({
   key,
   q,
   locale,
-  safe,
+  safety,
   ratio,
   limit,
   page,
@@ -86,6 +89,37 @@ export const search = async ({
   const { results, next } = await rawSearch({
     key,
     q,
+    locale,
+    contentfilter: safety,
+    ar_range: ratio,
+    limit,
+    pos: page,
+  })
+  return {
+    results: results.map(({ id, title, content_description, media }) => ({
+      id,
+      description: title.length > 0 ? title : content_description,
+      width: media[0].tinywebm.dims[0],
+      height: media[0].tinywebm.dims[1],
+      preview: media[0].tinywebm.preview,
+      mp4: media[0].tinymp4.url,
+      webm: media[0].tinywebm.url,
+    })),
+    next,
+  }
+}
+
+/** Fetches trending GIFs. */
+export const trending = async ({
+  key,
+  locale,
+  safety: safe,
+  ratio,
+  limit,
+  page,
+}: CommonOptions): Promise<SearchResult> => {
+  const { results, next } = await rawTrending({
+    key,
     locale,
     contentfilter: safe,
     ar_range: ratio,

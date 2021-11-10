@@ -4,6 +4,7 @@
 
   let page = 1
   let q = 'david goodenough'
+  let loading = true
 </script>
 
 <Meta
@@ -29,8 +30,15 @@
   args={{ key: 'LIVDSRZULELA', limit: 4, q: 'david goodenough' }}
   let:args
 >
-  <Search {...args} {page} on:click={({ detail }) => args.onClick(detail)} />
-  <div class="more"><button on:click={() => page++}>Load more</button></div>
+  <Search
+    {...args}
+    {page}
+    bind:loading
+    on:click={({ detail }) => args.onClick(detail)}
+  />
+  <div class="more">
+    <button on:click={() => page++} disabled={loading}>Load more</button>
+  </div>
 </Story>
 
 <Story name="Reactivity" args={{ key: 'LIVDSRZULELA', limit: 4 }} let:args>
@@ -39,9 +47,12 @@
     {...args}
     {q}
     bind:page
+    bind:loading
     on:click={({ detail }) => args.onClick(detail)}
   />
-  <div class="more"><button on:click={() => page++}>Load more</button></div>
+  <div class="more">
+    <button on:click={() => page++} disabled={loading}>Load more</button>
+  </div>
 </Story>
 
 <style>

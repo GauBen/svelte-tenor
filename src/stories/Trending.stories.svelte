@@ -1,8 +1,8 @@
 <script>
   import { Meta, Story } from '@storybook/addon-svelte-csf'
-  import Trending from '../lib/Trending.svelte'
+  import Trending from '../lib/Trending2.svelte'
 
-  let n = 1
+  let page = 1
 </script>
 
 <Meta
@@ -20,8 +20,8 @@
 </Story>
 
 <Story name="Load more" args={{ key: 'LIVDSRZULELA', limit: 4 }} let:args>
-  <Trending {...args} {n} on:click={({ detail }) => args.onClick(detail)} />
-  <div class="more"><button on:click={() => n++}>Load more</button></div>
+  <Trending {...args} {page} on:click={({ detail }) => args.onClick(detail)} />
+  <div class="more"><button on:click={() => page++}>Load more</button></div>
 </Story>
 
 <style>
