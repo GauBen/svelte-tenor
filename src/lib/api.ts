@@ -4,6 +4,7 @@
  * @module
  */
 import {
+  gifs as rawGifs,
   search as rawSearch,
   random as rawRandom,
   trending as rawTrending,
@@ -70,6 +71,14 @@ export interface CommonOptions {
   page?: string
 }
 
+export type GifDetailsOptions = {
+  key: string
+  /** Array of GIF ids. */
+  ids: string[]
+  limit?: number
+  page?: string
+}
+
 export interface SearchOptions extends CommonOptions {
   /** Search term. */
   q: string
@@ -98,6 +107,22 @@ const formatResponse: ({ results, next }: CommonResults) => ResultPage = ({
   })),
   next,
 })
+
+/** Gets details about one or several GIFs. */
+export const gifDetails = async ({
+  key,
+  ids,
+  limit,
+  page,
+}: GifDetailsOptions): Promise<ResultPage> =>
+  formatResponse(
+    await rawGifs({
+      key,
+      ids: ids.join(','),
+      limit,
+      pos: page,
+    })
+  )
 
 /** Searches for GIFs. */
 export const search = async ({

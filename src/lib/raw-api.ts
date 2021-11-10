@@ -165,15 +165,18 @@ export const endpoint =
 
 /** All endpoints, untyped. */
 export const endpoints = {
+  // GIF endpoints
+  gifs: endpoint('gifs'),
   search: endpoint('search'),
   trending: endpoint('trending'),
-  categories: endpoint('categories'),
+  random: endpoint('random'),
+  // Textual endpoints
   searchSuggestions: endpoint('search_suggestions'),
   autocomplete: endpoint('autocomplete'),
   trendingTerms: endpoint('trending_terms'),
+  // Other endpoints
+  categories: endpoint('categories'),
   registerShare: endpoint('registershare'),
-  gifs: endpoint('gifs'),
-  random: endpoint('random'),
   anonid: endpoint('anonid'),
 }
 
