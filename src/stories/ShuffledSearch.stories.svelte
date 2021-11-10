@@ -1,14 +1,14 @@
 <script>
   import { Meta, Story } from '@storybook/addon-svelte-csf'
-  import Random from '../lib/Random.svelte'
+  import ShuffledSearch from '../lib/ShuffledSearch.svelte'
 
   let page = 1
   let q = 'david goodenough'
 </script>
 
 <Meta
-  title="Components/Random"
-  component={Random}
+  title="Components/ShuffledSearch"
+  component={ShuffledSearch}
   argTypes={{
     key: { control: { type: 'text' } },
     limit: { control: { type: 'range', min: 1, max: 50, step: 1 } },
@@ -21,7 +21,7 @@
   args={{ key: 'LIVDSRZULELA', limit: 20, q: 'david goodenough' }}
   let:args
 >
-  <Random {...args} on:click={({ detail }) => args.onClick(detail)} />
+  <ShuffledSearch {...args} on:click={({ detail }) => args.onClick(detail)} />
 </Story>
 
 <Story
@@ -29,13 +29,17 @@
   args={{ key: 'LIVDSRZULELA', limit: 4, q: 'david goodenough' }}
   let:args
 >
-  <Random {...args} {page} on:click={({ detail }) => args.onClick(detail)} />
+  <ShuffledSearch
+    {...args}
+    {page}
+    on:click={({ detail }) => args.onClick(detail)}
+  />
   <div class="more"><button on:click={() => page++}>Load more</button></div>
 </Story>
 
 <Story name="Reactivity" args={{ key: 'LIVDSRZULELA', limit: 4 }} let:args>
   <input type="search" bind:value={q} />
-  <Random
+  <ShuffledSearch
     {...args}
     {q}
     bind:page
