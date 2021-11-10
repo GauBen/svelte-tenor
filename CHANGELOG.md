@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.8](https://github.com/GauBen/svelte-tenor/compare/v0.0.7...v0.0.8) (2021-11-10)
+
+
+### Features
+
+* added quality filter ([7886604](https://github.com/GauBen/svelte-tenor/commit/7886604eeb1b72c4620a4cf78c899560bf2fa37a))
+* improved exports ([4aa6acc](https://github.com/GauBen/svelte-tenor/commit/4aa6accfae5a04f12055630914607619938859ba))
+* new gifDetails api ([1580ee7](https://github.com/GauBen/svelte-tenor/commit/1580ee76a9c69b0f0b33c72d14421b9baf49559d))
+* open access to grid settings ([369e183](https://github.com/GauBen/svelte-tenor/commit/369e18378010ffddaca3e6f0c02903670331e515))
+* support all tenor search features ([66674c6](https://github.com/GauBen/svelte-tenor/commit/66674c6694debf50793e0d7c0d08a9e05ebb1754))
+* updated random search ([66a7059](https://github.com/GauBen/svelte-tenor/commit/66a7059be1fd98a94009b02cc5b2a8a5bd5074b0))
+* updated trending and tenor components ([035f0a5](https://github.com/GauBen/svelte-tenor/commit/035f0a58c1a0e18332628e58fe0e88d0bf9cc710))
+
+
+### Bug Fixes
+
+* solved blinking scrollbar problem ([6fc2551](https://github.com/GauBen/svelte-tenor/commit/6fc2551f848715a060a859b4223a5023b3be5f0d))
+
 ### 0.0.7 (2021-11-08)
 
 
