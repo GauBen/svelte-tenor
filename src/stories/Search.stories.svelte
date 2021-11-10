@@ -2,12 +2,13 @@
   import { Meta, Story } from '@storybook/addon-svelte-csf'
   import Search from '../lib/Search.svelte'
 
-  let n = 1
+  let page = 1
   let q = 'david goodenough'
+  let loading = true
 </script>
 
 <Meta
-  title="Components/Search"
+  title="Components/Search2"
   component={Search}
   argTypes={{
     key: { control: { type: 'text' } },
@@ -29,8 +30,15 @@
   args={{ key: 'LIVDSRZULELA', limit: 4, q: 'david goodenough' }}
   let:args
 >
-  <Search {...args} {n} on:click={({ detail }) => args.onClick(detail)} />
-  <div class="more"><button on:click={() => n++}>Load more</button></div>
+  <Search
+    {...args}
+    {page}
+    bind:loading
+    on:click={({ detail }) => args.onClick(detail)}
+  />
+  <div class="more">
+    <button on:click={() => page++} disabled={loading}>Load more</button>
+  </div>
 </Story>
 
 <Story name="Reactivity" args={{ key: 'LIVDSRZULELA', limit: 4 }} let:args>
@@ -38,10 +46,13 @@
   <Search
     {...args}
     {q}
-    bind:n
+    bind:page
+    bind:loading
     on:click={({ detail }) => args.onClick(detail)}
   />
-  <div class="more"><button on:click={() => n++}>Load more</button></div>
+  <div class="more">
+    <button on:click={() => page++} disabled={loading}>Load more</button>
+  </div>
 </Story>
 
 <style>

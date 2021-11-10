@@ -3,7 +3,7 @@
   import { createEventDispatcher } from 'svelte'
   import { registerShare } from './raw-api'
   import Autocomplete from './Autocomplete.svelte'
-  import Search from './Search2.svelte'
+  import Search from './Search.svelte'
 
   export let key: string
   export let showAutocomplete = false

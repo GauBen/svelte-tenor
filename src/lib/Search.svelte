@@ -1,52 +1,85 @@
 <script lang="ts">
-  import type { CommonResults } from './raw-api'
-  import { search } from './raw-api'
-  import Grid from './Grid.svelte'
+  import type { Gif, SearchOptions, SearchResult } from './api'
+  import { search } from './api'
+  import Grid from './Grid2.svelte'
 
-  export let key: string
-  export let q: string
-  export let limit = 20
-  /** Number of pages to load. */
-  export let n = 1
+  /** Tenor API key. */
+  export let key: SearchOptions['key']
+  /** Search term. */
+  export let q: SearchOptions['q']
+  /** Search locale. */
+  export let locale: SearchOptions['locale'] = undefined
+  /** Safety filter. */
+  export let safety: SearchOptions['safety'] = undefined
+  /** Aspect ratio filter. */
+  export let ratio: SearchOptions['ratio'] = undefined
+  /** Number of results pe page. */
+  export let limit: SearchOptions['limit'] = undefined
 
-  let abort: undefined | ((value: void) => Promise<void>)
-  let done: Promise<void>
+  /** Number of pages to display. */
+  export let page = 1
 
-  let pages: Array<CommonResults>
+  /**
+   * Is the search in progress?
+   *
+   * @readonly
+   */
+  export let loading = true
+  /**
+   * GIFs displayed in the grid.
+   *
+   * @readonly
+   */
+  export let gifs: Array<Gif> | undefined = undefined
 
-  const changeTerm = async (_q: string) => {
-    pages = []
-    n = 1
-    if (abort) await abort()
-  }
+  /** Latest request performed. */
+  let latestRequest: Promise<SearchResult> | undefined
 
-  const loadPages = async (q: string, n: number) => {
-    let markAsDone!: (value: void) => void
-    done = new Promise((resolve) => {
-      markAsDone = resolve
-    })
+  /** Pages loaded and cached. */
+  let pages: Array<SearchResult> = []
 
-    while (pages.length < n) {
-      const pos = pages.length > 0 ? { pos: pages[pages.length - 1].next } : {}
-      const page = await Promise.race([
-        search({ q, key, limit, ...pos }),
-        new Promise<void>((resolve) => {
-          abort = () => {
-            resolve()
-            return done
-          }
-        }),
-      ])
-      if (page) pages = [...pages, page]
-      else break
+  /** Performs a search when the search term or the number of pages changes. */
+  let update = async () => {
+    while (pages.length < page) {
+      loading = true
+      let localRequest = search({
+        key,
+        q,
+        locale,
+        safety,
+        ratio,
+        limit,
+        page: pages[pages.length - 1]?.next,
+      })
+      latestRequest = localRequest
+      // Wait for the search to finish
+      let page = await localRequest
+      // If the current search is not the latest one
+      // (the change term changed in between), ignore the result
+      if (latestRequest !== localRequest) return
+      // Otherwise, add the page at the end of the cache
+      pages = [...pages, page]
     }
-
-    markAsDone()
+    // Update the grid
+    gifs = pages.slice(0, page).flatMap(({ results }) => results)
+    loading = false
   }
 
-  $: changeTerm(q)
-  $: loadPages(q, n)
-  $: gifs = pages.flatMap((page) => page.results)
+  // Reset the number of pages and the cache when the search term changes
+  $: {
+    q
+    page = 1
+    pages = []
+  }
+
+  // Perform a search when the search term or the number of pages changes
+  $: {
+    q
+    page
+    update()
+  }
 </script>
 
-<Grid {gifs} on:click />
+{#if gifs !== undefined}
+  <Grid {gifs} on:click />
+{/if}
