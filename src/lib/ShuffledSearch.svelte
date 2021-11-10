@@ -9,6 +9,8 @@
   export let q: SearchOptions['q']
   /** Search locale. */
   export let locale: SearchOptions['locale'] = undefined
+  /** Video quality filter. */
+  export let quality: SearchOptions['quality'] = undefined
   /** Safety filter. */
   export let safety: SearchOptions['safety'] = undefined
   /** Aspect ratio filter. */
@@ -46,6 +48,7 @@
         key,
         q,
         locale,
+        quality,
         safety,
         ratio,
         limit,

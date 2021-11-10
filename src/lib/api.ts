@@ -62,6 +62,13 @@ export interface CommonOptions {
    */
   ratio?: 'all' | 'wide' | 'standard'
   /**
+   * Video quality filter. Medium is sufficient for most purposes, even on
+   * desktop and hdpi devices.
+   *
+   * @default `medium`
+   */
+  quality?: 'low' | 'medium' | 'high'
+  /**
    * Number of results per page. (max: 50)
    *
    * @default 20
@@ -75,6 +82,7 @@ export type GifDetailsOptions = {
   key: string
   /** Array of GIF ids. */
   ids: string[]
+  quality?: 'low' | 'medium' | 'high'
   limit?: number
   page?: string
 }
@@ -92,19 +100,22 @@ export interface ResultPage {
 }
 
 /** Transforms a `raw-api` response into a friendlier object. */
-const formatResponse: ({ results, next }: CommonResults) => ResultPage = ({
-  results,
-  next,
-}) => ({
-  results: results.map(({ id, title, content_description, media }) => ({
-    id,
-    description: title.length > 0 ? title : content_description,
-    width: media[0].tinywebm.dims[0],
-    height: media[0].tinywebm.dims[1],
-    preview: media[0].tinywebm.preview,
-    mp4: media[0].tinymp4.url,
-    webm: media[0].tinywebm.url,
-  })),
+const formatResponse = (
+  { results, next }: CommonResults,
+  quality: 'low' | 'medium' | 'high' = 'medium'
+): ResultPage => ({
+  results: results.map(({ id, title, content_description, media }) => {
+    const prefix = ({ low: 'nano', medium: 'tiny', high: '' } as const)[quality]
+    return {
+      id,
+      description: title.length > 0 ? title : content_description,
+      width: media[0][`${prefix}webm`].dims[0],
+      height: media[0][`${prefix}webm`].dims[1],
+      preview: media[0][`${prefix}webm`].preview,
+      mp4: media[0][`${prefix}mp4`].url,
+      webm: media[0][`${prefix}webm`].url,
+    }
+  }),
   next,
 })
 
@@ -112,6 +123,7 @@ const formatResponse: ({ results, next }: CommonResults) => ResultPage = ({
 export const gifDetails = async ({
   key,
   ids,
+  quality,
   limit,
   page,
 }: GifDetailsOptions): Promise<ResultPage> =>
@@ -121,7 +133,8 @@ export const gifDetails = async ({
       ids: ids.join(','),
       limit,
       pos: page,
-    })
+    }),
+    quality
   )
 
 /** Searches for GIFs. */
@@ -129,6 +142,7 @@ export const search = async ({
   key,
   q,
   locale,
+  quality,
   safety,
   ratio,
   limit,
@@ -143,7 +157,8 @@ export const search = async ({
       ar_range: ratio,
       limit,
       pos: page,
-    })
+    }),
+    quality
   )
 
 /** Searches for GIFs, but shuffles the result. */
@@ -151,6 +166,7 @@ export const shuffledSearch = async ({
   key,
   q,
   locale,
+  quality,
   safety,
   ratio,
   limit,
@@ -165,13 +181,15 @@ export const shuffledSearch = async ({
       ar_range: ratio,
       limit,
       pos: page,
-    })
+    }),
+    quality
   )
 
 /** Fetches trending GIFs. */
 export const trending = async ({
   key,
   locale,
+  quality,
   safety,
   ratio,
   limit,
@@ -185,7 +203,8 @@ export const trending = async ({
       ar_range: ratio,
       limit,
       pos: page,
-    })
+    }),
+    quality
   )
 
 /** Registers a user’s sharing of a GIF. */

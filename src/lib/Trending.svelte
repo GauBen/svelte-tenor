@@ -7,6 +7,8 @@
   export let key: SearchOptions['key']
   /** Search locale. */
   export let locale: SearchOptions['locale'] = undefined
+  /** Video quality filter. */
+  export let quality: SearchOptions['quality'] = undefined
   /** Safety filter. */
   export let safety: SearchOptions['safety'] = undefined
   /** Aspect ratio filter. */
@@ -43,6 +45,7 @@
       let localRequest = trending({
         key,
         locale,
+        quality,
         safety,
         ratio,
         limit,
