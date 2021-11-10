@@ -5,6 +5,7 @@
  */
 import {
   search as rawSearch,
+  random as rawRandom,
   trending as rawTrending,
   registerShare as rawRegisterShare,
   CommonResults,
@@ -110,6 +111,28 @@ export const search = async ({
 }: SearchOptions): Promise<ResultPage> =>
   formatResponse(
     await rawSearch({
+      key,
+      q,
+      locale,
+      contentfilter: safety,
+      ar_range: ratio,
+      limit,
+      pos: page,
+    })
+  )
+
+/** Searches for GIFs, but shuffles the result. */
+export const shuffledSearch = async ({
+  key,
+  q,
+  locale,
+  safety,
+  ratio,
+  limit,
+  page,
+}: SearchOptions): Promise<ResultPage> =>
+  formatResponse(
+    await rawRandom({
       key,
       q,
       locale,

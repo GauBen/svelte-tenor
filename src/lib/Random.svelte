@@ -1,40 +1,85 @@
 <script lang="ts">
-  import type { GifObject } from './raw-api'
-  import { random } from './raw-api'
-  import Grid from './Grid.svelte'
+  import type { Gif, SearchOptions, ResultPage } from './api'
+  import { shuffledSearch } from './api'
+  import Grid from './Grid2.svelte'
 
-  export let key: string
-  export let limit = 20
-  export let q: string
+  /** Tenor API key. */
+  export let key: SearchOptions['key']
+  /** Search term. */
+  export let q: SearchOptions['q']
+  /** Search locale. */
+  export let locale: SearchOptions['locale'] = undefined
+  /** Safety filter. */
+  export let safety: SearchOptions['safety'] = undefined
+  /** Aspect ratio filter. */
+  export let ratio: SearchOptions['ratio'] = undefined
+  /** Number of results pe page. */
+  export let limit: SearchOptions['limit'] = undefined
 
-  /** Number of pages to load. */
-  export let n = 1
+  /** Number of pages to display. */
+  export let page = 1
 
-  let pages: Array<{
-    next: string
-    results: GifObject[]
-  }> = []
+  /**
+   * Is the search in progress?
+   *
+   * @readonly
+   */
+  export let loading = true
+  /**
+   * GIFs displayed in the grid.
+   *
+   * @readonly
+   */
+  export let gifs: Array<Gif> | undefined = undefined
 
-  // eslint-disable-next-line no-empty-pattern
-  const loadPage = async ({}) => {
-    while (n > pages.length) {
-      const page = await random({
-        q,
+  /** Latest request performed. */
+  let latestRequest: Promise<ResultPage> | undefined
+
+  /** Pages loaded and cached. */
+  let pages: Array<ResultPage> = []
+
+  /** Performs a search when the search term or the number of pages changes. */
+  let update = async () => {
+    while (pages.length < page) {
+      loading = true
+      let localRequest = shuffledSearch({
         key,
+        q,
+        locale,
+        safety,
+        ratio,
         limit,
-        ...(pages.length > 0 ? { pos: pages[pages.length - 1].next } : {}),
+        page: pages[pages.length - 1]?.next,
       })
+      latestRequest = localRequest
+      // Wait for the search to finish
+      let page = await localRequest
+      // If the current search is not the latest one
+      // (the change term changed in between), ignore the result
+      if (latestRequest !== localRequest) return
+      // Otherwise, add the page at the end of the cache
       pages = [...pages, page]
     }
+    // Update the grid
+    gifs = pages.slice(0, page).flatMap(({ results }) => results)
+    loading = false
   }
 
+  // Reset the number of pages and the cache when the search term changes
   $: {
     q
-    n = 1
+    page = 1
     pages = []
   }
-  $: loadPage({ n, q })
-  $: gifs = pages.slice(0, n).flatMap(({ results }) => results)
+
+  // Perform a search when the search term or the number of pages changes
+  $: {
+    q
+    page
+    update()
+  }
 </script>
 
-<Grid {gifs} on:click />
+{#if gifs !== undefined}
+  <Grid {gifs} on:click />
+{/if}
