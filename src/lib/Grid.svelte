@@ -3,13 +3,26 @@
   import { createEventDispatcher } from 'svelte'
   import GifComponent from './Gif.svelte'
 
-  /** Minimum size for each column, in pixels. The maximum size is `columnSize * 2 + gap`. */
+  /**
+   * Minimum size for each column, in pixels. The maximum size is `columnSize * 2 + gap`.
+   *
+   * @default 160px
+   */
   export let columnSize = 160
 
-  /** Size of each row. A GIF spans over multiple grid rows. */
-  let rowSize = 8
+  const defaultRowSize = 8
+  /**
+   * Size of each row. A GIF spans over multiple grid rows.
+   *
+   * @default 8px
+   */
+  let rowSize = defaultRowSize
 
-  /** Gap between GIFs, in pixels. */
+  /**
+   * Gap between GIFs, in pixels.
+   *
+   * @default 8px
+   */
   export let gap = 8
 
   /** Array of GIFs to display. */
@@ -31,7 +44,8 @@
         .split(' ').length
       const available = el.offsetWidth - (columns - 1) * gap
       // Compute the row size to keep the aspect ratio
-      rowSize = ((available / columns) * gap * 2) / columnSize - gap
+      rowSize =
+        ((available / columns) * (defaultRowSize + gap)) / columnSize - gap
     })
     observer.observe(el)
 
@@ -54,7 +68,7 @@
   {#each gifs as gif (gif.id)}
     <button
       style="grid-row-end: span {Math.ceil(
-        (columnSize * gif.height) / gif.width / (2 * gap)
+        (columnSize * gif.height) / gif.width / (defaultRowSize + gap)
       )}"
       type="button"
       on:click={() => dispatch('click', gif)}
