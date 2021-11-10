@@ -22,6 +22,11 @@
   /** Number of pages to display. */
   export let page = 1
 
+  /** Minimum size for each column, in pixels. The maximum size is `columnSize * 2 + gap`. */
+  export let columnSize: number | undefined = undefined
+  /** Gap between GIFs, in pixels. */
+  export let gap: number | undefined = undefined
+
   /**
    * Is the search in progress?
    *
@@ -48,6 +53,8 @@
     {safety}
     {ratio}
     {limit}
+    {columnSize}
+    {gap}
     bind:page
     bind:loading
     bind:gifs

@@ -19,6 +19,11 @@
   /** Number of pages to display. */
   export let page = 1
 
+  /** Minimum size for each column, in pixels. The maximum size is `columnSize * 2 + gap`. */
+  export let columnSize: number | undefined = undefined
+  /** Gap between GIFs, in pixels. */
+  export let gap: number | undefined = undefined
+
   /**
    * Is the search in progress?
    *
@@ -73,5 +78,5 @@
 </script>
 
 {#if gifs !== undefined}
-  <Grid {gifs} on:click />
+  <Grid {gifs} {columnSize} {gap} on:click />
 {/if}

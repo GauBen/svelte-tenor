@@ -9,7 +9,7 @@
   /** Size of each row. A GIF spans over multiple grid rows. */
   let rowSize = 8
 
-  /** Gap between GIFs, pixels. */
+  /** Gap between GIFs, in pixels. */
   export let gap = 8
 
   /** Array of GIFs to display. */
