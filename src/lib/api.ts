@@ -166,7 +166,6 @@ export const trending = async ({
 /** Registers a user’s sharing of a GIF. */
 export const registerShare = async (options: {
   key: string
-  /** Tenor GIF id. */
   id: string
   locale?: string
   q?: string

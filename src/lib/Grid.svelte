@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Gif } from './api'
   import { createEventDispatcher } from 'svelte'
-  import GifComponent from './Gif2.svelte'
+  import GifComponent from './Gif.svelte'
 
   /** Minimum size for each column, in pixels. The maximum size is `columnSize * 2 + gap`. */
   export let columnSize = 160

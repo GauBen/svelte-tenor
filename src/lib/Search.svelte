@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Gif, SearchOptions, ResultPage } from './api'
   import { search } from './api'
-  import Grid from './Grid2.svelte'
+  import Grid from './Grid.svelte'
 
   /** Tenor API key. */
   export let key: SearchOptions['key']
