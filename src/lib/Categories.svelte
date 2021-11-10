@@ -29,6 +29,7 @@
   }
 
   button {
+    background-color: #8888;
     background-size: cover;
     border: 0;
     border-radius: 0.25em;
