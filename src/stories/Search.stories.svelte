@@ -8,7 +8,7 @@
 </script>
 
 <Meta
-  title="Components/Search2"
+  title="Components/Search"
   component={Search}
   argTypes={{
     key: { control: { type: 'text' } },

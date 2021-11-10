@@ -3,7 +3,12 @@
  *
  * @module
  */
-import { search as rawSearch, trending as rawTrending } from './raw-api'
+import {
+  search as rawSearch,
+  trending as rawTrending,
+  registerShare as rawRegisterShare,
+  CommonResults,
+} from './raw-api'
 
 /** Represents a GIF object, but since gif files are heavy, we use video files. */
 export interface Gif {
@@ -69,12 +74,29 @@ export interface SearchOptions extends CommonOptions {
   q: string
 }
 
-export interface SearchResult {
+export interface ResultPage {
   /** GIFs. Yep. */
   results: Gif[]
   /** Next page id. */
   next: string
 }
+
+/** Transforms a `raw-api` response into a friendlier object. */
+const formatResponse: ({ results, next }: CommonResults) => ResultPage = ({
+  results,
+  next,
+}) => ({
+  results: results.map(({ id, title, content_description, media }) => ({
+    id,
+    description: title.length > 0 ? title : content_description,
+    width: media[0].tinywebm.dims[0],
+    height: media[0].tinywebm.dims[1],
+    preview: media[0].tinywebm.preview,
+    mp4: media[0].tinymp4.url,
+    webm: media[0].tinywebm.url,
+  })),
+  next,
+})
 
 /** Searches for GIFs. */
 export const search = async ({
@@ -85,57 +107,44 @@ export const search = async ({
   ratio,
   limit,
   page,
-}: SearchOptions): Promise<SearchResult> => {
-  const { results, next } = await rawSearch({
-    key,
-    q,
-    locale,
-    contentfilter: safety,
-    ar_range: ratio,
-    limit,
-    pos: page,
-  })
-  return {
-    results: results.map(({ id, title, content_description, media }) => ({
-      id,
-      description: title.length > 0 ? title : content_description,
-      width: media[0].tinywebm.dims[0],
-      height: media[0].tinywebm.dims[1],
-      preview: media[0].tinywebm.preview,
-      mp4: media[0].tinymp4.url,
-      webm: media[0].tinywebm.url,
-    })),
-    next,
-  }
-}
+}: SearchOptions): Promise<ResultPage> =>
+  formatResponse(
+    await rawSearch({
+      key,
+      q,
+      locale,
+      contentfilter: safety,
+      ar_range: ratio,
+      limit,
+      pos: page,
+    })
+  )
 
 /** Fetches trending GIFs. */
 export const trending = async ({
   key,
   locale,
-  safety: safe,
+  safety,
   ratio,
   limit,
   page,
-}: CommonOptions): Promise<SearchResult> => {
-  const { results, next } = await rawTrending({
-    key,
-    locale,
-    contentfilter: safe,
-    ar_range: ratio,
-    limit,
-    pos: page,
-  })
-  return {
-    results: results.map(({ id, title, content_description, media }) => ({
-      id,
-      description: title.length > 0 ? title : content_description,
-      width: media[0].tinywebm.dims[0],
-      height: media[0].tinywebm.dims[1],
-      preview: media[0].tinywebm.preview,
-      mp4: media[0].tinymp4.url,
-      webm: media[0].tinywebm.url,
-    })),
-    next,
-  }
-}
+}: CommonOptions): Promise<ResultPage> =>
+  formatResponse(
+    await rawTrending({
+      key,
+      locale,
+      contentfilter: safety,
+      ar_range: ratio,
+      limit,
+      pos: page,
+    })
+  )
+
+/** Registers a user’s sharing of a GIF. */
+export const registerShare = async (options: {
+  key: string
+  /** Tenor GIF id. */
+  id: string
+  locale?: string
+  q?: string
+}): Promise<{ status: 'ok' }> => rawRegisterShare(options)

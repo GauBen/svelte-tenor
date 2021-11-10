@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Gif, SearchOptions, SearchResult } from './api'
+  import type { Gif, SearchOptions, ResultPage } from './api'
   import { trending } from './api'
   import Grid from './Grid2.svelte'
 
@@ -31,10 +31,10 @@
   export let gifs: Array<Gif> | undefined = undefined
 
   /** Latest request performed. */
-  let latestRequest: Promise<SearchResult> | undefined
+  let latestRequest: Promise<ResultPage> | undefined
 
   /** Pages loaded and cached. */
-  let pages: Array<SearchResult> = []
+  let pages: Array<ResultPage> = []
 
   /** Performs a search when the search term or the number of pages changes. */
   let update = async () => {
