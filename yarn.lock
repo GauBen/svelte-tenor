@@ -3139,6 +3139,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sveltejs/adapter-static@npm:next":
+  version: 1.0.0-next.21
+  resolution: "@sveltejs/adapter-static@npm:1.0.0-next.21"
+  checksum: 453c05ed00977b7e37749e503b5b566576478d07103f14a751036389572f8dc02ea1783e3166beaee88c597279441be1d2b5627f932000d8555a451ee98c5a46
+  languageName: node
+  linkType: hard
+
 "@sveltejs/kit@npm:^1.0.0-next.1":
   version: 1.0.0-next.193
   resolution: "@sveltejs/kit@npm:1.0.0-next.193"
@@ -13755,6 +13762,7 @@ __metadata:
     "@storybook/addon-links": ^6.3.12
     "@storybook/addon-svelte-csf": ^1.1.0
     "@storybook/svelte": ^6.3.12
+    "@sveltejs/adapter-static": next
     "@sveltejs/kit": ^1.0.0-next.1
     "@typescript-eslint/eslint-plugin": ^5.1.0
     "@typescript-eslint/parser": ^5.1.0
