@@ -13781,7 +13781,7 @@ __metadata:
     svelte-preprocess: ^4.9.8
     svelte2tsx: ^0.4.8
     tslib: ^2.3.1
-    typescript: rc
+    typescript: ^4.4.4
   languageName: unknown
   linkType: soft
 
@@ -14253,7 +14253,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:*":
+"typescript@npm:*, typescript@npm:^4.4.4":
   version: 4.4.4
   resolution: "typescript@npm:4.4.4"
   bin:
@@ -14263,33 +14263,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:rc":
-  version: 4.5.1-rc
-  resolution: "typescript@npm:4.5.1-rc"
-  bin:
-    tsc: bin/tsc
-    tsserver: bin/tsserver
-  checksum: 6b4ceb7b6751eae2dbfa56e59d2411dd3da793d86b9bb2c07ae8a01fed3acd696216870841825ab549c7bb1732fb7ed8b38b5befc1ee332807261aee98136783
-  languageName: node
-  linkType: hard
-
-"typescript@patch:typescript@*#~builtin<compat/typescript>":
+"typescript@patch:typescript@*#~builtin<compat/typescript>, typescript@patch:typescript@^4.4.4#~builtin<compat/typescript>":
   version: 4.4.4
   resolution: "typescript@patch:typescript@npm%3A4.4.4#~builtin<compat/typescript>::version=4.4.4&hash=ddd1e8"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: bd629ad0da4a15d79aaad56baf3ee7d96f6a181760d430ae77f8c5325df7bffd9edee57544a3970e3651e8b796fe03a5838a7eb39c6d46cc3866c0b23d36a0dd
-  languageName: node
-  linkType: hard
-
-"typescript@patch:typescript@rc#~builtin<compat/typescript>":
-  version: 4.5.1-rc
-  resolution: "typescript@patch:typescript@npm%3A4.5.1-rc#~builtin<compat/typescript>::version=4.5.1-rc&hash=ddd1e8"
-  bin:
-    tsc: bin/tsc
-    tsserver: bin/tsserver
-  checksum: 5f9a2e06bd77ea452846c86d2ca8243c0cdf1a2003755e956a90d8b073e8f9836e56eabd436e51e364cf88883bd536297de9dd15a39ab3d252d1844c4e2a3eca
   languageName: node
   linkType: hard
 
