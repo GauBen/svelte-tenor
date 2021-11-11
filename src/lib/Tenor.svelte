@@ -40,11 +40,19 @@
    */
   export let gifs: Array<Gif> | undefined = undefined
 
-  const dispatch = createEventDispatcher<{ click: Gif }>()
+  const dispatch = createEventDispatcher<{ click: Gif; close: void }>()
 </script>
 
 <div class="keyboard">
-  <input type="search" bind:value={q} placeholder="Search Tenor" />
+  <div class="row">
+    <button
+      type="button"
+      on:click={() => {
+        dispatch('close')
+      }}>Close</button
+    >
+    <input type="search" bind:value={q} placeholder="Search Tenor" />
+  </div>
   <Search
     {key}
     {q}
@@ -66,9 +74,19 @@
   <button on:click={() => page++}>Load more</button>
 </div>
 
-<style>
-  input {
-    width: 100%;
+<style lang="scss">
+  .row {
+    display: flex;
     margin-bottom: 8px;
+    gap: 8px;
+  }
+
+  input {
+    flex: 1;
+  }
+
+  input,
+  button {
+    padding: 0.25em;
   }
 </style>
