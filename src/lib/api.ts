@@ -3,13 +3,13 @@
  *
  * @module
  */
+import type { CommonResults } from './raw-api'
 import {
   gifs as rawGifs,
   search as rawSearch,
   random as rawRandom,
   trending as rawTrending,
   registerShare as rawRegisterShare,
-  type CommonResults,
 } from './raw-api'
 
 /** Represents a GIF object, but since gif files are heavy, we use video files. */
