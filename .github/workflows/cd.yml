@@ -1,4 +1,4 @@
-name: Publish the Storybook
+name: Continuous Deployment
 
 on:
   push:
@@ -26,10 +26,10 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: yarn install --immutable
       - name: Build
-        run: yarn build-storybook
+        run: yarn build:website
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./storybook-static
+          publish_dir: ./build
           publish_branch: storybook
