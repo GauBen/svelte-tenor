@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { SuggestionOptions } from './api'
   import { createEventDispatcher } from 'svelte'
-  import { autocomplete } from './api'
+  import { related } from './api'
   import Term from './Term.svelte'
   import { flip } from 'svelte/animate'
   import { fade } from 'svelte/transition'
@@ -37,7 +37,7 @@
   /** Fetches suggestions. */
   const update = async () => {
     loading = true
-    let localRequest = autocomplete({ key, q, locale, limit })
+    let localRequest = related({ key, q, locale, limit })
     latestRequest = localRequest
     let results = await localRequest
     // If the current search is not the latest one

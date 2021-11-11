@@ -18,7 +18,7 @@
 
 <Story
   name="Basic"
-  args={{ key: 'LIVDSRZULELA', limit: 20, q: 'hello', scroll: false }}
+  args={{ key: 'LIVDSRZULELA', q: 'hello', scroll: false }}
   let:args
 >
   <Autocomplete {...args} on:click={({ detail }) => args.onClick(detail)} />

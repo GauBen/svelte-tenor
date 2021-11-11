@@ -1,6 +1,6 @@
 <script>
   import { Meta, Story } from '@storybook/addon-svelte-csf'
-  import SearchSuggestions from '../lib/SearchSuggestions.svelte'
+  import SearchSuggestions from '../lib/Related.svelte'
 
   let q = ''
 </script>

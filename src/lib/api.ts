@@ -10,6 +10,8 @@ import {
   random as rawRandom,
   trending as rawTrending,
   registerShare as rawRegisterShare,
+  autocomplete as rawAutocomplete,
+  searchSuggestions as rawSearchSuggestions,
 } from './raw-api'
 
 /** Represents a GIF object, but since gif files are heavy, we use video files. */
@@ -97,6 +99,25 @@ export interface ResultPage {
   results: Gif[]
   /** Next page id. */
   next: string
+}
+
+export interface SuggestionOptions {
+  /** Tenor API key. You may use `LIVDSRZULELA` for testing. */
+  key: string
+  /** Search term. */
+  q: string
+  /**
+   * Search term locale, formatted as `language_COUNTRY`.
+   *
+   * @default `en_US`
+   */
+  locale?: string
+  /**
+   * Number of results. (max: 50)
+   *
+   * @default 10
+   */
+  limit?: number
 }
 
 /** Transforms a `raw-api` response into a friendlier object. */
@@ -214,3 +235,21 @@ export const registerShare = async (options: {
   locale?: string
   q?: string
 }): Promise<{ status: 'ok' }> => rawRegisterShare(options)
+
+/** Completes the user's search. */
+export const autocomplete = async ({
+  key,
+  q,
+  locale,
+  limit,
+}: SuggestionOptions): Promise<string[]> =>
+  (await rawAutocomplete({ key, q, locale, limit })).results
+
+/** Returns related search terms. */
+export const related = async ({
+  key,
+  q,
+  locale,
+  limit,
+}: SuggestionOptions): Promise<string[]> =>
+  (await rawSearchSuggestions({ key, q, locale, limit })).results
