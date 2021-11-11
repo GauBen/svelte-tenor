@@ -72,16 +72,24 @@
         <button>▶</button>
       </form>
     {/if}
-    <!-- <Tenor key="LIVDSRZULELA" /> -->
   </div>
+  <footer>
+    <p><a href="./storybook/" rel="external">Check out the storybook</a></p>
+  </footer>
 </main>
 
 <style lang="scss">
   main {
     font-family: system-ui, sans-serif;
   }
-  h1 {
+
+  h1,
+  footer {
     text-align: center;
+  }
+
+  a {
+    color: #000;
   }
 
   .phone {
