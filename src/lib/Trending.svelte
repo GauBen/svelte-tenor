@@ -13,7 +13,7 @@
   export let safety: SearchOptions['safety'] = undefined
   /** Aspect ratio filter. */
   export let ratio: SearchOptions['ratio'] = undefined
-  /** Number of results pe page. */
+  /** Number of results per page. */
   export let limit: SearchOptions['limit'] = undefined
 
   /** Number of pages to display. */
@@ -25,7 +25,7 @@
   export let gap: number | undefined = undefined
 
   /**
-   * Is the search in progress?
+   * Is the request in progress?
    *
    * @readonly
    */
