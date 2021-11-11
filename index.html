@@ -1,55 +1,65 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"/><title>Storybook</title><meta name="viewport" content="width=device-width,initial-scale=1"/><style>html, body {
-    overflow: hidden;
-    height: 100%;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-  }
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>svelte-tenor</title>
 
-  * {
-    box-sizing: border-box;
-  }</style><script>/* globals window */
-  /* eslint-disable no-underscore-dangle */
-  try {
-    if (window.top !== window) {
-      window.__REACT_DEVTOOLS_GLOBAL_HOOK__ = window.top.__REACT_DEVTOOLS_GLOBAL_HOOK__;
-    }
-  } catch (e) {
-    // eslint-disable-next-line no-console
-    console.warn('unable to connect to top frame for connecting dev tools');
-  }
+		
 
-  window.onerror = function onerror(message, source, line, column, err) {
-    if (window.CONFIG_TYPE !== 'DEVELOPMENT') return;
-    // eslint-disable-next-line no-var, vars-on-top
-    var xhr = new window.XMLHttpRequest();
-    xhr.open('POST', '/runtime-error');
-    xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-    xhr.send(
-      JSON.stringify({
-        /* eslint-disable object-shorthand */
-        message: message,
-        source: source,
-        line: line,
-        column: column,
-        error: err && { message: err.message, name: err.name, stack: err.stack },
-        origin: 'manager',
-        /* eslint-enable object-shorthand */
-      })
-    );
-  };</script><style>#root[hidden],
-      #docs-root[hidden] {
-        display: none !important;
-      }</style></head><body><div id="root"></div><div id="docs-root"></div><script>window['CONFIG_TYPE'] = "PRODUCTION";
-            
-        
-            
-              window['LOGLEVEL'] = "info";
-            
-        
-            
-        
-            
-        
-            
-              window['DOCS_MODE'] = false;</script><script src="runtime~main.f8a25cf51f64ed89ff12.manager.bundle.js"></script><script src="vendors~main.6c12a0f797b5cf690efb.manager.bundle.js"></script><script src="main.2a102d12357b456812c4.manager.bundle.js"></script></body></html>
+		<link rel="modulepreload" href="/svelte-tenor/_app/start-7a3f1071.js">
+		<link rel="modulepreload" href="/svelte-tenor/_app/chunks/vendor-89960e0a.js">
+		<link rel="modulepreload" href="/svelte-tenor/_app/layout.svelte-29922028.js">
+		<link rel="modulepreload" href="/svelte-tenor/_app/pages/index.svelte-c9e7d0d4.js">
+		<link rel="stylesheet" href="/svelte-tenor/_app/assets/start-61d1577b.css">
+		<link rel="stylesheet" href="/svelte-tenor/_app/assets/pages/index.svelte-963824c3.css">
+
+		<script type="module">
+			import { start } from "/svelte-tenor/_app/start-7a3f1071.js";
+			start({
+				target: document.body,
+				paths: {"base":"/svelte-tenor","assets":""},
+				session: {},
+				host: location.host,
+				route: true,
+				spa: false,
+				trailing_slash: "never",
+				hydrate: {
+					status: 200,
+					error: null,
+					nodes: [
+						import("/svelte-tenor/_app/layout.svelte-29922028.js"),
+						import("/svelte-tenor/_app/pages/index.svelte-c9e7d0d4.js")
+					],
+					page: {
+						host: location.host, // TODO this is redundant
+						path: "\u002F",
+						query: new URLSearchParams(""),
+						params: {}
+					}
+				}
+			});
+		</script>
+  </head>
+  <body>
+    <div id="svelte">
+
+
+
+
+<main class="svelte-cazju9"><h1 class="svelte-cazju9">svelte-tenor</h1>
+
+  <div class="phone svelte-cazju9"><div class="messages svelte-cazju9"><div class="message svelte-cazju9 text">Hello World!
+        </div></div>
+    <form class="form svelte-cazju9"><button type="button">GIF</button>
+        <input type="text" class="text-input svelte-cazju9" value="">
+        <button>▶</button></form>
+    </div>
+</main>
+
+
+
+			
+		</div>
+  </body>
+</html>
