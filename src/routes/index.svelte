@@ -118,6 +118,8 @@
   }
 
   .message {
+    display: flex;
+    justify-content: end;
     max-width: 80%;
     max-height: 12em;
   }
