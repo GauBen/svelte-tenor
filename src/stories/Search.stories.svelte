@@ -2,70 +2,74 @@
   import { Meta, Story } from '@storybook/addon-svelte-csf'
   import Search from '../lib/Search.svelte'
 
+  let q = 'hello'
   let page = 1
-  let q = 'david goodenough'
-  let loading = true
+  let loading = false
 </script>
 
 <Meta
   title="Components/Search"
   component={Search}
   argTypes={{
-    key: { control: { type: 'text' } },
-    limit: { control: { type: 'range', min: 1, max: 50, step: 1 } },
+    key: { control: { type: 'text' }, defaultValue: 'LIVDSRZULELA' },
+    locale: { control: { type: 'text' }, defaultValue: 'en_US' },
+    quality: {
+      options: ['low', 'medium', 'high'],
+      control: { type: 'inline-radio' },
+      defaultValue: 'medium',
+    },
+    safety: {
+      options: ['off', 'low', 'medium', 'high'],
+      control: { type: 'inline-radio' },
+      defaultValue: 'off',
+    },
+    ratio: {
+      options: ['all', 'wide', 'standard'],
+      control: { type: 'inline-radio' },
+      defaultValue: 'all',
+    },
+    limit: {
+      control: { type: 'range', min: 1, max: 50, step: 1 },
+      defaultValue: 20,
+    },
+    columnSize: {
+      control: { type: 'range', min: 10, max: 360, step: 1 },
+      defaultValue: 160,
+    },
+    gap: {
+      control: { type: 'range', min: 0, max: 20, step: 1 },
+      defaultValue: 8,
+    },
     onClick: { action: {} },
   }}
 />
 
-<Story
-  name="Basic"
-  args={{ key: 'LIVDSRZULELA', limit: 20, q: 'david goodenough' }}
-  let:args
->
-  <Search {...args} on:click={({ detail }) => args.onClick(detail)} />
-</Story>
-
-<Story
-  name="Load more"
-  args={{ key: 'LIVDSRZULELA', limit: 4, q: 'david goodenough' }}
-  let:args
->
+<Story id="search" name="Search" args={{ limit: 4 }} let:args>
+  <p class="form"><input type="text" bind:value={q} /></p>
   <Search
     {...args}
+    {q}
     {page}
     bind:loading
     on:click={({ detail }) => args.onClick(detail)}
   />
-  <div class="more">
+  <p class="more">
     <button on:click={() => page++} disabled={loading}>Load more</button>
-  </div>
-</Story>
-
-<Story name="Reactivity" args={{ key: 'LIVDSRZULELA', limit: 4 }} let:args>
-  <input type="search" bind:value={q} />
-  <Search
-    {...args}
-    {q}
-    bind:page
-    bind:loading
-    on:click={({ detail }) => args.onClick(detail)}
-  />
-  <div class="more">
-    <button on:click={() => page++} disabled={loading}>Load more</button>
-  </div>
+  </p>
 </Story>
 
 <style>
+  .form {
+    display: flex;
+  }
+  .form > input {
+    flex: 1;
+    padding: 0.25em;
+  }
   .more {
-    margin: 1em 0;
     text-align: center;
   }
   .more > button {
     padding: 1em;
-  }
-  [type='search'] {
-    margin: 1em 0;
-    width: 100%;
-    max-width: 100%;
   }
 </style>

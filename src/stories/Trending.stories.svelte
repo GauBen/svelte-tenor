@@ -3,6 +3,7 @@
   import Trending from '../lib/Trending.svelte'
 
   let page = 1
+  let loading = false
 </script>
 
 <Meta
@@ -30,10 +31,6 @@
       control: { type: 'range', min: 1, max: 50, step: 1 },
       defaultValue: 20,
     },
-    page: {
-      control: { type: 'range', min: 1, max: 10, step: 1 },
-      defaultValue: 1,
-    },
     columnSize: {
       control: { type: 'range', min: 10, max: 360, step: 1 },
       defaultValue: 160,
@@ -46,18 +43,20 @@
   }}
 />
 
-<Story name="Basic" args={{}} let:args>
-  <Trending {...args} on:click={({ detail }) => args.onClick(detail)} />
-</Story>
-
-<Story name="Load more" args={{ limit: 4 }} let:args>
-  <Trending {...args} {page} on:click={({ detail }) => args.onClick(detail)} />
-  <div class="more"><button on:click={() => page++}>Load more</button></div>
+<Story name="Trending" args={{ limit: 4 }} let:args>
+  <Trending
+    {...args}
+    {page}
+    bind:loading
+    on:click={({ detail }) => args.onClick(detail)}
+  />
+  <p class="more">
+    <button on:click={() => page++} disabled={loading}>Load more</button>
+  </p>
 </Story>
 
 <style>
   .more {
-    margin: 1em 0;
     text-align: center;
   }
   .more > button {
