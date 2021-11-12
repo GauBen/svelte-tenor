@@ -1,10 +1,7 @@
 <script lang="ts">
   import type { SuggestionOptions } from './api'
-  import { createEventDispatcher } from 'svelte'
   import { related } from './api'
-  import Term from './Term.svelte'
-  import { flip } from 'svelte/animate'
-  import { fade } from 'svelte/transition'
+  import Terms from './Terms.svelte'
 
   /** Tenor API key. */
   export let key: SuggestionOptions['key']
@@ -47,8 +44,6 @@
     loading = false
   }
 
-  const dispatch = createEventDispatcher<{ click: string }>()
-
   $: {
     q
     update()
@@ -56,27 +51,5 @@
 </script>
 
 {#if terms !== undefined}
-  <div class="terms" class:scroll>
-    {#each terms as term (term)}
-      <span
-        animate:flip={{ duration: 100 }}
-        transition:fade={{ duration: 100 }}
-      >
-        <Term {term} on:click={() => dispatch('click', term)} />
-      </span>
-    {/each}
-  </div>
+  <Terms {terms} {scroll} on:click />
 {/if}
-
-<style lang="scss">
-  .terms {
-    display: flex;
-    gap: 0.5em;
-    flex-wrap: wrap;
-
-    &.scroll {
-      flex-wrap: nowrap;
-      overflow: auto;
-    }
-  }
-</style>
