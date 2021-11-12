@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.9](https://github.com/GauBen/svelte-tenor/compare/v0.0.8...v0.0.9) (2021-11-12)
+
+
+### Features
+
+* created lib demo ([3656765](https://github.com/GauBen/svelte-tenor/commit/3656765ccdab3df6aafab4619dbf1d322d86eec8))
+
+
+### Bug Fixes
+
+* added component ([282fb44](https://github.com/GauBen/svelte-tenor/commit/282fb449f129173ad5cd20b596887b09d3735d53))
+* alignment ([24fba4d](https://github.com/GauBen/svelte-tenor/commit/24fba4d1871b0e04dc7790207d05de6b875de889))
+* support 0px gaps ([f9e447d](https://github.com/GauBen/svelte-tenor/commit/f9e447d67ebbc537e9ae39d7a8b60fe9d0654bf0))
+
 ### [0.0.8](https://github.com/GauBen/svelte-tenor/compare/v0.0.7...v0.0.8) (2021-11-10)
 
 
