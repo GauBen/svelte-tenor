@@ -43,7 +43,7 @@
   }}
 />
 
-<Story id="trending" name="Trending" args={{ limit: 4 }} let:args>
+<Story id="trending" name="Trending" let:args>
   <Trending
     {...args}
     {page}

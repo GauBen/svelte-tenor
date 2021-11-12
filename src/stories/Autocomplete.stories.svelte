@@ -9,33 +9,39 @@
   title="Components/Autocomplete"
   component={Autocomplete}
   argTypes={{
-    key: { control: { type: 'text' } },
-    limit: { control: { type: 'range', min: 1, max: 50, step: 1 } },
-    scroll: { control: { type: 'boolean' } },
+    key: { control: { type: 'text' }, defaultValue: 'LIVDSRZULELA' },
+    locale: { control: { type: 'text' }, defaultValue: 'en_US' },
+    limit: {
+      control: { type: 'range', min: 1, max: 50, step: 1 },
+      defaultValue: 10,
+    },
+    scroll: { control: { type: 'boolean' }, defaultValue: false },
     onClick: { action: {} },
   }}
 />
 
-<Story
-  name="Basic"
-  args={{ key: 'LIVDSRZULELA', q: 'hello', scroll: false }}
-  let:args
->
-  <Autocomplete {...args} on:click={({ detail }) => args.onClick(detail)} />
+<Story id="autocomplete" name="Autocomplete" let:args>
+  <div class="row">
+    <input type="text" bind:value={q} />
+    <Autocomplete
+      {...args}
+      {q}
+      on:click={({ detail }) => {
+        args.onClick(detail)
+        q = detail
+      }}
+    />
+  </div>
 </Story>
 
-<Story
-  name="Reactivity"
-  args={{ key: 'LIVDSRZULELA', limit: 20, q: 'hello', scroll: false }}
-  let:args
->
-  <p><input type="text" bind:value={q} /></p>
-  <Autocomplete
-    {...args}
-    {q}
-    on:click={({ detail }) => {
-      q = detail
-      args.onClick(detail)
-    }}
-  />
-</Story>
+<style>
+  .row {
+    display: flex;
+    gap: 0.5em;
+    align-items: flex-start;
+  }
+
+  input {
+    padding: 0.25em;
+  }
+</style>

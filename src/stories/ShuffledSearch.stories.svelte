@@ -44,7 +44,7 @@
   }}
 />
 
-<Story id="shuffledsearch" name="ShuffledSearch" args={{ limit: 4 }} let:args>
+<Story id="shuffledsearch" name="ShuffledSearch" let:args>
   <p class="form"><input type="text" bind:value={q} /></p>
   <ShuffledSearch
     {...args}

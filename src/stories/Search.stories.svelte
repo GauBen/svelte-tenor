@@ -44,7 +44,7 @@
   }}
 />
 
-<Story id="search" name="Search" args={{ limit: 4 }} let:args>
+<Story id="search" name="Search" let:args>
   <p class="form"><input type="text" bind:value={q} /></p>
   <Search
     {...args}

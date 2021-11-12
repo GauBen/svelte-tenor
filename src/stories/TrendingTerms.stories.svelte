@@ -7,17 +7,17 @@
   title="Components/TrendingTerms"
   component={TrendingTerms}
   argTypes={{
-    key: { control: { type: 'text' } },
-    limit: { control: { type: 'range', min: 1, max: 50, step: 1 } },
-    scroll: { control: { type: 'boolean' } },
+    key: { control: { type: 'text' }, defaultValue: 'LIVDSRZULELA' },
+    locale: { control: { type: 'text' }, defaultValue: 'en_US' },
+    limit: {
+      control: { type: 'range', min: 1, max: 50, step: 1 },
+      defaultValue: 10,
+    },
+    scroll: { control: { type: 'boolean' }, defaultValue: false },
     onClick: { action: {} },
   }}
 />
 
-<Story
-  name="Basic"
-  args={{ key: 'LIVDSRZULELA', limit: 20, scroll: false }}
-  let:args
->
+<Story id="trendingterms" name="TrendingTerms" let:args>
   <TrendingTerms {...args} on:click={({ detail }) => args.onClick(detail)} />
 </Story>
