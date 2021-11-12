@@ -74,7 +74,10 @@
     {/if}
   </div>
   <footer>
-    <p><a href="./storybook/" rel="external">Check out the storybook</a></p>
+    <p>
+      <a href="./storybook/" rel="external">Check out the storybook</a> –
+      <a href="https://github.com/gauben/svelte-tenor">Back to GitHub</a>
+    </p>
   </footer>
 </main>
 
@@ -98,7 +101,7 @@
     gap: 1em;
     max-width: 360px;
     height: 640px;
-    margin: 2em auto;
+    margin: 1em auto;
     padding: 1em;
     border-radius: 1em;
     box-shadow: 0 0 2em #ccc8;
