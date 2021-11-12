@@ -1,10 +1,10 @@
 <script lang="ts">
-  import type { SuggestionOptions } from './api'
   import { createEventDispatcher } from 'svelte'
-  import { autocomplete } from './api'
-  import Term from './Term.svelte'
   import { flip } from 'svelte/animate'
   import { fade } from 'svelte/transition'
+  import type { SuggestionOptions } from './api'
+  import { autocomplete } from './api'
+  import Term from './Term.svelte'
 
   /** Tenor API key. */
   export let key: SuggestionOptions['key']

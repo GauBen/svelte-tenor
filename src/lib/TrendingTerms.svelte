@@ -1,69 +1,64 @@
 <script lang="ts">
   import { createEventDispatcher } from 'svelte'
-  import { trendingTerms } from './raw-api'
+  import { flip } from 'svelte/animate'
+  import { fade } from 'svelte/transition'
+  import type { SuggestionOptions } from './api'
+  import { trendingTerms } from './api'
+  import Term from './Term.svelte'
 
-  export let key: string
-  export let limit = 10
+  /** Tenor API key. */
+  export let key: SuggestionOptions['key']
+  /** Search locale. */
+  export let locale: SuggestionOptions['locale'] = undefined
+  /** Number of results. */
+  export let limit: SuggestionOptions['limit'] = undefined
 
+  /** Keeps the buttons on one line instead of wrapping. */
   export let scroll = false
 
-  const color = (str: string) => {
-    let hash = 0xc0ffee
-    for (const char of str)
-      hash = (hash * 884489 + char.charCodeAt(0) * 9629) & 0xffffff
-    const red = ((hash & 0xff0000) >> 16) + 1
-    const green = ((hash & 0x00ff00) >> 8) + 1
-    const blue = (hash & 0x0000ff) + 1
-    const l = 0.4 * red + 0.4 * green + 0.2 * blue
-    const h = (n: number) =>
-      Math.min(0xd0, Math.max(0x60, Math.floor((n * 0xd0) / l)))
-        .toString(16)
-        .padStart(2, '0')
-    return `#${h(red)}${h(green)}${h(blue)}`
-  }
+  /**
+   * Is the request in progress?
+   *
+   * @readonly
+   */
+  export let loading = true
+  /**
+   * Terms displayed.
+   *
+   * @readonly
+   */
+  export let terms: string[] | undefined = undefined
+
+  trendingTerms({ key, locale, limit }).then((response) => {
+    terms = response
+    loading = false
+  })
 
   const dispatch = createEventDispatcher<{ click: string }>()
-
-  let results: string[] | undefined
-
-  $: trendingTerms({ key, limit }).then((response) => {
-    results = response.results
-  })
 </script>
 
-{#if results !== undefined}
-  <div class="results" class:scroll>
-    {#each results as result}
-      <button
-        style="background-color: {color(result)}"
-        on:click={() => dispatch('click', result)}
+{#if terms !== undefined}
+  <div class="terms" class:scroll>
+    {#each terms as term (term)}
+      <span
+        animate:flip={{ duration: 100 }}
+        transition:fade={{ duration: 100 }}
       >
-        {result}
-      </button>
+        <Term {term} on:click={() => dispatch('click', term)} />
+      </span>
     {/each}
   </div>
 {/if}
 
 <style lang="scss">
-  .results {
+  .terms {
     display: flex;
     gap: 0.5em;
     flex-wrap: wrap;
-  }
 
-  .results.scroll {
-    flex-wrap: nowrap;
-    overflow: auto;
-  }
-
-  button {
-    border: 0;
-    border-radius: 0.25em;
-    padding: 0.5em;
-    color: white;
-    font-weight: bold;
-    text-shadow: 0 0 0.25em #0008;
-    box-shadow: 0 0 0.25em #0004;
-    flex-shrink: 0;
+    &.scroll {
+      flex-wrap: nowrap;
+      overflow: auto;
+    }
   }
 </style>

@@ -5,13 +5,15 @@
  */
 import type { CommonResults } from './raw-api'
 import {
-  gifs as rawGifs,
-  search as rawSearch,
-  random as rawRandom,
-  trending as rawTrending,
-  registerShare as rawRegisterShare,
   autocomplete as rawAutocomplete,
+  categories as rawCategories,
+  gifs as rawGifs,
+  random as rawRandom,
+  registerShare as rawRegisterShare,
+  search as rawSearch,
   searchSuggestions as rawSearchSuggestions,
+  trending as rawTrending,
+  trendingTerms as rawTrendingTerms,
 } from './raw-api'
 
 /** Represents a GIF object, but since gif files are heavy, we use video files. */
@@ -253,3 +255,30 @@ export const related = async ({
   limit,
 }: SuggestionOptions): Promise<string[]> =>
   (await rawSearchSuggestions({ key, q, locale, limit })).results
+
+/** Returns trending search terms. */
+export const trendingTerms = async ({
+  key,
+  locale,
+  limit,
+}: {
+  key: string
+  locale?: string
+  limit?: number
+}) => (await rawTrendingTerms({ key, locale, limit })).results
+
+/** Returns Tenor GIF categories. */
+export const categories = async ({
+  key,
+  type,
+  locale,
+  safety,
+}: {
+  key: string
+  type?: 'featured' | 'trending'
+  locale?: string
+  safety?: 'off' | 'low' | 'medium' | 'high'
+}) =>
+  (await rawCategories({ key, type, locale, contentfilter: safety })).tags.map(
+    ({ searchterm, image }) => ({ term: searchterm, gif: image })
+  )

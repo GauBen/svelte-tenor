@@ -1,28 +1,54 @@
 <script lang="ts">
   import { createEventDispatcher } from 'svelte'
-  import { categories } from './raw-api'
+  import type { SearchOptions } from './api'
+  import { categories as categoriesApi } from './api'
 
-  export let key: string
+  /** Tenor API key. */
+  export let key: SearchOptions['key']
+  /**
+   * Category.
+   *
+   * @default `featured`
+   */
+  export let type: 'featured' | 'trending' | undefined = undefined
+  /** Search locale. */
+  export let locale: SearchOptions['locale'] = undefined
+  /** Safety filter. */
+  export let safety: SearchOptions['safety'] = undefined
+
+  /**
+   * Is the request in progress?
+   *
+   * @readonly
+   */
+  export let loading = true
+  /** @readonly */
+  export let categories: Array<{ term: string; gif: string }> | undefined =
+    undefined
+
+  categoriesApi({ key, type, locale, safety }).then((response) => {
+    categories = response
+    loading = false
+  })
 
   const dispatch = createEventDispatcher<{ click: string }>()
 </script>
 
-{#await categories({ key }) then { tags }}
-  <div class="tags">
-    {#each tags as tag}
+{#if categories !== undefined}
+  <div class="category">
+    {#each categories as { term, gif }}
       <button
-        style="background-image: linear-gradient(to bottom, #0003, #0004, #0008), url({tag.image})"
-        class="tag"
-        on:click={() => dispatch('click', tag.searchterm)}
+        style="background-image: linear-gradient(to bottom, #0003, #0004, #0008), url({gif})"
+        on:click={() => dispatch('click', term)}
       >
-        {tag.searchterm}
+        {term}
       </button>
     {/each}
   </div>
-{/await}
+{/if}
 
 <style>
-  .tags {
+  .category {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 0.5em;
