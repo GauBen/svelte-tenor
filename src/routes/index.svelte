@@ -29,13 +29,11 @@
   <div class="phone">
     <div class="messages" bind:this={div}>
       {#each messages as message}
-        <div class="message" class:text={!message.gif}>
-          {#if message.gif}
-            <Gif gif={message.body} />
-          {:else}
-            {message.body}
-          {/if}
-        </div>
+        {#if message.gif}
+          <div class="message"><Gif gif={message.body} /></div>
+        {:else}
+          <div class="message text">{message.body}</div>
+        {/if}
       {/each}
     </div>
     {#if gifKeyboard}
@@ -125,6 +123,7 @@
     justify-content: end;
     max-width: 80%;
     max-height: 12em;
+    white-space: pre-wrap;
   }
 
   .message.text {
