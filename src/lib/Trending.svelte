@@ -23,6 +23,8 @@
   export let columnSize: number | undefined = undefined
   /** Gap between GIFs, in pixels. */
   export let gap: number | undefined = undefined
+  /** In-line, horizontal scrolling grid. */
+  export let inline: boolean | undefined = undefined
 
   /**
    * Is the request in progress?
@@ -78,5 +80,5 @@
 </script>
 
 {#if gifs !== undefined}
-  <Grid {gifs} {columnSize} {gap} on:click />
+  <Grid {gifs} {columnSize} {gap} {inline} on:click />
 {/if}

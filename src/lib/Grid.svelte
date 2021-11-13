@@ -25,6 +25,13 @@
    */
   export let gap = 8
 
+  /**
+   * In-line, horizontal scrolling grid.
+   *
+   * @default false
+   */
+  export let inline = false
+
   /** Array of GIFs to display. */
   export let gifs: Gif[] = []
 
@@ -59,6 +66,7 @@
 
 <div
   class="grid"
+  class:inline
   use:watch
   style="
     --column: {columnSize}px;
@@ -85,6 +93,12 @@
     grid-auto-rows: var(--row, 8px);
     align-items: stretch;
     gap: var(--gap, 8px);
+
+    &.inline {
+      display: flex;
+      height: var(--column, 160px);
+      overflow: auto;
+    }
   }
 
   button {
@@ -95,6 +109,7 @@
     transition: 0.2s box-shadow;
     border-radius: 4px;
     overflow: hidden;
+    flex-shrink: 0;
 
     &:focus,
     &:active {
