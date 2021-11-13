@@ -17,6 +17,13 @@
   export let safety: SearchOptions['safety'] = undefined
 
   /**
+   * Minimum column size, in pixels.
+   *
+   * @default 140
+   */
+  export let columnSize = 140
+
+  /**
    * Is the request in progress?
    *
    * @readonly
@@ -35,7 +42,7 @@
 </script>
 
 {#if categories !== undefined}
-  <div class="category">
+  <div class="category" style="--column: {columnSize}px">
     {#each categories as { term, gif }}
       <button
         style="background-image: linear-gradient(to bottom, #0003, #0004, #0008), url({gif})"
@@ -50,13 +57,14 @@
 <style>
   .category {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(var(--column, 200px), 1fr));
     gap: 0.5em;
   }
 
   button {
     background-color: #8888;
     background-size: cover;
+    background-position: center;
     border: 0;
     border-radius: 0.25em;
     padding: 3em 1em;

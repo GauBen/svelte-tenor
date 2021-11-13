@@ -19,6 +19,10 @@
       control: { type: 'inline-radio' },
       defaultValue: 'off',
     },
+    columnSize: {
+      control: { type: 'range', min: 10, max: 360, step: 1 },
+      defaultValue: 140,
+    },
     onClick: { action: {} },
   }}
 />
