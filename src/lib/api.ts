@@ -3,7 +3,7 @@
  *
  * @module
  */
-import type { CommonResults } from './raw-api'
+import type { BasicResults } from './raw-api'
 import {
   autocomplete as rawAutocomplete,
   categories as rawCategories,
@@ -120,7 +120,7 @@ export interface SuggestionOptions {
 
 /** Transforms a `raw-api` response into a friendlier object. */
 const formatResponse = (
-  { results, next }: CommonResults,
+  { results, next }: BasicResults,
   quality: 'low' | 'medium' | 'high' = 'medium'
 ): ResultPage => ({
   results: results.map(({ id, title, content_description, media }) => {
@@ -150,6 +150,7 @@ export const gifDetails = async ({
       ids: ids.join(','),
       limit,
       pos: page,
+      media_filter: 'basic',
     }),
     quality
   )
@@ -174,6 +175,7 @@ export const search = async ({
       ar_range: ratio,
       limit,
       pos: page,
+      media_filter: 'basic',
     }),
     quality
   )
@@ -198,6 +200,7 @@ export const shuffledSearch = async ({
       ar_range: ratio,
       limit,
       pos: page,
+      media_filter: 'basic',
     }),
     quality
   )
@@ -220,6 +223,7 @@ export const trending = async ({
       ar_range: ratio,
       limit,
       pos: page,
+      media_filter: 'basic',
     }),
     quality
   )
