@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { createEventDispatcher } from 'svelte'
   import type { SuggestionOptions } from './api'
   import { trendingTerms } from './api'
   import Terms from './Terms.svelte'
@@ -31,8 +30,6 @@
     terms = response
     loading = false
   })
-
-  const dispatch = createEventDispatcher<{ click: string }>()
 </script>
 
 {#if terms !== undefined}
