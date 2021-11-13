@@ -40,6 +40,8 @@
       <div class="keyboard">
         <Tenor
           key="OY94CH1Q77WO"
+          columnSize={140}
+          gap={4}
           bind:q={value}
           on:click={({ detail }) => {
             messages = [...messages, { gif: true, body: detail }]
@@ -80,6 +82,10 @@
 </main>
 
 <style lang="scss">
+  :global(body) {
+    margin: 0;
+  }
+
   main {
     font-family: system-ui, sans-serif;
   }
