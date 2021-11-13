@@ -138,7 +138,7 @@
     border-radius: 1em;
   }
 
-  .message :global(.gif-video) {
+  .message > :global(*) {
     border-radius: 1em;
   }
 
