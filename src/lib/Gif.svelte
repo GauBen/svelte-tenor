@@ -3,26 +3,13 @@
 
   export let gif: Gif
 
-  $: ({ description, width, height, preview, mp4, webm } = gif)
+  $: ({ description, width, height, gif: src } = gif)
 </script>
 
-<video
-  autoplay
-  loop
-  muted
-  playsinline
-  {width}
-  {height}
-  poster={preview}
-  aria-label={description}
-  class="gif-video"
->
-  <source src={webm} type="video/webm" />
-  <source src={mp4} type="video/mp4" />
-</video>
+<img {src} alt={description} {width} {height} />
 
 <style lang="scss">
-  video {
+  img {
     background: linear-gradient(to right, purple, tomato);
     width: auto;
     max-width: 100%;

@@ -16,22 +16,18 @@ import {
   trendingTerms as rawTrendingTerms,
 } from './raw-api'
 
-/** Represents a GIF object, but since gif files are heavy, we use video files. */
+/** Represents a GIF object. */
 export interface Gif {
   /** Tenor GIF id. */
   id: string
   /** GIF description. */
   description: string
-  /** Video width. */
+  /** GIF width. */
   width: number
-  /** Video height. */
+  /** GIF height. */
   height: number
-  /** Still image of the video. */
-  preview: string
-  /** GIF as a MP4 file. */
-  mp4: string
-  /** GIF as a WEBM file. */
-  webm: string
+  /** Image URL. */
+  gif: string
 }
 
 export interface CommonOptions {
@@ -132,11 +128,9 @@ const formatResponse = (
     return {
       id,
       description: title.length > 0 ? title : content_description,
-      width: media[0][`${prefix}webm`].dims[0],
-      height: media[0][`${prefix}webm`].dims[1],
-      preview: media[0][`${prefix}webm`].preview,
-      mp4: media[0][`${prefix}mp4`].url,
-      webm: media[0][`${prefix}webm`].url,
+      width: media[0][`${prefix}gif`].dims[0],
+      height: media[0][`${prefix}gif`].dims[1],
+      gif: media[0][`${prefix}gif`].url,
     }
   }),
   next,
