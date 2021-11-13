@@ -23,6 +23,10 @@
       control: { type: 'range', min: 10, max: 360, step: 1 },
       defaultValue: 140,
     },
+    gap: {
+      control: { type: 'range', min: 0, max: 20, step: 1 },
+      defaultValue: 8,
+    },
     onClick: { action: {} },
   }}
 />

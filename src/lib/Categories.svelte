@@ -22,6 +22,12 @@
    * @default 140
    */
   export let columnSize = 140
+  /**
+   * Gap between GIFs, in pixels.
+   *
+   * @default 8px
+   */
+  export let gap = 8
 
   /**
    * Is the request in progress?
@@ -42,7 +48,7 @@
 </script>
 
 {#if categories !== undefined}
-  <div class="category" style="--column: {columnSize}px">
+  <div class="category" style="--column: {columnSize}px; --gap: {gap}px">
     {#each categories as { term, gif }}
       <button
         style="background-image: linear-gradient(to bottom, #0003, #0004, #0008), url({gif})"
@@ -58,7 +64,7 @@
   .category {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(var(--column, 200px), 1fr));
-    gap: 0.5em;
+    gap: var(--gap, 8px);
   }
 
   button {
