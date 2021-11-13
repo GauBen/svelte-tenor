@@ -101,7 +101,7 @@
       box-shadow: 0 0 0.5em blue;
     }
 
-    > :global(*) {
+    > :global(.gif) {
       width: 100%;
       height: 100%;
       object-fit: cover;
