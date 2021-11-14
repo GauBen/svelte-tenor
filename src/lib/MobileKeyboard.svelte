@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { Gif, SearchOptions } from './api'
-  import { createEventDispatcher } from 'svelte'
+  import { createEventDispatcher, onMount } from 'svelte'
   import { registerShare } from './api'
   import Search from './Search.svelte'
 
@@ -24,8 +24,12 @@
 
   /** Minimum size for each column, in pixels. The maximum size is `columnSize * 2 + gap`. */
   export let columnSize: number | undefined = undefined
-  /** Gap between GIFs, in pixels. */
-  export let gap: number | undefined = undefined
+  /**
+   * Gap between elements, in pixels.
+   *
+   * @default 4px
+   */
+  export let gap = 4
 
   /**
    * Is the request in progress?
@@ -40,19 +44,16 @@
    */
   export let gifs: Array<Gif> | undefined = undefined
 
+  let input: HTMLInputElement | undefined
+
   const dispatch = createEventDispatcher<{ click: Gif; close: void }>()
+
+  onMount(() => {
+    if (input) input.focus()
+  })
 </script>
 
-<div class="keyboard">
-  <div class="row">
-    <button
-      type="button"
-      on:click={() => {
-        dispatch('close')
-      }}>Close</button
-    >
-    <input type="search" bind:value={q} placeholder="Search Tenor" />
-  </div>
+<div class="mobile-keyboard" style="--gap: {gap}px">
   <Search
     {key}
     {q}
@@ -63,6 +64,7 @@
     {limit}
     {columnSize}
     {gap}
+    inline={true}
     bind:page
     bind:loading
     bind:gifs
@@ -71,22 +73,36 @@
       void registerShare({ key, id: detail.id, q, locale })
     }}
   />
-  <button on:click={() => page++}>Load more</button>
+  <form class="row" on:submit|preventDefault>
+    <button
+      type="button"
+      on:click={() => {
+        dispatch('close')
+      }}>Close</button
+    >
+    <input
+      type="search"
+      placeholder="Search Tenor"
+      bind:value={q}
+      bind:this={input}
+    />
+  </form>
 </div>
 
 <style lang="scss">
+  .mobile-keyboard {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap, 4px);
+    max-height: 100%;
+  }
+
   .row {
     display: flex;
-    margin-bottom: 8px;
-    gap: 8px;
-  }
+    gap: var(--gap, 4px);
 
-  input {
-    flex: 1;
-  }
-
-  input,
-  button {
-    padding: 0.25em;
+    > input {
+      flex: 1;
+    }
   }
 </style>

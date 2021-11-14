@@ -93,6 +93,7 @@
     grid-auto-rows: var(--row, 8px);
     align-items: stretch;
     gap: var(--gap, 8px);
+    border-radius: 4px;
 
     &.inline {
       display: flex;
@@ -102,18 +103,29 @@
   }
 
   button {
+    position: relative;
     border: 0;
     background: none;
     padding: 0;
     margin: 0;
-    transition: 0.2s box-shadow;
     border-radius: 4px;
     overflow: hidden;
     flex-shrink: 0;
 
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      transition: 0.2s box-shadow;
+    }
+
     &:focus,
     &:active {
-      box-shadow: 0 0 0.5em blue;
+      outline: 0;
+
+      &::before {
+        box-shadow: 0 0 1em blue inset, 0 0 1em white inset;
+      }
     }
 
     > :global(.gif) {

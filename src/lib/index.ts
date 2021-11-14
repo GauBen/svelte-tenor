@@ -1,5 +1,5 @@
 // Complete keyboard
-export { default as Tenor } from './Tenor.svelte'
+export { default as MobileKeyboard } from './MobileKeyboard.svelte'
 
 // GIF components
 export { default as Search } from './Search.svelte'

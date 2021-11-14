@@ -1,11 +1,14 @@
 <script lang="ts">
   import type { Gif as GifObject } from '$lib/api'
-  import { Tenor, Gif } from '$lib'
-  import { tick } from 'svelte'
+  import { MobileKeyboard, Gif } from '$lib'
+  import { onMount, tick } from 'svelte'
+
+  /** Show desktop interface */
+  let fullscreen = true
 
   let messages: Array<
     { gif: true; body: GifObject } | { gif: false; body: string }
-  > = [{ gif: false, body: 'Hello World!' }]
+  > = []
   let gifKeyboard = false
   let value = ''
 
@@ -19,26 +22,46 @@
       div?.scrollTo({ top: div.scrollHeight })
     })
   }
+
+  onMount(() => {
+    fullscreen = window.matchMedia('(max-width: 600px)').matches
+  })
 </script>
 
 <svelte:head><title>svelte-tenor</title></svelte:head>
 
-<main>
-  <h1>svelte-tenor</h1>
+<main class:desktop={!fullscreen}>
+  {#if !fullscreen}
+    <h1>svelte-tenor</h1>
+  {/if}
 
   <div class="phone">
+    <div class="center">
+      <label for="fullscreen">
+        <input id="fullscreen" type="checkbox" bind:checked={fullscreen} /> Fullscreen
+        view
+      </label>
+    </div>
     <div class="messages" bind:this={div}>
+      <div class="message text">
+        <a href="https://github.com/gauben/svelte-tenor">Back to GitHub</a>
+      </div>
+      <div class="message text">
+        <a href="https://gauben.github.io/svelte-tenor/storybook/">
+          Check out the storybook!
+        </a>
+      </div>
       {#each messages as message}
         {#if message.gif}
           <div class="message"><Gif gif={message.body} /></div>
         {:else}
-          <div class="message text">{message.body}</div>
+          <div class="message text">{message.body.replaceAll('  ', '  ')}</div>
         {/if}
       {/each}
     </div>
     {#if gifKeyboard}
       <div class="keyboard">
-        <Tenor
+        <MobileKeyboard
           key="OY94CH1Q77WO"
           columnSize={140}
           gap={4}
@@ -73,21 +96,28 @@
       </form>
     {/if}
   </div>
-  <footer>
-    <p>
-      <a href="./storybook/" rel="external">Check out the storybook</a> –
-      <a href="https://github.com/gauben/svelte-tenor">Back to GitHub</a>
-    </p>
-  </footer>
+  {#if !fullscreen}
+    <footer>
+      <p>
+        Made with 🧡 and Svelte by <a href="https://gautier.dev">Gautier</a>
+      </p>
+    </footer>
+  {/if}
 </main>
 
 <style lang="scss">
-  :global(body) {
-    margin: 0;
-  }
+  :global {
+    *,
+    ::before,
+    ::after {
+      box-sizing: inherit;
+    }
 
-  main {
-    font-family: system-ui, sans-serif;
+    body {
+      box-sizing: border-box;
+      margin: 0;
+      font-family: system-ui, sans-serif;
+    }
   }
 
   h1,
@@ -103,6 +133,12 @@
     display: flex;
     flex-direction: column;
     gap: 1em;
+    height: 100vh;
+    padding: 1em;
+    overflow: hidden;
+  }
+
+  .desktop > .phone {
     max-width: 360px;
     height: 640px;
     margin: 1em auto;
@@ -111,12 +147,17 @@
     box-shadow: 0 0 2em #ccc8;
   }
 
+  .center {
+    text-align: center;
+  }
+
   .messages {
+    flex-grow: 1;
+    flex-basis: 0%;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     gap: 0.5em;
-    flex: 1;
     overflow: auto;
   }
 
@@ -129,7 +170,6 @@
     justify-content: end;
     max-width: 80%;
     max-height: 12em;
-    white-space: pre-wrap;
   }
 
   .message.text {
@@ -143,9 +183,7 @@
   }
 
   .keyboard {
-    flex: 1;
-    overflow: auto;
-    position: relative;
+    max-height: 50%;
   }
 
   .form {
