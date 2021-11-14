@@ -44,10 +44,15 @@
     </div>
     <div class="messages" bind:this={div}>
       <div class="message text">
-        <a href="https://github.com/gauben/svelte-tenor">Back to GitHub</a>
+        <a href="https://github.com/gauben/svelte-tenor" rel="external">
+          Back to GitHub
+        </a>
       </div>
       <div class="message text">
-        <a href="https://gauben.github.io/svelte-tenor/storybook/">
+        <a
+          href="https://gauben.github.io/svelte-tenor/storybook/"
+          rel="external"
+        >
           Check out the storybook!
         </a>
       </div>
