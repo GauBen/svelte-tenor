@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.10](https://github.com/GauBen/svelte-tenor/compare/v0.0.9...v0.0.10) (2021-11-14)
+
+
+### Features
+
+* added an in-line styling option ([5e74e20](https://github.com/GauBen/svelte-tenor/commit/5e74e209aae1e8b6110723da4542242327234f7e))
+* **categories:** added gap setting ([5ce8fa6](https://github.com/GauBen/svelte-tenor/commit/5ce8fa6e80d3f7cc4cd4049c7863c0a58876f106))
+* **categories:** configure column size ([7d5123b](https://github.com/GauBen/svelte-tenor/commit/7d5123bca15951b1be2fbb4b363a6c6c514d56a2))
+* new mobile keyboard ([80d2495](https://github.com/GauBen/svelte-tenor/commit/80d24958cc688436a8b69b7c507817ebed00bc46))
+
+
+### Bug Fixes
+
+* sizing ([b9ad24c](https://github.com/GauBen/svelte-tenor/commit/b9ad24c3ca30e5d13b7b3353666f042151a8f9a2))
+
 ### [0.0.9](https://github.com/GauBen/svelte-tenor/compare/v0.0.8...v0.0.9) (2021-11-12)
 
 
