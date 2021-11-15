@@ -97,7 +97,7 @@
           }}>GIF</button
         >
         <input type="text" class="text-input" bind:value />
-        <button>▶</button>
+        <button class="icon">▶</button>
       </form>
     {/if}
   </div>
@@ -198,5 +198,9 @@
 
   .text-input {
     flex: 1;
+  }
+
+  .icon {
+    font-size: 0.75em;
   }
 </style>
