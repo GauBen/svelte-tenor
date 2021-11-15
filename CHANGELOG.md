@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.11](https://github.com/GauBen/svelte-tenor/compare/v0.0.10...v0.0.11) (2021-11-15)
+
+
+### Features
+
+* handle errors properly ([f1b8fbd](https://github.com/GauBen/svelte-tenor/commit/f1b8fbda8415908e31a6f8e3009f101bbe3075af))
+* **mobile keyboard:** added a loading spinner ([1525280](https://github.com/GauBen/svelte-tenor/commit/152528049552e1b50f18c8b4423158eaae231f23))
+
+
+### Bug Fixes
+
+* make requests when mounted ([2a905c2](https://github.com/GauBen/svelte-tenor/commit/2a905c2deade361801547db68b855f18aaf6b50c))
+* prevent svelte-kit router to mess with relative links ([ce17c67](https://github.com/GauBen/svelte-tenor/commit/ce17c675d203a280a127d54d8b4c5a3f58e3b04b))
+
 ### [0.0.10](https://github.com/GauBen/svelte-tenor/compare/v0.0.9...v0.0.10) (2021-11-14)
 
 
