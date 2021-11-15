@@ -17,6 +17,7 @@
     },
     scroll: { control: { type: 'boolean' }, defaultValue: false },
     onClick: { action: {} },
+    onError: { action: {} },
   }}
 />
 
@@ -29,6 +30,9 @@
       on:click={({ detail }) => {
         args.onClick(detail)
         q = detail
+      }}
+      on:error={({ detail }) => {
+        args.onError(detail)
       }}
     />
   </div>

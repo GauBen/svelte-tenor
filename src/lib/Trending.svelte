@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount } from 'svelte'
+  import { createEventDispatcher, onMount } from 'svelte'
   import type { Gif, ResultPage, SearchOptions } from './api'
   import { trending } from './api'
   import Grid from './Grid.svelte'
@@ -27,6 +27,8 @@
   /** In-line, horizontal scrolling grid. */
   export let inline: boolean | undefined = undefined
 
+  /** Set `retry` to true to retry the last request. */
+  export let retry = false
   /**
    * Is the request in progress?
    *
@@ -46,8 +48,10 @@
   /** Pages loaded and cached. */
   let pages: Array<ResultPage> = []
 
+  const dispatch = createEventDispatcher<{ error: Error }>()
+
   /** Performs a search when the search term or the number of pages changes. */
-  let update = async () => {
+  const update = async () => {
     while (pages.length < page) {
       loading = true
       let localRequest = trending({
@@ -74,9 +78,14 @@
   }
 
   // Perform a search when the search term or the number of pages changes
-  $: if (mounted) {
+  $: if (mounted || retry) {
     page
-    update()
+    retry = false
+    update().catch((error: Error) => {
+      // If the request fails, tell the parent component
+      gifs = undefined
+      dispatch('error', error)
+    })
   }
 
   let mounted = false

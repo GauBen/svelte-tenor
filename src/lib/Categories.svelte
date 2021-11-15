@@ -29,6 +29,8 @@
    */
   export let gap = 8
 
+  /** Set `retry` to true to retry the last request. */
+  export let retry = false
   /**
    * Is the request in progress?
    *
@@ -39,11 +41,25 @@
   export let categories: Array<{ term: string; gif: string }> | undefined =
     undefined
 
-  const dispatch = createEventDispatcher<{ click: string }>()
+  const dispatch = createEventDispatcher<{ click: string; error: Error }>()
 
-  onMount(async () => {
+  const update = async () => {
     categories = await categoriesApi({ key, type, locale, safety })
     loading = false
+  }
+
+  $: if (mounted || retry) {
+    retry = false
+    update().catch((error: Error) => {
+      // If the request fails, tell the parent component
+      categories = undefined
+      dispatch('error', error)
+    })
+  }
+
+  let mounted = false
+  onMount(async () => {
+    mounted = true
   })
 </script>
 

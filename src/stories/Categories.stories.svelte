@@ -28,9 +28,14 @@
       defaultValue: 8,
     },
     onClick: { action: {} },
+    onError: { action: {} },
   }}
 />
 
 <Story id="categories" name="Categories" let:args>
-  <Categories {...args} on:click={({ detail }) => args.onClick(detail)} />
+  <Categories
+    {...args}
+    on:click={({ detail }) => args.onClick(detail)}
+    on:error={({ detail }) => args.onError(detail)}
+  />
 </Story>

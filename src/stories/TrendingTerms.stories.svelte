@@ -15,9 +15,14 @@
     },
     scroll: { control: { type: 'boolean' }, defaultValue: false },
     onClick: { action: {} },
+    onError: { action: {} },
   }}
 />
 
 <Story id="trendingterms" name="TrendingTerms" let:args>
-  <TrendingTerms {...args} on:click={({ detail }) => args.onClick(detail)} />
+  <TrendingTerms
+    {...args}
+    on:click={({ detail }) => args.onClick(detail)}
+    on:error={({ detail }) => args.onError(detail)}
+  />
 </Story>

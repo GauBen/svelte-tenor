@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount } from 'svelte'
+  import { createEventDispatcher, onMount } from 'svelte'
   import type { SuggestionOptions } from './api'
   import { related } from './api'
   import Terms from './Terms.svelte'
@@ -16,6 +16,8 @@
   /** Keeps the buttons on one line instead of wrapping. */
   export let scroll = false
 
+  /** Set `retry` to true to retry the last request. */
+  export let retry = false
   /**
    * Is the request in progress?
    *
@@ -32,6 +34,8 @@
   /** Latest request performed. */
   let latestRequest: Promise<string[]> | undefined
 
+  const dispatch = createEventDispatcher<{ error: Error }>()
+
   /** Fetches suggestions. */
   const update = async () => {
     loading = true
@@ -45,9 +49,14 @@
     loading = false
   }
 
-  $: if (mounted) {
+  $: if (mounted || retry) {
     q
-    update()
+    retry = false
+    update().catch((error: Error) => {
+      // If the request fails, tell the parent component
+      terms = undefined
+      dispatch('error', error)
+    })
   }
 
   let mounted = false

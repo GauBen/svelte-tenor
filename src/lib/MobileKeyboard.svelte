@@ -54,6 +54,10 @@
    */
   export let gifs: Array<Gif> | undefined = undefined
 
+  // Handle errors and retries
+  let error: Error | undefined
+  let retry = false
+
   const dispatch = createEventDispatcher<{ click: Gif; close: void }>()
 
   let input: HTMLInputElement | undefined
@@ -63,8 +67,21 @@
 </script>
 
 <div class="mobile-keyboard" style="--column: {columnSize}px; --gap: {gap}px">
-  {#if gifs === undefined}
-    <div class="loading">
+  {#if error !== undefined}
+    <div class="placeholder">
+      Tenor is currently unavailable
+      <button
+        type="button"
+        on:click={() => {
+          error = undefined
+          retry = true
+        }}
+      >
+        Retry
+      </button>
+    </div>
+  {:else if gifs === undefined}
+    <div class="placeholder">
       <div class="spinner" aria-label="Loading" />
     </div>
   {/if}
@@ -82,9 +99,13 @@
     bind:page
     bind:loading
     bind:gifs
-    on:click={async ({ detail }) => {
+    bind:retry
+    on:click={({ detail }) => {
       dispatch('click', detail)
       void registerShare({ key, id: detail.id, q, locale })
+    }}
+    on:error={({ detail }) => {
+      error = detail
     }}
   />
   <div class="row">
@@ -111,9 +132,11 @@
     max-height: 100%;
   }
 
-  .loading {
+  .placeholder {
     display: flex;
+    flex-direction: column;
     align-items: center;
+    gap: 0.5em;
     justify-content: center;
     height: var(--column, 140px);
   }

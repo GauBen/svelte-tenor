@@ -45,6 +45,7 @@
       defaultValue: false,
     },
     onClick: { action: {} },
+    onError: { action: {} },
   }}
 />
 
@@ -56,6 +57,7 @@
     {page}
     bind:loading
     on:click={({ detail }) => args.onClick(detail)}
+    on:error={({ detail }) => args.onError(detail)}
   />
   <p class="more">
     <button on:click={() => page++} disabled={loading}>Load more</button>
