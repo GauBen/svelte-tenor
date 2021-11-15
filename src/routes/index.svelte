@@ -193,7 +193,7 @@
 
   .form {
     display: flex;
-    gap: 0.5em;
+    gap: 0.25em;
   }
 
   .text-input {

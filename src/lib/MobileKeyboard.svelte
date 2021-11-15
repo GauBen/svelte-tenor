@@ -22,14 +22,24 @@
   /** Number of pages to display. */
   export let page = 1
 
-  /** Minimum size for each column, in pixels. The maximum size is `columnSize * 2 + gap`. */
-  export let columnSize: number | undefined = undefined
+  /**
+   * Minimum size for each column, in pixels. The maximum size is `columnSize * 2 + gap`.
+   *
+   * @default 140px
+   */
+  export let columnSize = 140
   /**
    * Gap between elements, in pixels.
    *
    * @default 4px
    */
   export let gap = 4
+  /**
+   * Should the input be focused when mounted?
+   *
+   * @default true
+   */
+  export let autofocus = true
 
   /**
    * Is the request in progress?
@@ -44,16 +54,20 @@
    */
   export let gifs: Array<Gif> | undefined = undefined
 
-  let input: HTMLInputElement | undefined
-
   const dispatch = createEventDispatcher<{ click: Gif; close: void }>()
 
+  let input: HTMLInputElement | undefined
   onMount(() => {
-    if (input) input.focus()
+    if (input && autofocus) input.focus()
   })
 </script>
 
-<div class="mobile-keyboard" style="--gap: {gap}px">
+<div class="mobile-keyboard" style="--column: {columnSize}px; --gap: {gap}px">
+  {#if gifs === undefined}
+    <div class="loading">
+      <div class="spinner" aria-label="Loading" />
+    </div>
+  {/if}
   <Search
     {key}
     {q}
@@ -73,7 +87,7 @@
       void registerShare({ key, id: detail.id, q, locale })
     }}
   />
-  <form class="row" on:submit|preventDefault>
+  <div class="row">
     <button
       type="button"
       on:click={() => {
@@ -86,7 +100,7 @@
       bind:value={q}
       bind:this={input}
     />
-  </form>
+  </div>
 </div>
 
 <style lang="scss">
@@ -97,12 +111,33 @@
     max-height: 100%;
   }
 
+  .loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: var(--column, 140px);
+  }
+
+  .spinner {
+    width: 2em;
+    height: 2em;
+    background-image: linear-gradient(to right, purple, tomato);
+    animation: spin 2s infinite cubic-bezier(0.6, -0.5, 0.3, 1.8);
+    border-radius: 0.5em;
+  }
+
   .row {
     display: flex;
     gap: var(--gap, 4px);
 
     > input {
       flex: 1;
+    }
+  }
+
+  @keyframes spin {
+    100% {
+      transform: rotate(720deg);
     }
   }
 </style>

@@ -36,6 +36,10 @@
       control: { type: 'range', min: 0, max: 20, step: 1 },
       defaultValue: 8,
     },
+    autofocus: {
+      control: { type: 'boolean' },
+      defaultValue: true,
+    },
     onClick: { action: {} },
     onClose: { action: {} },
   }}
