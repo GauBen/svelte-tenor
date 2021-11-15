@@ -68,16 +68,17 @@
   class="grid"
   class:inline
   use:watch
-  style="
-    --column: {columnSize}px;
-    --row: {rowSize}px;
-    --gap: {gap}px"
+  style={`
+    --column: ${columnSize}px;
+    --row: ${rowSize}px;
+    --gap: ${gap}px;
+  `}
 >
   {#each gifs as gif (gif.id)}
     <button
-      style="grid-row-end: span {Math.ceil(
+      style={`grid-row-end: span ${Math.ceil(
         (columnSize * gif.height) / gif.width / (defaultRowSize + gap)
-      )}"
+      )}`}
       type="button"
       on:click={() => dispatch('click', gif)}
     >
@@ -89,10 +90,10 @@
 <style lang="scss">
   .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(var(--column, 160px), 1fr));
     grid-auto-rows: var(--row, 8px);
-    align-items: stretch;
+    grid-template-columns: repeat(auto-fill, minmax(var(--column, 160px), 1fr));
     gap: var(--gap, 8px);
+    align-items: stretch;
     border-radius: 4px;
 
     &.inline {
@@ -104,19 +105,19 @@
 
   button {
     position: relative;
-    border: 0;
-    background: none;
-    padding: 0;
-    margin: 0;
-    border-radius: 4px;
-    overflow: hidden;
     flex-shrink: 0;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: none;
+    border: 0;
+    border-radius: 4px;
 
     &::before {
-      content: '';
       position: absolute;
-      inset: 0;
       transition: 0.2s box-shadow;
+      content: "";
+      inset: 0;
     }
 
     &:focus,

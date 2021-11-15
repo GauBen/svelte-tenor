@@ -64,10 +64,16 @@
 </script>
 
 {#if categories !== undefined}
-  <div class="category" style="--column: {columnSize}px; --gap: {gap}px">
+  <div
+    class="category"
+    style={`
+      --column: ${columnSize}px;
+      --gap: ${gap}px;
+    `}
+  >
     {#each categories as { term, gif }}
       <button
-        style="background-image: linear-gradient(to bottom, #0003, #0004, #0008), url({gif})"
+        style="background-image: linear-gradient(to bottom, #0003, #0004, #0008), url({gif});"
         on:click={() => dispatch('click', term)}
       >
         {term}
@@ -84,14 +90,14 @@
   }
 
   button {
+    padding: 3em 1em;
+    color: #fff;
+    font-weight: bold;
+    text-shadow: 0 0 0.25em #000;
     background-color: #8888;
-    background-size: cover;
     background-position: center;
+    background-size: cover;
     border: 0;
     border-radius: 0.25em;
-    padding: 3em 1em;
-    font-weight: bold;
-    color: #fff;
-    text-shadow: 0 0 0.25em #000;
   }
 </style>

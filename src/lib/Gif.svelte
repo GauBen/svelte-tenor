@@ -10,11 +10,11 @@
 
 <style lang="scss">
   img {
-    background: linear-gradient(to right, purple, tomato);
     width: auto;
     max-width: 100%;
     height: auto;
     max-height: 100%;
     vertical-align: bottom;
+    background: linear-gradient(to right, purple, tomato);
   }
 </style>

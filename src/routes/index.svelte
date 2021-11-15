@@ -157,17 +157,13 @@
   }
 
   .messages {
-    flex-grow: 1;
-    flex-basis: 0%;
     display: flex;
+    flex-basis: 0%;
     flex-direction: column;
-    align-items: flex-end;
+    flex-grow: 1;
     gap: 0.5em;
+    align-items: flex-end;
     overflow: auto;
-  }
-
-  .message:first-child {
-    margin-top: auto;
   }
 
   .message {
@@ -175,16 +171,20 @@
     justify-content: end;
     max-width: 80%;
     max-height: 12em;
-  }
 
-  .message.text {
-    background-color: #ccc;
-    padding: 0.5em 0.75em;
-    border-radius: 1em;
-  }
+    &:first-child {
+      margin-top: auto;
+    }
 
-  .message > :global(*) {
-    border-radius: 1em;
+    &.text {
+      padding: 0.5em 0.75em;
+      background-color: #ccc;
+      border-radius: 1em;
+    }
+
+    > :global(*) {
+      border-radius: 1em;
+    }
   }
 
   .keyboard {

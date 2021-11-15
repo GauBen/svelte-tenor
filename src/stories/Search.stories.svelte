@@ -68,13 +68,16 @@
   .form {
     display: flex;
   }
+
   .form > input {
     flex: 1;
     padding: 0.25em;
   }
+
   .more {
     text-align: center;
   }
+
   .more > button {
     padding: 1em;
   }

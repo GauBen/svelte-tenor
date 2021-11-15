@@ -66,7 +66,13 @@
   })
 </script>
 
-<div class="mobile-keyboard" style="--column: {columnSize}px; --gap: {gap}px">
+<div
+  class="mobile-keyboard"
+  style={`
+    --column: ${columnSize}px;
+    --gap: ${gap}px;
+  `}
+>
   {#if error !== undefined}
     <div class="placeholder">
       Tenor is currently unavailable
@@ -135,8 +141,8 @@
   .placeholder {
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: 0.5em;
+    align-items: center;
     justify-content: center;
     height: var(--column, 140px);
   }
@@ -145,8 +151,8 @@
     width: 2em;
     height: 2em;
     background-image: linear-gradient(to right, purple, tomato);
-    animation: spin 2s infinite cubic-bezier(0.6, -0.5, 0.3, 1.8);
     border-radius: 0.5em;
+    animation: spin 2s infinite cubic-bezier(0.6, -0.5, 0.3, 1.8);
   }
 
   .row {

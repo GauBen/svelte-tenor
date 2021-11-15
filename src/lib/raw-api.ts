@@ -136,7 +136,7 @@ export interface CommonSearchOptions extends CommonOptions {
 }
 export interface CommonResults<Formats extends string = GifFormat> {
   next: string
-  results: GifObject<Formats>[]
+  results: Array<GifObject<Formats>>
 }
 export type MinimalResults = CommonResults<'gif' | 'tinygif' | 'mp4'>
 export type BasicResults = CommonResults<

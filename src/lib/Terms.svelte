@@ -26,7 +26,7 @@
 <div class="terms" class:scroll>
   {#each terms as term (term)}
     <button
-      style="background-color: {color(term)}"
+      style="background-color: {color(term)};"
       on:click={() => {
         dispatch('click', term)
       }}
@@ -41,8 +41,8 @@
 <style lang="scss">
   .terms {
     display: flex;
-    gap: 0.5em;
     flex-wrap: wrap;
+    gap: 0.5em;
 
     &.scroll {
       flex-wrap: nowrap;
@@ -51,13 +51,13 @@
   }
 
   button {
-    border: 0;
-    border-radius: 0.25em;
+    flex-shrink: 0;
     padding: 0.5em;
     color: white;
     font-weight: bold;
     text-shadow: 0 0 0.25em #0008;
+    border: 0;
+    border-radius: 0.25em;
     box-shadow: 0 0 0.25em #8884;
-    flex-shrink: 0;
   }
 </style>
