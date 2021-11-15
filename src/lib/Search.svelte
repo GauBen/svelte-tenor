@@ -1,5 +1,6 @@
 <script lang="ts">
-  import type { Gif, SearchOptions, ResultPage } from './api'
+  import { onMount } from 'svelte'
+  import type { Gif, ResultPage, SearchOptions } from './api'
   import { search } from './api'
   import Grid from './Grid.svelte'
 
@@ -83,11 +84,16 @@
   }
 
   // Perform a search when the search term or the number of pages changes
-  $: {
+  $: if (mounted) {
     q
     page
     update()
   }
+
+  let mounted = false
+  onMount(() => {
+    mounted = true
+  })
 </script>
 
 {#if gifs !== undefined}

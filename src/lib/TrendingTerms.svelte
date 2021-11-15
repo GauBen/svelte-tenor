@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { onMount } from 'svelte'
   import type { SuggestionOptions } from './api'
   import { trendingTerms } from './api'
   import Terms from './Terms.svelte'
@@ -26,8 +27,8 @@
    */
   export let terms: string[] | undefined = undefined
 
-  trendingTerms({ key, locale, limit }).then((response) => {
-    terms = response
+  onMount(async () => {
+    terms = await trendingTerms({ key, locale, limit })
     loading = false
   })
 </script>

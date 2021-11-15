@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { createEventDispatcher } from 'svelte'
+  import { createEventDispatcher, onMount } from 'svelte'
   import type { SearchOptions } from './api'
   import { categories as categoriesApi } from './api'
 
@@ -39,12 +39,12 @@
   export let categories: Array<{ term: string; gif: string }> | undefined =
     undefined
 
-  categoriesApi({ key, type, locale, safety }).then((response) => {
-    categories = response
+  const dispatch = createEventDispatcher<{ click: string }>()
+
+  onMount(async () => {
+    categories = await categoriesApi({ key, type, locale, safety })
     loading = false
   })
-
-  const dispatch = createEventDispatcher<{ click: string }>()
 </script>
 
 {#if categories !== undefined}

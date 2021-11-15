@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { onMount } from 'svelte'
   import type { SuggestionOptions } from './api'
   import { related } from './api'
   import Terms from './Terms.svelte'
@@ -44,10 +45,15 @@
     loading = false
   }
 
-  $: {
+  $: if (mounted) {
     q
     update()
   }
+
+  let mounted = false
+  onMount(() => {
+    mounted = true
+  })
 </script>
 
 {#if terms !== undefined}
