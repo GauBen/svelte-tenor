@@ -65,7 +65,7 @@
 
 {#if categories !== undefined}
   <div
-    class="category"
+    class="categories"
     style={`
       --column: ${columnSize}px;
       --gap: ${gap}px;
@@ -83,7 +83,7 @@
 {/if}
 
 <style>
-  .category {
+  .categories {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(var(--column, 200px), 1fr));
     gap: var(--gap, 8px);

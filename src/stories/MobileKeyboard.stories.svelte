@@ -34,11 +34,20 @@
     },
     gap: {
       control: { type: 'range', min: 0, max: 20, step: 1 },
-      defaultValue: 8,
+      defaultValue: 4,
     },
     autofocus: {
       control: { type: 'boolean' },
       defaultValue: true,
+    },
+    messages: {
+      control: { type: 'object' },
+      defaultValue: {
+        placeholder: 'Search Tenor',
+        close: 'Close',
+        error: 'Tenor is currently unavailable',
+        retry: 'Retry',
+      },
     },
     onClick: { action: {} },
     onClose: { action: {} },

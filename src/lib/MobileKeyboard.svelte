@@ -1,6 +1,6 @@
 <script lang="ts">
-  import type { Gif, SearchOptions } from './api'
   import { createEventDispatcher, onMount } from 'svelte'
+  import type { Gif, SearchOptions } from './api'
   import { registerShare } from './api'
   import Search from './Search.svelte'
 
@@ -40,6 +40,28 @@
    * @default true
    */
   export let autofocus = true
+  /** Keyboard messages. */
+  export let messages: {
+    /** Text displayed in the search field when empty. */
+    placeholder: string
+    /** Text in the Close button. Set to `false` to hide the button. */
+    close: string | false
+    /**
+     * What error should be displayed?
+     *
+     * - `false`: No error at all
+     * - `true`: Original error message
+     * - `string`: Custom error message
+     */
+    error: string | boolean
+    /** Text in the Retry button. Set to `false` to hide the button. */
+    retry: string | false
+  } = {
+    placeholder: 'Search Tenor',
+    close: 'Close',
+    error: 'Tenor is currently unavailable',
+    retry: 'Retry',
+  }
 
   /**
    * Is the request in progress?
@@ -75,16 +97,22 @@
 >
   {#if error !== undefined}
     <div class="placeholder">
-      Tenor is currently unavailable
-      <button
-        type="button"
-        on:click={() => {
-          error = undefined
-          retry = true
-        }}
-      >
-        Retry
-      </button>
+      {#if messages.error === true}
+        {error.message}
+      {:else if messages.error !== false}
+        {messages.error}
+      {/if}
+      {#if messages.retry !== false}
+        <button
+          type="button"
+          on:click={() => {
+            error = undefined
+            retry = true
+          }}
+        >
+          {messages.retry}
+        </button>
+      {/if}
     </div>
   {:else if gifs === undefined}
     <div class="placeholder">
@@ -115,15 +143,19 @@
     }}
   />
   <div class="row">
-    <button
-      type="button"
-      on:click={() => {
-        dispatch('close')
-      }}>Close</button
-    >
+    {#if messages.close !== false}
+      <button
+        type="button"
+        on:click={() => {
+          dispatch('close')
+        }}
+      >
+        {messages.close}
+      </button>
+    {/if}
     <input
       type="search"
-      placeholder="Search Tenor"
+      placeholder={messages.placeholder}
       bind:value={q}
       bind:this={input}
     />

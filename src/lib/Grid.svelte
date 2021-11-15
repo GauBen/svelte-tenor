@@ -1,6 +1,6 @@
 <script lang="ts">
-  import type { Gif } from './api'
   import { createEventDispatcher } from 'svelte'
+  import type { Gif } from './api'
   import GifComponent from './Gif.svelte'
 
   /**
@@ -116,7 +116,7 @@
     &::before {
       position: absolute;
       transition: 0.2s box-shadow;
-      content: "";
+      content: '';
       inset: 0;
     }
 

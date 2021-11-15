@@ -1,6 +1,6 @@
 <script lang="ts">
+  import { Gif, MobileKeyboard } from '$lib'
   import type { Gif as GifObject } from '$lib/api'
-  import { MobileKeyboard, Gif } from '$lib'
   import { onMount, tick } from 'svelte'
 
   /** Show desktop interface */
