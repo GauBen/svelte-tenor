@@ -3374,14 +3374,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sveltejs/adapter-static@npm:^1.0.0-next.21":
+"@sveltejs/adapter-static@npm:^1.0.0-next.0":
   version: 1.0.0-next.21
   resolution: "@sveltejs/adapter-static@npm:1.0.0-next.21"
   checksum: 453c05ed00977b7e37749e503b5b566576478d07103f14a751036389572f8dc02ea1783e3166beaee88c597279441be1d2b5627f932000d8555a451ee98c5a46
   languageName: node
   linkType: hard
 
-"@sveltejs/kit@npm:^1.0.0-next.196":
+"@sveltejs/kit@npm:^1.0.0-next.1":
   version: 1.0.0-next.196
   resolution: "@sveltejs/kit@npm:1.0.0-next.196"
   dependencies:
@@ -5088,17 +5088,17 @@ __metadata:
   linkType: hard
 
 "browserslist@npm:^4.12.0, browserslist@npm:^4.16.6, browserslist@npm:^4.17.5, browserslist@npm:^4.17.6":
-  version: 4.17.6
-  resolution: "browserslist@npm:4.17.6"
+  version: 4.18.0
+  resolution: "browserslist@npm:4.18.0"
   dependencies:
-    caniuse-lite: ^1.0.30001274
-    electron-to-chromium: ^1.3.886
+    caniuse-lite: ^1.0.30001280
+    electron-to-chromium: ^1.3.896
     escalade: ^3.1.1
     node-releases: ^2.0.1
     picocolors: ^1.0.0
   bin:
     browserslist: cli.js
-  checksum: 7191280a30621dcb9b285f7f22c462aacbd366a94fcacdac109b8fa1a2fdab826b6545ccb308ad40f5d80f4fc488ae1212af8b16342286b97a1418476a98f77c
+  checksum: 8bf8867d05d8709ba936bbe6d7c5055fb07e4c3227866e64b795044e7c44be1ff0c65cb9e95e8f53d3119ed92bd783ebbb4a54a9d69b5cbb9f8b17ec2864067a
   languageName: node
   linkType: hard
 
@@ -5332,7 +5332,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"caniuse-lite@npm:^1.0.30001109, caniuse-lite@npm:^1.0.30001125, caniuse-lite@npm:^1.0.30001274":
+"caniuse-lite@npm:^1.0.30001109, caniuse-lite@npm:^1.0.30001125, caniuse-lite@npm:^1.0.30001280":
   version: 1.0.30001280
   resolution: "caniuse-lite@npm:1.0.30001280"
   checksum: 5794b22f4254927f095e83c65e89ddfc63065c7ed16e6544555a3252ee3d16e48f8a7846713dc64869c52e1abe9a2a93161804b40c2097d1abc9aaa0155a0b65
@@ -6342,9 +6342,9 @@ __metadata:
   linkType: hard
 
 "csstype@npm:^3.0.2":
-  version: 3.0.9
-  resolution: "csstype@npm:3.0.9"
-  checksum: 199f9af7e673f9f188525c3102a329d637ff46c52f6385a4427ff5cb17adcb736189150170a7af7c5701d18d7704bdad130273f4aa7e44c6c4f9967e6115dc93
+  version: 3.0.10
+  resolution: "csstype@npm:3.0.10"
+  checksum: 20a8fa324f2b33ddf94aa7507d1b6ab3daa6f3cc308888dc50126585d7952f2471de69b2dbe0635d1fdc31223fef8e070842691877e725caf456e2378685a631
   languageName: node
   linkType: hard
 
@@ -6839,7 +6839,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"electron-to-chromium@npm:^1.3.564, electron-to-chromium@npm:^1.3.886":
+"electron-to-chromium@npm:^1.3.564, electron-to-chromium@npm:^1.3.896":
   version: 1.3.896
   resolution: "electron-to-chromium@npm:1.3.896"
   checksum: 6a6120bc6d2c53c57409831e0acd4c9d2c3c18e30851b3c9278bce9a4ad24ce7781fbc0fe735926aea358875ab5b10f32208df865a1c42ca565108f55b6e4aae
@@ -12532,13 +12532,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier-plugin-svelte@npm:^2.4.0":
-  version: 2.4.0
-  resolution: "prettier-plugin-svelte@npm:2.4.0"
+"prettier-plugin-svelte@npm:^2.5.0":
+  version: 2.5.0
+  resolution: "prettier-plugin-svelte@npm:2.5.0"
   peerDependencies:
     prettier: ^1.16.4 || ^2.0.0
     svelte: ^3.2.0
-  checksum: f09ce50c636f673c40429edb71735fb716f1c3bba51ce31a9650ffd2a77aca28e0726471953ed27528ba16b6b50db4571c3a7bf705d16570f645d9523813a0bf
+  checksum: 0c9bf251c330f354aeda12e67ccf0a424345980a50a5cac2a99b87d50adceefd558719692b79e3274ee42e40aa4e0b44c8a9fa6b6908297b3ea7006b2ebcd90b
   languageName: node
   linkType: hard
 
@@ -14284,9 +14284,9 @@ __metadata:
   linkType: hard
 
 "spdx-license-ids@npm:^3.0.0":
-  version: 3.0.10
-  resolution: "spdx-license-ids@npm:3.0.10"
-  checksum: 94fde6f558941f82c737433000e20678eccad448fe5e87cbb98ba1d811a120ddf7fbc4a7a3ebfcd2f49c8c4541ba6537af07750ca5cb54900a064d53f68b888d
+  version: 3.0.11
+  resolution: "spdx-license-ids@npm:3.0.11"
+  checksum: 1da1acb090257773e60b022094050e810ae9fec874dc1461f65dc0400cd42dd830ab2df6e64fb49c2db3dce386dd0362110780e1b154db7c0bb413488836aaeb
   languageName: node
   linkType: hard
 
@@ -14896,9 +14896,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"svelte-check@npm:^2.2.8":
-  version: 2.2.8
-  resolution: "svelte-check@npm:2.2.8"
+"svelte-check@npm:^2.2.9":
+  version: 2.2.9
+  resolution: "svelte-check@npm:2.2.9"
   dependencies:
     chalk: ^4.0.0
     chokidar: ^3.4.1
@@ -14913,7 +14913,7 @@ __metadata:
     svelte: ^3.24.0
   bin:
     svelte-check: bin/svelte-check
-  checksum: 10aa6d73f9d24265a568586d8a42aca1a6476c23c8e7f218999d64c003bd1501142073cb8940522124fab05141cb9c67baa4c852574ce8ab1a8533b2350d25ce
+  checksum: 893c01987b732162ccf9622e95dc3d40e2faa7c9a004bf34ce4ec9e12ed135edc8e6d024be0ffc55a70ba40eef361195fbcc9ded287d2709634f3c31420b1467
   languageName: node
   linkType: hard
 
@@ -15007,8 +15007,8 @@ __metadata:
     "@storybook/addon-links": ^6.3.12
     "@storybook/addon-svelte-csf": ^1.1.0
     "@storybook/svelte": ^6.3.12
-    "@sveltejs/adapter-static": ^1.0.0-next.21
-    "@sveltejs/kit": ^1.0.0-next.196
+    "@sveltejs/adapter-static": ^1.0.0-next.0
+    "@sveltejs/kit": ^1.0.0-next.1
     "@typescript-eslint/eslint-plugin": ^5.3.1
     "@typescript-eslint/parser": ^5.3.1
     babel-loader: ^8.2.3
@@ -15018,7 +15018,7 @@ __metadata:
     postcss-html: ^1.2.0
     prettier: ^2.4.1
     prettier-plugin-jsdoc: ^0.3.30
-    prettier-plugin-svelte: ^2.4.0
+    prettier-plugin-svelte: ^2.5.0
     sass: ^1.43.4
     standard-version: ^9.3.2
     stylelint: ^14.1.0
@@ -15027,25 +15027,25 @@ __metadata:
     stylelint-config-standard: ^24.0.0
     stylelint-order: ^5.0.0
     svelte: ^3.44.1
-    svelte-check: ^2.2.8
+    svelte-check: ^2.2.9
     svelte-loader: ^3.1.2
     svelte-preprocess: ^4.9.8
-    svelte2tsx: ^0.4.8
+    svelte2tsx: ^0.4.9
     tslib: ^2.3.1
     typescript: ^4.4.4
   languageName: unknown
   linkType: soft
 
-"svelte2tsx@npm:^0.4.8":
-  version: 0.4.8
-  resolution: "svelte2tsx@npm:0.4.8"
+"svelte2tsx@npm:^0.4.9":
+  version: 0.4.9
+  resolution: "svelte2tsx@npm:0.4.9"
   dependencies:
     dedent-js: ^1.0.1
     pascal-case: ^3.1.1
   peerDependencies:
     svelte: ^3.24
     typescript: ^4.1.2
-  checksum: af29b3db62e4bd20a711964ce453ecadf890f2650b46a575073d251529fbe8db090f631636d4b062b92e4cdab3a58d3a20d9cc1d5f49613e0e18d07181b68d9f
+  checksum: cafa85d9d99bc9395bae788b7e99346cf8190a9e4708cc76865f44efc421694061f4de7238458ac7fe039d9d6956df614dc52bfaca2c91d3ca2c4f0c74ef2e65
   languageName: node
   linkType: hard
 
