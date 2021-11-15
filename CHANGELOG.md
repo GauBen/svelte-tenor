@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.12](https://github.com/GauBen/svelte-tenor/compare/v0.0.11...v0.0.12) (2021-11-15)
+
+
+### Features
+
+* **mobile keyboard:** added a way to translate messages ([6c9b7e4](https://github.com/GauBen/svelte-tenor/commit/6c9b7e44010b68915bde17d721de8569736bbc80))
+
 ### [0.0.11](https://github.com/GauBen/svelte-tenor/compare/v0.0.10...v0.0.11) (2021-11-15)
 
 
