@@ -38,8 +38,8 @@
   <div class="phone">
     <div class="center">
       <label for="fullscreen">
-        <input id="fullscreen" type="checkbox" bind:checked={fullscreen} /> Fullscreen
-        view
+        <input id="fullscreen" type="checkbox" bind:checked={fullscreen} />
+        Fullscreen view
       </label>
     </div>
     <div class="messages" bind:this={div}>
@@ -68,8 +68,6 @@
       <div class="keyboard">
         <MobileKeyboard
           key="OY94CH1Q77WO"
-          columnSize={140}
-          gap={4}
           bind:q={value}
           on:click={({ detail }) => {
             messages = [...messages, { gif: true, body: detail }]

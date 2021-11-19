@@ -67,8 +67,7 @@
     "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
     "clean": "rm -rf build/ package/",
     "dev": "svelte-kit dev",
-    "format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. .",
-    "lint": "prettier --ignore-path .gitignore --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
+    "format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. src",
     "publish": "yarn clean && standard-version && yarn build && npm publish ./package",
     "storybook": "start-storybook -p 6006"
   },
