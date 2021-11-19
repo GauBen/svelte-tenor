@@ -95,29 +95,31 @@
     --gap: ${gap}px;
   `}
 >
-  {#if error !== undefined}
-    <div class="placeholder">
-      {#if messages.error === true}
-        {error.message}
-      {:else if messages.error !== false}
-        {messages.error}
-      {/if}
-      {#if messages.retry !== false}
-        <button
-          type="button"
-          on:click={() => {
-            error = undefined
-            retry = true
-          }}
-        >
-          {messages.retry}
-        </button>
-      {/if}
-    </div>
-  {:else if gifs === undefined}
-    <div class="placeholder">
-      <div class="spinner" aria-label="Loading" />
-    </div>
+  {#if gifs === undefined}
+    {#if error !== undefined}
+      <div class="placeholder">
+        {#if messages.error === true}
+          {error.message}
+        {:else if messages.error !== false}
+          {messages.error}
+        {/if}
+        {#if messages.retry !== false}
+          <button
+            type="button"
+            on:click={() => {
+              error = undefined
+              retry = true
+            }}
+          >
+            {messages.retry}
+          </button>
+        {/if}
+      </div>
+    {:else}
+      <div class="placeholder">
+        <div class="spinner" aria-label="Loading" />
+      </div>
+    {/if}
   {/if}
   <Search
     {key}
