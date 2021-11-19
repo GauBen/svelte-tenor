@@ -78,7 +78,7 @@ console.log(await search({ key: 'LIVDSRZULELA', q: 'hello' }))
 The API runs smoothly in the browser, but requires some changes to work in other environments:
 
 - Node: use [node-fetch](https://www.npmjs.com/package/node-fetch) and write `import fetch from 'node-fetch; globalThis.fetch = fetch;`
-- Deno: broken at the moment, depends on either [TypeScript#27481](https://github.com/Microsoft/TypeScript/issues/27481) or [Deno#2506](https://github.com/denoland/deno/issues/2506)
+- Deno: broken at the moment, depends on either [TypeScript#27481](https://github.com/Microsoft/TypeScript/issues/27481) or [Deno#2506](https://github.com/denoland/deno/issues/2506) to be fixed
 
 Please note that the API implemented does not completely follow Tenor's documentation. If you want a faithful API implementation, use `svelte-tenor/raw-api` instead. This one supports Deno.
 
