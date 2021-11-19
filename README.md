@@ -3,7 +3,7 @@
 # svelte-tenor
 
 A GIF keyboard, developed with Svelte.
-  
+
 ![npm version](https://img.shields.io/npm/v/svelte-tenor?style=flat-square) ![npm](https://img.shields.io/npm/dm/svelte-tenor?style=flat-square) ![npm bundle size](https://img.shields.io/bundlephobia/min/svelte-tenor?style=flat-square)
 
 ![A lot of cat GIFs](https://user-images.githubusercontent.com/48261497/140711042-28ce86cb-d0ef-4d15-a6b4-210d9c90b20b.png)
@@ -58,7 +58,7 @@ All the components above use [Tenor API](https://tenor.com/gifapi/documentation)
 ```ts
 import { search } from 'svelte-tenor/api'
 
-console.log(await search({key: 'LIVDSRZULELA', q: 'hello'}))
+console.log(await search({ key: 'LIVDSRZULELA', q: 'hello' }))
 ```
 
 [Open this example in your browser](https://svelte.dev/repl/359c66c0d2ed473a965b5b6bb886cab0?version=3.44.2)
