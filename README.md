@@ -52,13 +52,13 @@ Use the `MobileKeyboard` component:
 
 If you want to build your own GIF keyboard, svelte-tenor contains a lot of components.
 
-**Autocomplete:** offers to finish your sentence
+**Autocomplete:** offers to finish your sentence<br>
 [![Autocomplete example](https://user-images.githubusercontent.com/48261497/142628446-c03486db-929a-497c-ae20-455ec740d37b.png)](https://gauben.github.io/svelte-tenor/storybook/?path=/story/components-autocomplete--autocomplete)
 
-**Categories:** Tenor GIF categories
+**Categories:** Tenor GIF categories<br>
 [![GIF categories: dance, annoyed, omg...](https://user-images.githubusercontent.com/48261497/142627729-c4be0b16-a594-4547-b62e-4e54490cdd79.png)](https://gauben.github.io/svelte-tenor/storybook/?path=/story/components-categories--categories)
 
-**Search:** asks Tenor for matching GIFs
+**Search:** asks Tenor for matching GIFs<br>
 [![Searching cat GIFs](https://user-images.githubusercontent.com/48261497/142628878-c526ea76-af42-4832-a7fe-e4f32f8082ad.png)](https://gauben.github.io/svelte-tenor/storybook/?path=/story/components-search--search)
 
 **And more!** Try all available components: https://gauben.github.io/svelte-tenor/storybook/
