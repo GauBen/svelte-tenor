@@ -67,18 +67,16 @@
 <div
   class="grid"
   class:inline
+  style:--column="{columnSize}px"
+  style:--row="{rowSize}px"
+  style:--gap="{gap}px"
   use:watch
-  style={`
-    --column: ${columnSize}px;
-    --row: ${rowSize}px;
-    --gap: ${gap}px;
-  `}
 >
   {#each gifs as gif (gif.id)}
     <button
-      style={`grid-row-end: span ${Math.ceil(
+      style:grid-row-end="span {Math.ceil(
         (columnSize * gif.height) / gif.width / (defaultRowSize + gap)
-      )}`}
+      )}"
       type="button"
       on:click={() => dispatch('click', gif)}
     >

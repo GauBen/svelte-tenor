@@ -90,10 +90,8 @@
 
 <div
   class="mobile-keyboard"
-  style={`
-    --column: ${columnSize}px;
-    --gap: ${gap}px;
-  `}
+  style:--column="{columnSize}px"
+  style:--gap="{gap}px"
 >
   {#if gifs === undefined}
     {#if error !== undefined}

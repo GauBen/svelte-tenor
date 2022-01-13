@@ -26,7 +26,7 @@
 <div class="terms" class:scroll>
   {#each terms as term (term)}
     <button
-      style="background-color: {color(term)};"
+      style:background-color={color(term)}
       on:click={() => {
         dispatch('click', term)
       }}
