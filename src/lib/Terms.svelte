@@ -45,19 +45,19 @@
     gap: 0.5em;
 
     &.scroll {
-      overflow: auto;
       flex-wrap: nowrap;
+      overflow: auto;
     }
   }
 
   button {
     flex-shrink: 0;
     padding: 0.5em;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0 0 0.25em #0008;
     border: 0;
     border-radius: 0.25em;
     box-shadow: 0 0 0.25em #8884;
-    color: white;
-    font-weight: bold;
-    text-shadow: 0 0 0.25em #0008;
   }
 </style>

@@ -41,8 +41,8 @@
 <style>
   .row {
     display: flex;
-    align-items: flex-start;
     gap: 0.5em;
+    align-items: flex-start;
   }
 
   input {

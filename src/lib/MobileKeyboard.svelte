@@ -165,26 +165,26 @@
 <style lang="scss">
   .mobile-keyboard {
     display: flex;
-    max-height: 100%;
     flex-direction: column;
     gap: var(--gap, 4px);
+    max-height: 100%;
   }
 
   .placeholder {
     display: flex;
-    height: var(--column, 140px);
     flex-direction: column;
+    gap: 0.5em;
     align-items: center;
     justify-content: center;
-    gap: 0.5em;
+    height: var(--column, 140px);
   }
 
   .spinner {
     width: 2em;
     height: 2em;
-    animation: spin 2s infinite cubic-bezier(0.6, -0.5, 0.3, 1.8);
     background-image: linear-gradient(to right, purple, tomato);
     border-radius: 0.5em;
+    animation: spin 2s infinite cubic-bezier(0.6, -0.5, 0.3, 1.8);
   }
 
   .row {
