@@ -134,18 +134,18 @@
 
   .phone {
     display: flex;
-    flex-direction: column;
-    gap: 1em;
-    height: 100vh;
-    padding: 1em;
     overflow: hidden;
+    height: 100vh;
+    flex-direction: column;
+    padding: 1em;
+    gap: 1em;
   }
 
   .desktop > .phone {
     max-width: 360px;
     height: 640px;
-    margin: 1em auto;
     padding: 1em;
+    margin: 1em auto;
     border-radius: 1em;
     box-shadow: 0 0 2em #ccc8;
   }
@@ -156,19 +156,19 @@
 
   .messages {
     display: flex;
+    overflow: auto;
     flex-basis: 0%;
     flex-direction: column;
     flex-grow: 1;
-    gap: 0.5em;
     align-items: flex-end;
-    overflow: auto;
+    gap: 0.5em;
   }
 
   .message {
     display: flex;
-    justify-content: end;
     max-width: 80%;
     max-height: 12em;
+    justify-content: end;
 
     &:first-child {
       margin-top: auto;

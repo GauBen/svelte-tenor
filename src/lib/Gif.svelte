@@ -14,7 +14,7 @@
     max-width: 100%;
     height: auto;
     max-height: 100%;
-    vertical-align: bottom;
     background: linear-gradient(to right, purple, tomato);
+    vertical-align: bottom;
   }
 </style>

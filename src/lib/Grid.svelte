@@ -88,34 +88,34 @@
 <style lang="scss">
   .grid {
     display: grid;
-    grid-auto-rows: var(--row, 8px);
-    grid-template-columns: repeat(auto-fill, minmax(var(--column, 160px), 1fr));
-    gap: var(--gap, 8px);
     align-items: stretch;
     border-radius: 4px;
+    gap: var(--gap, 8px);
+    grid-auto-rows: var(--row, 8px);
+    grid-template-columns: repeat(auto-fill, minmax(var(--column, 160px), 1fr));
 
     &.inline {
       display: flex;
-      height: var(--column, 160px);
       overflow: auto;
+      height: var(--column, 160px);
     }
   }
 
   button {
     position: relative;
-    flex-shrink: 0;
-    margin: 0;
-    padding: 0;
     overflow: hidden;
-    background: none;
+    flex-shrink: 0;
+    padding: 0;
     border: 0;
+    margin: 0;
+    background: none;
     border-radius: 4px;
 
     &::before {
       position: absolute;
-      transition: 0.2s box-shadow;
       content: '';
       inset: 0;
+      transition: 0.2s box-shadow;
     }
 
     &:focus,

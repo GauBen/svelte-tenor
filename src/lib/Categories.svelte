@@ -80,19 +80,19 @@
 <style>
   .categories {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(var(--column, 200px), 1fr));
     gap: var(--gap, 8px);
+    grid-template-columns: repeat(auto-fit, minmax(var(--column, 200px), 1fr));
   }
 
   button {
     padding: 3em 1em;
-    color: #fff;
-    font-weight: bold;
-    text-shadow: 0 0 0.25em #000;
+    border: 0;
     background-color: #8888;
     background-position: center;
     background-size: cover;
-    border: 0;
     border-radius: 0.25em;
+    color: #fff;
+    font-weight: bold;
+    text-shadow: 0 0 0.25em #000;
   }
 </style>
