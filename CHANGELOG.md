@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.1.0](https://github.com/GauBen/svelte-tenor/compare/v0.0.15...v0.1.0) (2022-02-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* stopped rendering empty list
+
+### Features
+
+* **mobile keyboard:** show a message if no gifs match ([83201c9](https://github.com/GauBen/svelte-tenor/commit/83201c9c7ac2650be12dca9722ca4b2573ec4969))
+
+
+### Bug Fixes
+
+* stopped rendering empty list ([f4c3652](https://github.com/GauBen/svelte-tenor/commit/f4c36528806e585d80801ad5f6bd81a67b423765))
+
 ### [0.0.15](https://github.com/GauBen/svelte-tenor/compare/v0.0.14...v0.0.15) (2022-01-13)
 
 ### [0.0.14](https://github.com/GauBen/svelte-tenor/compare/v0.0.13...v0.0.14) (2021-11-19)
