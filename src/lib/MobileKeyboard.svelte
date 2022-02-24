@@ -56,11 +56,14 @@
     error: string | boolean
     /** Text in the Retry button. Set to `false` to hide the button. */
     retry: string | false
+    /** Text shown when Tenor returns an empty list. Set to `false` to show nothing. */
+    empty: string | false
   } = {
     placeholder: 'Search Tenor',
     close: 'Close',
     error: 'Tenor is currently unavailable',
     retry: 'Retry',
+    empty: 'No GIFs match your search... Try something else!',
   }
 
   /**
@@ -118,6 +121,10 @@
         <div class="spinner" aria-label="Loading" />
       </div>
     {/if}
+  {:else if gifs.length === 0}
+    <div class="placeholder">
+      {#if messages.empty}{messages.empty}{/if}
+    </div>
   {/if}
   <Search
     {key}
@@ -177,6 +184,7 @@
     align-items: center;
     justify-content: center;
     height: var(--column, 140px);
+    text-align: center;
   }
 
   .spinner {

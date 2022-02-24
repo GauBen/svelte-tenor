@@ -47,6 +47,7 @@
         close: 'Close',
         error: 'Tenor is currently unavailable',
         retry: 'Retry',
+        empty: 'No GIFs match your search... Try something else!',
       },
     },
     onClick: { action: {} },
