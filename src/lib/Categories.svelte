@@ -63,7 +63,7 @@
   })
 </script>
 
-{#if categories !== undefined}
+{#if categories !== undefined && categories.length > 0}
   <div class="categories" style:--column="{columnSize}px" style:--gap="{gap}px">
     {#each categories as { term, gif }}
       <button

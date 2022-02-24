@@ -65,6 +65,6 @@
   })
 </script>
 
-{#if terms !== undefined}
+{#if terms !== undefined && terms.length > 0}
   <Terms {terms} {scroll} on:click />
 {/if}

@@ -94,6 +94,6 @@
   })
 </script>
 
-{#if gifs !== undefined}
+{#if gifs !== undefined && gifs.length > 0}
   <Grid {gifs} {columnSize} {gap} {inline} on:click />
 {/if}
