@@ -6,7 +6,7 @@
   $: ({ description, width, height, gif: src } = gif)
 </script>
 
-<img {src} alt={description} {width} {height} class="gif" />
+<img {src} alt={description} {width} {height} class="gif" on:load on:error />
 
 <style lang="scss">
   img {
