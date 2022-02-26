@@ -10,6 +10,7 @@ module.exports = {
     const svelteLoader = config.module.rules.find(
       (r) => r.loader && r.loader.includes('svelte-loader')
     )
+    config.resolve.alias['./raw-api.js'] = './raw-api.ts'
     svelteLoader.options = (await import('../svelte.config.js')).default
     return config
   },
