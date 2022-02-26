@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.1](https://github.com/GauBen/svelte-tenor/compare/v0.1.0...v0.1.1) (2022-02-26)
+
+
+### Bug Fixes
+
+* added extensions for esm ([c9cfc49](https://github.com/GauBen/svelte-tenor/commit/c9cfc49c96bd020ecc320ab89566f31175b81786))
+
 ## [0.1.0](https://github.com/GauBen/svelte-tenor/compare/v0.0.15...v0.1.0) (2022-02-24)
 
 
