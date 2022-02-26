@@ -3,7 +3,7 @@
  *
  * @module
  */
-import type { BasicResults } from './raw-api'
+import type { BasicResults } from './raw-api.js'
 import {
   autocomplete as rawAutocomplete,
   categories as rawCategories,
@@ -14,7 +14,7 @@ import {
   searchSuggestions as rawSearchSuggestions,
   trending as rawTrending,
   trendingTerms as rawTrendingTerms,
-} from './raw-api'
+} from './raw-api.js'
 
 /** Represents a GIF object. */
 export interface Gif {
