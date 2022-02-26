@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.2](https://github.com/GauBen/svelte-tenor/compare/v0.1.1...v0.1.2) (2022-02-26)
+
+
+### Features
+
+* added on:load and on:error on Gif ([4172ca9](https://github.com/GauBen/svelte-tenor/commit/4172ca987919906489696ec657574ace9ff9585e))
+
+
+### Bug Fixes
+
+* stopped overriding intrinsic sizes ([b6e2c10](https://github.com/GauBen/svelte-tenor/commit/b6e2c1086ac98507541046a3f00b532508de440f))
+
 ### [0.1.1](https://github.com/GauBen/svelte-tenor/compare/v0.1.0...v0.1.1) (2022-02-26)
 
 
