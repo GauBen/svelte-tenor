@@ -10,7 +10,6 @@
 
 <style lang="scss">
   img {
-    width: auto;
     max-width: 100%;
     height: auto;
     max-height: 100%;
