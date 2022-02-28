@@ -10,12 +10,8 @@
    */
   export let columnSize = 160
 
-  const defaultRowSize = 8
-  /**
-   * Size of each row. A GIF spans over multiple grid rows.
-   *
-   * @default 8px
-   */
+  /** Default size of each row. */
+  export const defaultRowSize = 8
   let rowSize = defaultRowSize
 
   /**
@@ -31,6 +27,9 @@
    * @default false
    */
   export let inline = false
+
+  /** Set `resetPosition` to true to scroll to the top-left corner. */
+  export let resetPosition = false
 
   /** Array of GIFs to display. */
   export let gifs: Gif[] = []
@@ -62,6 +61,12 @@
       },
     }
   }
+
+  let grid: HTMLElement
+  $: if (resetPosition) {
+    grid?.scrollTo({ top: 0, left: 0 })
+    resetPosition = false
+  }
 </script>
 
 <div
@@ -71,6 +76,7 @@
   style:--row="{rowSize}px"
   style:--gap="{gap}px"
   use:watch
+  bind:this={grid}
 >
   {#each gifs as gif (gif.id)}
     <button

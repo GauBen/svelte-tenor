@@ -81,8 +81,10 @@
   }
 
   // Reset the number of pages and the cache when the search term changes
+  let resetPosition = false
   $: {
     q
+    resetPosition = true
     page = 1
     pages = []
   }
@@ -106,5 +108,5 @@
 </script>
 
 {#if gifs !== undefined && gifs.length > 0}
-  <Grid {gifs} {columnSize} {gap} {inline} on:click />
+  <Grid {gifs} {columnSize} {gap} {inline} bind:resetPosition on:click />
 {/if}
