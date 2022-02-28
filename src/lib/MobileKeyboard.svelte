@@ -56,8 +56,8 @@
     error: string | boolean
     /** Text in the Retry button. Set to `false` to hide the button. */
     retry: string | false
-    /** Text shown when Tenor returns an empty list. Set to `false` to show nothing. */
-    empty: string | false
+    /** Text shown when Tenor returns an empty list. */
+    empty: string
   } = {
     placeholder: 'Search Tenor',
     close: 'Close',
@@ -122,9 +122,7 @@
       </div>
     {/if}
   {:else if gifs.length === 0}
-    <div class="placeholder">
-      {#if messages.empty}{messages.empty}{/if}
-    </div>
+    <div class="placeholder">{messages.empty}</div>
   {/if}
   <Search
     {key}
