@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.3](https://github.com/GauBen/svelte-tenor/compare/v0.1.2...v0.1.3) (2022-02-28)
+
+
+### Features
+
+* reset scroll when the search term is updated ([81a2192](https://github.com/GauBen/svelte-tenor/commit/81a219263392edec56180df318c1a69371b5cb21))
+
 ### [0.1.2](https://github.com/GauBen/svelte-tenor/compare/v0.1.1...v0.1.2) (2022-02-26)
 
 
