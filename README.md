@@ -4,7 +4,7 @@
 
 Tenor GIF components, implemented in Svelte.
 
-[![package version](https://img.shields.io/npm/v/svelte-tenor?style=flat-square&label=version) ![downloads per week](https://img.shields.io/npm/dm/svelte-tenor?style=flat-square)](https://www.npmjs.com/package/svelte-tenor) [![npm bundle size](https://img.shields.io/bundlephobia/min/svelte-tenor?style=flat-square)](https://bundlephobia.com/package/svelte-tenor)
+[![package version](https://img.shields.io/npm/v/svelte-tenor?style=flat-square&label=version)](https://github.com/GauBen/svelte-tenor/blob/main/CHANGELOG.md) [![downloads per week](https://img.shields.io/npm/dm/svelte-tenor?style=flat-square)](https://www.npmjs.com/package/svelte-tenor) [![npm bundle size](https://img.shields.io/bundlephobia/min/svelte-tenor?style=flat-square)](https://bundlephobia.com/package/svelte-tenor)
 
 [![A lot of cat GIFs](https://user-images.githubusercontent.com/48261497/140711042-28ce86cb-d0ef-4d15-a6b4-210d9c90b20b.png)](https://gauben.github.io/svelte-tenor/)
 
