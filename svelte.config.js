@@ -8,9 +8,8 @@ const config = {
   preprocess: preprocess(),
   kit: {
     adapter: adapter(),
-    paths: {
-      base: dev ? '' : '/svelte-tenor',
-    },
+    prerender: { default: true },
+    paths: { base: dev ? '' : '/svelte-tenor' },
   },
 }
 
