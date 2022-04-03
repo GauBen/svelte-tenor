@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.4](https://github.com/GauBen/svelte-tenor/compare/v0.1.3...v0.1.4) (2022-04-03)
+
+
+### Bug Fixes
+
+* downgraded ts target ([9fcdbfa](https://github.com/GauBen/svelte-tenor/commit/9fcdbfabe5e8c749f24f2c14429ea61e9b641699))
+* fixed gif sizes on firefox ([f115142](https://github.com/GauBen/svelte-tenor/commit/f11514257219476b9b2bbff9f314d05a06841ec6))
+
 ### [0.1.3](https://github.com/GauBen/svelte-tenor/compare/v0.1.2...v0.1.3) (2022-02-28)
 
 
