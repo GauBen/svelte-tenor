@@ -110,6 +110,7 @@
   button {
     position: relative;
     flex-shrink: 0;
+    height: 100%;
     padding: 0;
     margin: 0;
     overflow: hidden;
