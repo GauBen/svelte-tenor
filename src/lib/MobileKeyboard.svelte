@@ -107,6 +107,7 @@
         {#if messages.retry !== false}
           <button
             type="button"
+            class="retry"
             on:click={() => {
               error = undefined
               retry = true
@@ -151,6 +152,7 @@
     {#if messages.close !== false}
       <button
         type="button"
+        class="close"
         on:click={() => {
           dispatch('close')
         }}
@@ -160,6 +162,7 @@
     {/if}
     <input
       type="search"
+      class="search"
       placeholder={messages.placeholder}
       bind:value={q}
       bind:this={input}
