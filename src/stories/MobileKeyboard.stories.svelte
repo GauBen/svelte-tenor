@@ -59,6 +59,6 @@
   <MobileKeyboard
     {...args}
     on:click={({ detail }) => args.onClick(detail)}
-    on:close={() => args.onClick()}
+    on:close={() => args.onClose()}
   />
 </Story>
