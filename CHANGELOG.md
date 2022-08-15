@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.2.0](https://github.com/GauBen/svelte-tenor/compare/v0.0.15...v0.2.0) (2022-08-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* stopped rendering empty list
+
+### Features
+
+* added element classes ([649634c](https://github.com/GauBen/svelte-tenor/commit/649634c6bf83a7b49911191bf24e44ef334c5bce))
+* added on:load and on:error on Gif ([4172ca9](https://github.com/GauBen/svelte-tenor/commit/4172ca987919906489696ec657574ace9ff9585e))
+* **mobile keyboard:** show a message if no gifs match ([83201c9](https://github.com/GauBen/svelte-tenor/commit/83201c9c7ac2650be12dca9722ca4b2573ec4969))
+* reset scroll when the search term is updated ([81a2192](https://github.com/GauBen/svelte-tenor/commit/81a219263392edec56180df318c1a69371b5cb21))
+
+
+### Bug Fixes
+
+* added extensions for esm ([c9cfc49](https://github.com/GauBen/svelte-tenor/commit/c9cfc49c96bd020ecc320ab89566f31175b81786))
+* downgraded ts target ([9fcdbfa](https://github.com/GauBen/svelte-tenor/commit/9fcdbfabe5e8c749f24f2c14429ea61e9b641699))
+* fixed gif sizes on firefox ([f115142](https://github.com/GauBen/svelte-tenor/commit/f11514257219476b9b2bbff9f314d05a06841ec6))
+* stopped overriding intrinsic sizes ([b6e2c10](https://github.com/GauBen/svelte-tenor/commit/b6e2c1086ac98507541046a3f00b532508de440f))
+* stopped rendering empty list ([f4c3652](https://github.com/GauBen/svelte-tenor/commit/f4c36528806e585d80801ad5f6bd81a67b423765))
+
 ### [0.1.5](https://github.com/GauBen/svelte-tenor/compare/v0.1.4...v0.1.5) (2022-04-04)
 
 ### [0.1.4](https://github.com/GauBen/svelte-tenor/compare/v0.1.3...v0.1.4) (2022-04-03)
