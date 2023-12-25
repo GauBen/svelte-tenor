@@ -1,108 +1,81 @@
 <script lang="ts">
-  import { createEventDispatcher } from 'svelte'
-  import type { Gif } from './api'
-  import GifComponent from './Gif.svelte'
+  import Gif from "./Gif.svelte";
+  import type { GifObject } from "./api.js";
 
-  /**
-   * Minimum size for each column, in pixels. The maximum size is `columnSize * 2 + gap`.
-   *
-   * @default 160px
-   */
-  export let columnSize = 160
+  const {
+    columnSize = 160,
+    gap = 8,
+    inline = false,
+    gifs = [],
+    onclick = () => {},
+  } = $props<{
+    /**
+     * Minimum size for each column, in pixels. The maximum size is `columnSize * 2 + gap`.
+     *
+     * @default 160px
+     */
+    columnSize?: number;
+    /**
+     * Gap between GIFs, in pixels.
+     *
+     * @default 8px
+     */
+    gap?: number;
+    /**
+     * In-line, horizontal scrolling grid.
+     *
+     * @default false
+     */
+    inline?: boolean;
+    /** Set `resetPosition` to true to scroll to the top-left corner. */
+    resetPosition?: boolean;
+    /** Array of GIFs to display. */
+    gifs?: GifObject[];
+    /** Click handler. */
+    onclick?: (gif: GifObject) => void;
+  }>();
 
-  /** Default size of each row. */
-  export const defaultRowSize = 8
-  let rowSize = defaultRowSize
-
-  /**
-   * Gap between GIFs, in pixels.
-   *
-   * @default 8px
-   */
-  export let gap = 8
-
-  /**
-   * In-line, horizontal scrolling grid.
-   *
-   * @default false
-   */
-  export let inline = false
-
-  /** Set `resetPosition` to true to scroll to the top-left corner. */
-  export let resetPosition = false
-
-  /** Array of GIFs to display. */
-  export let gifs: Gif[] = []
-
-  const dispatch = createEventDispatcher<{ click: Gif }>()
-
-  /** Preserves the aspect ratio of the GIFs. */
-  const watch = (el: HTMLElement) => {
-    // To avoid a bug, we keep the last two widths
-    let widths = [-1, -1]
-    const observer = new ResizeObserver(() => {
-      // If we are oscillating between two widths, abort
-      if (el.offsetWidth === widths[0]) return
-      widths = [widths[1], el.offsetWidth]
-      const columns = window
-        .getComputedStyle(el)
-        .getPropertyValue('grid-template-columns')
-        .split(' ').length
-      const available = el.offsetWidth - (columns - 1) * gap
-      // Compute the row size to keep the aspect ratio
-      rowSize =
-        ((available / columns) * (defaultRowSize + gap)) / columnSize - gap
-    })
-    observer.observe(el)
-
-    return {
-      destroy() {
-        observer.unobserve(el)
-      },
-    }
+  let grid = $state<HTMLDivElement>();
+  export function scrollToStart() {
+    grid?.scrollTo({ top: 0, left: 0 });
   }
 
-  let grid: HTMLElement
-  $: if (resetPosition) {
-    grid?.scrollTo({ top: 0, left: 0 })
-    resetPosition = false
-  }
+  /** Size of each row. */
+  const rowSize = 8;
 </script>
 
 <div
-  class="grid"
   class:inline
   style:--column="{columnSize}px"
   style:--row="{rowSize}px"
   style:--gap="{gap}px"
-  use:watch
   bind:this={grid}
 >
-  {#each gifs as gif (gif.id)}
+  {#each gifs as gif}
     <button
       style:grid-row-end="span {Math.ceil(
-        (columnSize * gif.height) / gif.width / (defaultRowSize + gap)
+        (columnSize * gif.height) / gif.width / (rowSize + gap),
       )}"
       type="button"
-      on:click={() => dispatch('click', gif)}
+      onclick={() => onclick(gif)}
     >
-      <GifComponent {gif} />
+      <Gif {...gif} />
     </button>
   {/each}
 </div>
 
 <style lang="scss">
-  .grid {
+  div {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(var(--column, 160px), 1fr));
-    grid-auto-rows: var(--row, 8px);
-    gap: var(--gap, 8px);
+    grid-template-columns: repeat(auto-fill, minmax(var(--column), 1fr));
+    grid-auto-rows: var(--row);
+    gap: var(--gap);
     align-items: stretch;
-    border-radius: 4px;
+    border-radius: 0.25rem;
 
     &.inline {
       display: flex;
-      height: var(--column, 160px);
+      height: var(--column);
       overflow: auto;
     }
   }
@@ -116,25 +89,9 @@
     overflow: hidden;
     background: none;
     border: 0;
-    border-radius: 4px;
+    border-radius: 0.25rem;
 
-    &::before {
-      position: absolute;
-      inset: 0;
-      content: '';
-      transition: 0.2s box-shadow;
-    }
-
-    &:focus,
-    &:active {
-      outline: 0;
-
-      &::before {
-        box-shadow: 0 0 1em blue inset, 0 0 1em white inset;
-      }
-    }
-
-    > :global(.gif) {
+    > :global(img) {
       width: 100%;
       height: 100%;
       object-fit: cover;

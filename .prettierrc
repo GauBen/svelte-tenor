@@ -1,4 +1,5 @@
 {
-  "semi": false,
-  "singleQuote": true
+  "quoteProps": "consistent",
+  "plugins": ["prettier-plugin-svelte"],
+  "overrides": [{ "files": "*.svelte", "options": { "parser": "svelte" } }]
 }
