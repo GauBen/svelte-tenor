@@ -1,31 +1,39 @@
+/** @type { import("eslint").Linter.Config } */
 module.exports = {
   root: true,
-  parser: '@typescript-eslint/parser',
   extends: [
-    'eslint:recommended',
-    'plugin:@typescript-eslint/recommended',
-    'prettier',
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:svelte/recommended",
+    "plugin:storybook/recommended",
+    "prettier",
   ],
-  plugins: ['svelte3', '@typescript-eslint'],
-  ignorePatterns: ['*.cjs'],
-  overrides: [
-    {
-      files: ['*.svelte'],
-      processor: 'svelte3/svelte3',
-      rules: { '@typescript-eslint/no-unused-vars': 'off' },
-    },
-  ],
-  settings: {
-    'svelte3/typescript': true,
-    'svelte3/ignore-styles': () => true,
-  },
+  parser: "@typescript-eslint/parser",
+  plugins: ["@typescript-eslint"],
   parserOptions: {
-    sourceType: 'module',
-    ecmaVersion: 2019,
+    sourceType: "module",
+    ecmaVersion: 2020,
+    extraFileExtensions: [".svelte"],
   },
   env: {
     browser: true,
     es2017: true,
     node: true,
   },
-}
+  globals: {
+    $derived: "readonly",
+    $effect: "readonly",
+    $inspect: "readonly",
+    $props: "readonly",
+    $state: "readonly",
+  },
+  overrides: [
+    {
+      files: ["*.svelte"],
+      parser: "svelte-eslint-parser",
+      parserOptions: {
+        parser: "@typescript-eslint/parser",
+      },
+    },
+  ],
+};
