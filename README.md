@@ -1,3 +1,6 @@
+> [!CAUTION]
+> [The Tenor API will be shutdown on June 30, 2026](https://support.google.com/tenor/answer/10455265#whatll-happen-to-the-tenor-api&zippy=%2Cwhatll-happen-to-the-tenor-api), breaking this package as a consequence.
+
 <div align="center">
 
 # svelte-tenor
