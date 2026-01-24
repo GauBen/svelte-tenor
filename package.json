@@ -55,6 +55,12 @@
   ],
   "license": "MIT",
   "main": "index.js",
+  "svelte": "index.js",
+  "exports": {
+    ".": {
+      "svelte": "./index.js"
+    }
+  },
   "packageManager": "yarn@3.2.2",
   "repository": {
     "type": "git",
